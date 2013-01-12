@@ -61,10 +61,12 @@ return CMap::mergeArray(
 		// @see http://www.yiiframework.com/doc/api/1.1/CModule#setModules-detail
 		'modules' => array(
 			'gii' => array(
-				'generatePaths' => array(
+				'class' => 'system.gii.GiiModule',
+				'password' => 'gii',
+				'generatorPaths' => array(
 					'bootstrap.gii'
-				),
-			),
+				)
+			)
 		),
 		'components' => array(
 			'errorHandler' => array(
