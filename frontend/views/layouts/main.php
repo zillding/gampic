@@ -50,7 +50,7 @@
 
 	<?php $this->widget('bootstrap.widgets.TbNavbar',array(
 		'type' => 'inverse',
-		'brand' => 'gampic',
+		'brand' => 'Gampic',
 		'brandUrl' => '#',
 		'collapse' => true,
 		'items'=>array(
@@ -63,11 +63,11 @@
 					array('label'=>'Register', 'url'=>array('/site/register'), 'visible'=>Yii::app()->user->isGuest),
 					array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 					array('label'=>'Upload', 'url'=>array('/site/upload'), 'visible'=>!Yii::app()->user->isGuest),
-					array('label'=>'Logout ('.Yii::app()->user->name.'-'.Yii::app()->user->id.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+					array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
 				),
 			),
 			'<form class="navbar-search pull-left" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
-			(!Yii::app()->user->isGuest) ? '<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>' : '',
+			(!Yii::app()->user->isGuest) ? '<p class="navbar-text pull-right">Logged in as <a href="#">'.Yii::app()->user->name.'('.Yii::app()->user->id.')</a></p>' : '',
 			array(
 				'class' => 'bootstrap.widgets.TbMenu',
 				'htmlOptions' => array('class' => 'pull-right'),
