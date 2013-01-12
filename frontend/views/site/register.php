@@ -15,41 +15,23 @@ $this->breadcrumbs=array(
 
 <div class="form">
 
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'register-form',
 	'enableAjaxValidation'=>true,
+	'htmlOptions'=>array('class'=>'well'),
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'user_name'); ?>
-		<?php echo $form->textField($model,'user_name'); ?>
-		<?php echo $form->error($model,'user_name'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model, 'user_name', array('class'=>'span3'));?>
+	<?php echo $form->textFieldRow($model, 'user_email', array('class'=>'span3'));?>
+	<?php echo $form->passwordFieldRow($model, 'user_password', array('class'=>'span3'));?>
+	<?php echo $form->passwordFieldRow($model, 'confirm_user_password', array('class'=>'span3'));?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'user_email'); ?>
-		<?php echo $form->textField($model,'user_email'); ?>
-		<?php echo $form->error($model,'user_email'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'user_password'); ?>
-		<?php echo $form->passwordField($model,'user_password'); ?>
-		<?php echo $form->error($model,'user_password'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'confirm_user_password'); ?>
-		<?php echo $form->passwordField($model,'confirm_user_password'); ?>
-		<?php echo $form->error($model,'confirm_user_password'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Submit'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Submit', 'icon'=>'ok'));?>
 	</div>
 
 <?php $this->endWidget(); ?>
