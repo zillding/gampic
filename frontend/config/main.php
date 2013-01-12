@@ -28,7 +28,7 @@ $mainEnvConfiguration = file_exists($mainEnvFile) ? require($mainEnvFile) : arra
 
 return CMap::mergeArray(
 	array(
-		'name' => 'gampic',
+		'name' => 'Gampic',
 		// @see http://www.yiiframework.com/doc/api/1.1/CApplication#basePath-detail
 		'basePath' => 'frontend',
 		// set parameters
