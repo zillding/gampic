@@ -43,6 +43,13 @@
 	<!--<script src="/less/less-1.3.0.min.js"></script>-->
 	<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico">
 	<title><?php echo h($this->pageTitle); /* using shortcut for CHtml::encode */ ?></title>
+
+	<style type="text/css">
+		ul.nav li.dropdown:hover ul.dropdown-menu{
+		    display: block;    
+		}
+	</style>
+
 </head>
 
 <body>
@@ -54,10 +61,8 @@
 		'brandUrl' => '#',
 		'collapse' => true,
 		'items'=>array(
-			'<form class="navbar-search pull-left" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
 			array(
 				'class' => 'bootstrap.widgets.TbMenu',
-				'htmlOptions' => array('style' => 'left: 10%'),
 				'items' => array(
 					array(
 						'label' => 'Categories', 
@@ -75,6 +80,7 @@
 					// array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				),
 			),
+			'<form class="navbar-search pull-left" style="" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
 			(!Yii::app()->user->isGuest) ? '<p class="navbar-text pull-right">Logged in as <a href="#">'.Yii::app()->user->name.'('.Yii::app()->user->id.')</a></p>' : '',
 			array(
 				'class' => 'bootstrap.widgets.TbMenu',
@@ -83,7 +89,7 @@
 					array('label'=>'Upload', 'url'=>array('/site/upload'), 'visible'=>!Yii::app()->user->isGuest),
 					array('---', 'visible' => !Yii::app()->user->isGuest),
 					// '---',
-					array('label' => 'About', 'url' => '#', 'items' => array(
+					array('label' => 'About', 'items' => array(
 						array('label' => 'Help', 'url' => '#'),
 						array('label'=>'Contact', 'url'=>array('/site/contact')),
 						'---',
@@ -109,13 +115,14 @@
 
 	<!-- mainmenu -->
 	<div class="container" style="margin-top:80px">
-		<?php if (isset($this->breadcrumbs)): ?>
-			<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
-			'links' => $this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-		<?php endif?>
+		<?php 
+			// if (isset($this->breadcrumbs))
+			// 	$this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+			// 		'links' => $this->breadcrumbs,
+			// 	)); //breadcrumbs
 
-		<?php echo $content; ?>
+			echo $content; 
+		?>
 		<hr/>
 		<div id="footer">
 			Copyright &copy; <?php echo date('Y'); ?>.<br/>
