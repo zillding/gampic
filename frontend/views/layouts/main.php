@@ -29,12 +29,9 @@
 	<!--<link rel="stylesheet/less" type="text/css" href="/less/styles.less">-->
 
 	<!-- create your own: http://modernizr.com/download/-->
-	<!-- // <script src="<?php echo Yii::app()->request->baseUrl; ?>/app/js/libs/utils/modernizr-2.6.2.js"></script> -->
+	<script src="<?php echo Yii::app()->request->baseUrl; ?>/app/js/libs/utils/modernizr-2.6.2.js"></script>
 
-	<!-- todo: need to be changed -->
 	<!-- blueprint CSS framework -->
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
 	<!--[if lt IE 8]>
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
 	<![endif]-->
