@@ -31,7 +31,9 @@ $this->breadcrumbs=array(
 	<?php echo $form->passwordFieldRow($model, 'confirm_user_password', array('class'=>'span3'));?>
 
 	<div class="form-actions">
-		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Submit', 'icon'=>'ok'));?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Register', 'icon'=>'ok'));?>
+		<!-- todo: add functionality -->
+		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'cancel','type'=>'secondary','label'=>'Cancel', 'icon'=>'remove'));?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -29,7 +29,7 @@
 	<!--<link rel="stylesheet/less" type="text/css" href="/less/styles.less">-->
 
 	<!-- create your own: http://modernizr.com/download/-->
-	<script src="<?php echo Yii::app()->request->baseUrl; ?>/app/js/libs/utils/modernizr-2.6.2.js"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/modernizr-2.6.2.js"></script>
 
 	<!-- blueprint CSS framework -->
 	<!--[if lt IE 8]>
