@@ -54,32 +54,53 @@
 		'brandUrl' => '#',
 		'collapse' => true,
 		'items'=>array(
+			'<form class="navbar-search pull-left" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
 			array(
 				'class' => 'bootstrap.widgets.TbMenu',
+				'htmlOptions' => array('style' => 'left: 10%'),
 				'items' => array(
-					array('label'=>'Home', 'url'=>array('/site/index')),
-					array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-					array('label'=>'Contact', 'url'=>array('/site/contact')),
-					array('label'=>'Register', 'url'=>array('/site/register'), 'visible'=>Yii::app()->user->isGuest),
-					array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-					array('label'=>'Upload', 'url'=>array('/site/upload'), 'visible'=>!Yii::app()->user->isGuest),
-					array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+					array(
+						'label' => 'Categories', 
+						'url' => '#', 
+						'items' => array(
+							array('label' => 'Everything', 'url' => '#'),
+							array('label' => 'Popular', 'url' => '#'),
+							'---',
+							array('label' => 'GAMES'),
+							array('label' => 'Warcraft', 'url' => '#'),
+							array('label' => 'Starcraft', 'url' => '#'),
+							array('label' => 'Diablo', 'url' => '#'),
+						),
+					),
+					// array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				),
 			),
-			'<form class="navbar-search pull-left" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
 			(!Yii::app()->user->isGuest) ? '<p class="navbar-text pull-right">Logged in as <a href="#">'.Yii::app()->user->name.'('.Yii::app()->user->id.')</a></p>' : '',
 			array(
 				'class' => 'bootstrap.widgets.TbMenu',
 				'htmlOptions' => array('class' => 'pull-right'),
 				'items' => array(
-					array('label' => 'Link', 'url' => '#'),
-					'---',
-					array('label' => 'Dropdown', 'url' => '#', 'items' => array(
-						array('label' => 'Action', 'url' => '#'),
-						array('label' => 'Another action', 'url' => '#'),
-						array('label' => 'Something else here', 'url' => '#'),
+					array('label'=>'Upload', 'url'=>array('/site/upload'), 'visible'=>!Yii::app()->user->isGuest),
+					array('---', 'visible' => !Yii::app()->user->isGuest),
+					// '---',
+					array('label' => 'About', 'url' => '#', 'items' => array(
+						array('label' => 'Help', 'url' => '#'),
+						array('label'=>'Contact', 'url'=>array('/site/contact')),
 						'---',
-						array('label' => 'Separated link', 'url' => '#'),
+						array('label' => 'Copyright', 'url' => '#'),
+					)),
+					'---',
+					array('label'=>'Register', 'url'=>array('/site/register'), 'visible'=>Yii::app()->user->isGuest),
+					'---',
+					array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+					array('label' => 'Username', 'url' => '#', 'visible' => !Yii::app()->user->isGuest, 'items' => array(
+						array('label' => 'Invite Friends', 'url' => '#'),
+						'---',
+						array('label' => 'Uploaded', 'url' => '#'),
+						array('label' => 'Likes', 'url' => '#'),
+						'---',
+						array('label' => 'Settings', 'url' => '#'),
+						array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
 					)),
 				),
 			),
@@ -97,9 +118,8 @@
 		<?php echo $content; ?>
 		<hr/>
 		<div id="footer">
-			Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
+			Copyright &copy; <?php echo date('Y'); ?>.<br/>
 			All Rights Reserved.<br/>
-			<?php echo Yii::powered(); ?>
 		</div>
 		<!-- footer -->
 	</div>
