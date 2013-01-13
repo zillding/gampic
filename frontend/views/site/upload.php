@@ -15,33 +15,22 @@ $this->breadcrumbs=array(
 
 <div class="form">
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'upload-form',
-	'enableAjaxValidation'=>false,
-	'htmlOptions'=>array('enctype'=>'multipart/form-data'),
-)); ?>
+	<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+		'id'=>'upload-form',
+		'enableAjaxValidation'=>false,
+		'htmlOptions'=>array('class' => 'well', 'enctype'=>'multipart/form-data'),
+	)); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'image'); ?>
-		<?php echo $form->fileField($model,'image'); ?>
-		<?php echo $form->error($model,'image'); ?>
+	<?php echo $form->fileFieldRow($model,'image', array()); ?>
+	<?php echo $form->textFieldRow($model,'image_title'); ?>
+
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Upload', 'icon'=>'ok'));?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'image_title'); ?>
-		<?php echo $form->textField($model,'image_title'); ?>
-		<?php echo $form->error($model,'image_title'); ?>
-	</div>
-
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Submit'); ?>
-	</div>
-
-<?php $this->endWidget(); ?>
+	<?php $this->endWidget(); ?>
 
 </div><!-- form -->
