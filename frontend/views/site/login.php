@@ -31,9 +31,7 @@ $this->breadcrumbs=array(
 	<div class='control-group'>
 	<?php echo $form->passwordFieldRow($model, 'password', array('class'=>'span3'));?>
 	</div>
-	<div class='control-group'>
 	<?php echo $form->checkBoxRow($model, 'rememberMe');?>
-	</div>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Login', 'icon'=>'ok'));?>
