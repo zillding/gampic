@@ -82,7 +82,11 @@
 				'class' => 'bootstrap.widgets.TbMenu',
 				'htmlOptions' => array('class' => 'pull-right'),
 				'items' => array(
-					array('label'=>'Upload', 'url'=>array('/site/upload'), 'visible'=>!Yii::app()->user->isGuest),
+					array(
+						'label'=>'Upload',
+						'url'=>array('/site/upload'),
+						'visible'=>!Yii::app()->user->isGuest,
+					),
 					array('---', 'visible' => !Yii::app()->user->isGuest),
 					// '---',
 					array(
