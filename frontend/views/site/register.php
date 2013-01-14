@@ -25,10 +25,18 @@ $this->breadcrumbs=array(
 
 	<?php echo $form->errorSummary($model); ?>
 
+	<div class='control-group'>
 	<?php echo $form->textFieldRow($model, 'user_name', array('class'=>'span3'));?>
+	</div>
+	<div class='control-group'>
 	<?php echo $form->textFieldRow($model, 'user_email', array('class'=>'span3'));?>
+	</div>
+	<div class='control-group'>
 	<?php echo $form->passwordFieldRow($model, 'user_password', array('class'=>'span3'));?>
+	</div>
+	<div class='control-group'>
 	<?php echo $form->passwordFieldRow($model, 'confirm_user_password', array('class'=>'span3'));?>
+	</div>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Register', 'icon'=>'ok'));?>

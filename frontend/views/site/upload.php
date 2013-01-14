@@ -25,8 +25,12 @@ $this->breadcrumbs=array(
 
 	<?php echo $form->errorSummary($model); ?>
 
+	<div class='control-group'>
 	<?php echo $form->fileFieldRow($model,'image', array()); ?>
+	</div>
+	<div class='control-group'>
 	<?php echo $form->textFieldRow($model,'image_title'); ?>
+	</div>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Upload', 'icon'=>'ok'));?>

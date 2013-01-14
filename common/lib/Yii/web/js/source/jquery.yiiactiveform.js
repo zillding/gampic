@@ -255,8 +255,8 @@
 			$container = $.fn.yiiactiveform.getInputContainer(attribute, form);
 
 			$container.removeClass(
-				attribute.validatingCssClass + ' ' + 
-				attribute.errorCssClass + ' ' + 
+				attribute.validatingCssClass + ' ' +
+				attribute.errorCssClass + ' ' +
 				attribute.successCssClass
 			);
 
