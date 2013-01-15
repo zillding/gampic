@@ -122,8 +122,8 @@ class SiteController extends Controller
 		{
 			$model->attributes=$_POST['UploadForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->upload())
-				print 'successfully uploaded to database';
+			if($model->validate() && $model->upload());
+				// print 'successfully uploaded to database';
 		}
 		// display the upload form
 		$this->render('upload',array('model'=>$model));

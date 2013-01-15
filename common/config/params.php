@@ -21,6 +21,9 @@ $commonEnvParamsFile = $commonConfigDir . DIRECTORY_SEPARATOR . 'params-env.php'
 $commonEnvParams = file_exists($commonEnvParamsFile) ? require($commonEnvParamsFile) : array();
 
 return CMap::mergeArray(array(
+	// self-defined variables
+	'originalImagePath' => dirname(dirname(__FILE__)).'/data/media/orig',
+	'thumbnailImagePath' => dirname(dirname(__FILE__)).'/data/media/thumb',
 	// cache settings -if APC is not loaded, then use CDbCache
 	'cache.core' => extension_loaded('apc') ?
 		array(
