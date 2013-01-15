@@ -103,6 +103,11 @@ class SiteController extends Controller
 	 */
 	public function actionUpload()
 	{
+		// if user not logged in, don't allow to see this page
+		if (Yii::app()->user->isGuest) {
+			$this->redirect(Yii::app()->user->returnUrl);
+		}
+
 		$model=new UploadForm;
 
 		// if it is ajax validation request

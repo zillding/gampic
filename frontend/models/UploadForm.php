@@ -63,7 +63,7 @@ class UploadForm extends CFormModel
 		// die();
 		if ($image->save()) {
 			$image_id=$image->primaryKey;
-			$image->file->saveAs(Yii::app()->basePath.'/data/orig/'.$image_id.'.'.$extension);
+			$image->file->saveAs(Yii::app()->basePath.'/../common/data/orig/'.$image_id.'.'.$extension);
 			// create thumbnail of the image
 			// update the image thumbnail height in the database
 			$image->image_thumb_height=$this->createThumbnail($image_id.'.'.$extension);
@@ -85,9 +85,9 @@ class UploadForm extends CFormModel
 	function createThumbnail($file) {
 		require Yii::app()->basePath.'/extensions/SimpleImage.php';
 		$image=new SimpleImage();
-		$image->load(Yii::app()->basePath.'/data/orig/'.$file);
+		$image->load(Yii::app()->basePath.'/../common/data/orig/'.$file);
 		$image->resizeToWidth(192);
-		$image->save(Yii::app()->basePath.'/data/thumb/'.$file);
+		$image->save(Yii::app()->basePath.'/../common/data/thumb/'.$file);
 		return $image->getHeight();
 	}
 }

@@ -3,9 +3,9 @@
 /* @var $model UploadForm */
 /* @var $form CActiveForm */
 $this->pageTitle=Yii::app()->name . ' - Upload';
-$this->breadcrumbs=array(
-	'Upload',
-);
+// $this->breadcrumbs=array(
+// 	'Upload',
+// );
 ?>
 
 <h1>Upload</h1>
