@@ -7,28 +7,28 @@
  */
 class LoginForm extends CFormModel
 {
-	public $username;
-	public $password;
+	public $user_name;
+	public $user_password;
 	public $rememberMe;
 
 	private $_identity;
 
 	/**
 	 * Declares the validation rules.
-	 * The rules state that username and password are required,
-	 * and password needs to be authenticated.
+	 * The rules state that user_name and user_password are required,
+	 * and user_password needs to be authenticated.
 	 */
 	public function rules()
 	{
 		return array(
-			// username and password are required
-			array('username, password', 'required'),
-			// username exist
-			array('username', 'exists'),
+			// user_name and user_password are required
+			array('user_name, user_password', 'required'),
+			// user_name exist
+			array('user_name', 'exists'),
 			// rememberMe needs to be a boolean
 			array('rememberMe', 'boolean'),
-			// password needs to be authenticated
-			array('password', 'authenticate'),
+			// user_password needs to be authenticated
+			array('user_password', 'authenticate'),
 		);
 	}
 
@@ -43,7 +43,7 @@ class LoginForm extends CFormModel
 	}
 
 	/**
-	 * Authenticates the password.
+	 * Authenticates the user_password.
 	 * This is the 'authenticate' validator as declared in rules().
 	 */
 	public function authenticate($attribute,$params)
@@ -51,9 +51,9 @@ class LoginForm extends CFormModel
 		if(!$this->hasErrors())
 		{
 			// create a UserIdentity object using the contructor
-			$this->_identity=new UserIdentity($this->username,$this->password);
+			$this->_identity=new UserIdentity($this->user_name,$this->user_password);
 			if(!$this->_identity->authenticate())
-				$this->addError('password','Incorrect password.');
+				$this->addError('user_password','Incorrect user_password.');
 		}
 	}
 
@@ -65,21 +65,21 @@ class LoginForm extends CFormModel
 	{
 		if(!$this->hasErrors())
 		{
-			if (!User::model()->exists('LOWER(user_name)=?', array($this->username))) {
-				$this->addError('username', 'Cannot find this user');
+			if (!User::model()->exists('LOWER(user_name)=?', array($this->user_name))) {
+				$this->addError('user_name', 'Cannot find this user');
 			}
 		}
 	}
 
 	/**
-	 * Logs in the user using the given username and password in the model.
+	 * Logs in the user using the given user_name and user_password in the model.
 	 * @return boolean whether login is successful
 	 */
 	public function login()
 	{
 		if($this->_identity===null)
 		{
-			$this->_identity=new UserIdentity($this->username,$this->password);
+			$this->_identity=new UserIdentity($this->user_name,$this->user_password);
 			$this->_identity->authenticate();
 		}
 		if($this->_identity->errorCode===UserIdentity::ERROR_NONE)

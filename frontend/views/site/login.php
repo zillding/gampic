@@ -26,10 +26,10 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<div class='control-group'>
-	<?php echo $form->textFieldRow($model, 'username', array('class'=>'span3'));?>
+	<?php echo $form->textFieldRow($model, 'user_name', array('class'=>'span3'));?>
 	</div>
 	<div class='control-group'>
-	<?php echo $form->passwordFieldRow($model, 'password', array('class'=>'span3'));?>
+	<?php echo $form->passwordFieldRow($model, 'user_password', array('class'=>'span3'));?>
 	</div>
 	<?php echo $form->checkBoxRow($model, 'rememberMe');?>
 
