@@ -70,17 +70,10 @@ class RegisterForm extends CFormModel
 		// register the user (no need to check whether the user has registered
 		// since alr checked before)
 		if ($user->save()) {
-			// login the user
-			$identity=new UserIdentity($user->user_name, $this->user_password);
-			$identity->authenticate(); // have to authenticate first before log in
-			if($identity->errorCode===UserIdentity::ERROR_NONE) {
-				Yii::app()->user->allowAutoLogin = true; // has to set to true to enable cookie-based login
-				$duration=3600*24*30; // 30 days
-				Yii::app()->user->login($identity,$duration);
-				return true;
-			} else {
-				return false;
-			}
+			$model=new LoginForm;
+			$model->user_name=$user->user_name;
+			$model->user_password=$this->user_password;
+			return $model->login();
 		} else {
 			// print_r($user->getErrors()); // for debugging
 			print 'could not register at this time';
