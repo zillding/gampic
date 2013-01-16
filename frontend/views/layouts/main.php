@@ -101,8 +101,8 @@
 							array('label' => 'Copyright', 'url' => '#'),
 						),
 					),
-					array('label'=>'Register', 'url'=>array('/site/register'), 'visible'=>Yii::app()->user->isGuest),
-					array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+					array('label'=>'Register', 'url'=>array('/register'), 'visible'=>Yii::app()->user->isGuest),
+					array('label'=>'Login', 'url'=>array('/login'), 'visible'=>Yii::app()->user->isGuest),
 					array('label' => 'Logged in as '.Yii::app()->user->name.'('.Yii::app()->user->id.')', 'url' => '#', 'visible' => !Yii::app()->user->isGuest, 'items' => array(
 						array('label' => 'Invite Friends', 'url' => '#'),
 						'---',

@@ -1,5 +1,5 @@
 <?php
-/* @var $this SiteController */
+/* @var $this RegisterController */
 /* @var $model RegisterForm */
 /* @var $form CActiveForm */
 
@@ -17,6 +17,7 @@ $this->breadcrumbs=array(
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'register-form',
+	'action' => $this->createUrl('register'),
 	'enableAjaxValidation'=>true,
 	'htmlOptions'=>array('class'=>'well'),
 )); ?>

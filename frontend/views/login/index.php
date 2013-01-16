@@ -1,5 +1,5 @@
 <?php
-/* @var $this SiteController */
+/* @var $this LoginController */
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
 
@@ -16,6 +16,7 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 <div class="form">
 	<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 		'id'=>'login-form',
+		'action' => $this->createUrl('login'),
 		'enableClientValidation'=>true,
 		'htmlOptions'=>array('class'=>'well'),
 		'clientOptions'=>array(
@@ -25,6 +26,8 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
+	<?php echo $form->errorSummary($model); ?>
+	
 	<div class='control-group'>
 	<?php echo $form->textFieldRow($model, 'user_name', array('class'=>'span3'));?>
 	</div>
