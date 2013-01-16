@@ -27,6 +27,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/styles.css"/>
 	<!--using less instead? file not included-->
 	<!--<link rel="stylesheet/less" type="text/css" href="/less/styles.less">-->
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/banner.css"/>
 
 	<!-- create your own: http://modernizr.com/download/-->
 	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/modernizr-2.6.2.js"></script>
@@ -136,6 +137,7 @@
 
 </div>
 
+<script src="<?php echo Yii::app()->baseUrl; ?>/js/banner.js"></script>
 <!-- Google Analytics -->
 <script>
 	var _gaq=[['_setAccount','<?php echo param('google.analytics.account'); // check global.php shortcut file at "common/lib/" ?>'],['_trackPageview']];
