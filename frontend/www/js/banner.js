@@ -391,6 +391,6 @@ $.simplyScroll.fn.extend({
 
 (function($) {
 	$(function() { //on DOM ready
-		$("#scroller").simplyScroll();
+		$(".scroller").simplyScroll();
 	});
 })(jQuery);
