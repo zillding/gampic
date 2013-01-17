@@ -60,7 +60,6 @@ class UploadForm extends CFormModel
 		$image->image_extension=$extension;
 		// get the current time
 		$image->image_upload_time=date("Y-m-d H:i:s");
-		// die();
 		if ($image->save()) {
 			$image_id=$image->primaryKey;
 			$image->file->saveAs(Yii::app()->params['originalImagePath'].'/'.$image_id.'.'.$extension);

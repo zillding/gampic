@@ -85,7 +85,7 @@
 				'items' => array(
 					array(
 						'label'=>'Upload',
-						'url'=>array('/site/upload'),
+						'url'=>array('/upload'),
 						'visible'=>!Yii::app()->user->isGuest,
 					),
 					array('---', 'visible' => !Yii::app()->user->isGuest),

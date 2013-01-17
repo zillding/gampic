@@ -1,5 +1,5 @@
 <?php
-/* @var $this UploadFormController */
+/* @var $this UploadController */
 /* @var $model UploadForm */
 /* @var $form CActiveForm */
 $this->pageTitle=Yii::app()->name . ' - Upload';
@@ -17,6 +17,7 @@ $this->pageTitle=Yii::app()->name . ' - Upload';
 
 	<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 		'id'=>'upload-form',
+		'action' => $this->createUrl('upload'),
 		'enableClientValidation'=>true,
 		'htmlOptions'=>array('class' => 'well', 'enctype'=>'multipart/form-data'),
 		'clientOptions'=>array(
