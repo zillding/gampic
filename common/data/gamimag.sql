@@ -172,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`user_id`, `user_provider`, `user_authid`, `user_name`, `user_email`, `user_password`, `salt`, `user_reg_time`) VALUES
-(1, 'gamimag', 1, 'tester', 'aaa', '89897ab8c87ce67532acbc9fb78e2c29', 'salt', '2012-10-08 00:00:00');
+(1, 'gamimag', 1, 'zill', 'zilld@hotmail.com', '6bfa73731232546c59147acaa715bc4857393882', '50f75b42cebab', '2013-01-17 02:00:34');
 
 --
 -- Constraints for dumped tables
