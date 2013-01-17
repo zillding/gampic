@@ -8,6 +8,8 @@ $this->pageTitle=Yii::app()->name . ' - Upload';
 // );
 ?>
 
+<?php $this->widget('bootstrap.widgets.TbAlert'); ?>
+
 <h1>Upload</h1>
 
 <p>Image format: "jpg", "jpeg", "png" or "gif"</p>
