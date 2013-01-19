@@ -11,7 +11,6 @@
 		<li><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/starcraft_2.jpg" width="375" height="250"></li>
 	</ul>
 </div>
-<script src="<?php echo Yii::app()->baseUrl; ?>/js/banner.js"></script>
 
 <p>You may change the content of this page by modifying the following two files:</p>
 <ul>

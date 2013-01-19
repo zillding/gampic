@@ -21,9 +21,9 @@
 
 	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/normalize.css">
 	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css">
+	<link rel="stylesheet/less" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/styles.less">
 	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/modernizr-2.6.2.js"></script>
 
-	<!--<script src="/less/less-1.3.0.min.js"></script>-->
 	<title><?php echo h($this->pageTitle); /* using shortcut for CHtml::encode */ ?></title>
 </head>
 
@@ -113,6 +113,7 @@
 
 </div>
 
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/less-1.3.3.min.js"></script>
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/plugins.js"></script>
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/main.js"></script>
 <!-- Google Analytics -->
