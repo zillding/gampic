@@ -11,9 +11,7 @@ class Helper
 	// print a array in the html format
 	public static function print_arr($array)
 	{
-		print "<pre>";
-		print_r($array);
-		print "</pre>";
+		print "<pre>".dump($array)."</pre>";
 		die();
 	}
 }

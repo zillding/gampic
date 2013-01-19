@@ -16,7 +16,6 @@
  * The followings are the available model relations:
  * @property Comment[] $comments
  * @property Image[] $images
- * @property Image[] $tblImages
  */
 class User extends CActiveRecord
 {

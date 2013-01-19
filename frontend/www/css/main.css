@@ -104,7 +104,79 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+/* bootstrap dropdown list hover to show */
+ul.nav li.dropdown:hover ul.dropdown-menu {
+    display: block;    
+}
 
+/* banner */
+.banner {
+    position: relative;
+    height: 250px;
+    width: 85%;
+    min-width: 700px;
+    margin: 0 auto;
+    border-style: none;
+}
+
+.banner:hover {
+    border-color: #707070;
+    box-shadow: 0 1px rgba(34, 25, 25, 0.15) inset, 0 1px rgba(255, 255, 255, 0.8), 0 0 14px rgba(0, 82, 82, 0.35);
+}
+
+/*
+ * simplyScroll 2 - a scroll-tastic jQuery plugin
+ *
+ * http://logicbox.net/jquery/simplyscroll
+ *
+ * Copyright (c) 2009-2012 Will Kelly - http://logicbox.net
+ *
+ * Dual licensed under the MIT and GPL licenses.
+ *
+ * Last revised: 31/01/2012
+ *
+ */
+.simply-scroll-container { /* Container DIV - automatically generated */
+    position: relative;
+}
+
+.simply-scroll-clip { /* Clip DIV - automatically generated */
+    position: relative;
+    overflow: hidden;
+}
+
+.simply-scroll-list { /* UL/OL/DIV - the element that simplyScroll is inited on */
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.simply-scroll-list li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.simply-scroll-list li img {
+    border: none;
+    display: block;
+}
+
+/* Custom class modifications - override classees
+
+.simply-scroll is default
+
+*/
+
+.simply-scroll { /* Customisable base class for style override DIV */
+    margin-bottom: 1em;
+}
+
+.simply-scroll .simply-scroll-list li {
+    float: left;
+}
+/* end of banner */
 
 
 
