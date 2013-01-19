@@ -113,6 +113,8 @@
 
 </div>
 
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/plugins.js"></script>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/main.js"></script>
 <!-- Google Analytics -->
 <script>
 	var _gaq=[['_setAccount','<?php echo param('google.analytics.account'); // check global.php shortcut file at "common/lib/" ?>'],['_trackPageview']];
