@@ -3,7 +3,7 @@
 /**
  * RegisterForm class.
  * RegisterForm is the data structure for keeping
- * user register form data. It is used by the 'register' action of 'SiteController'.
+ * user register form data. It is used by the 'register' action of 'RegisterController'.
  */
 class RegisterForm extends CFormModel
 {

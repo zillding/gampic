@@ -3,7 +3,7 @@
 /**
  * UploadForm class.
  * UploadForm is the data structure for keeping
- * user upload form data. It is used by the 'upload' action of 'SiteController'.
+ * user upload form data. It is used by the 'upload' action of 'UploadController'.
  */
 class UploadForm extends CFormModel
 {

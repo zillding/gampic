@@ -2,7 +2,7 @@
 /* @var $this ColumnContainerController */
 ?>
 
-<h1>this is conlumContainer</h1>
+<h1>this is columnContainer</h1>
 
 <p>
 	You may change the content of this page by modifying
