@@ -23,6 +23,8 @@
 
 </div>
 
+<a class="scrollToTop"></a>
+
 <?php $this->renderPartial('//layouts/_footerScripts'); ?>
 
 </body>
