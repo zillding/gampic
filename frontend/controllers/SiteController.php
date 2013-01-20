@@ -27,7 +27,8 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$this->render('index');
+		// Helper::print_arr(Yii::app()->clientScript->corePackages);
+		$this->render('//all/index');
 	}
 
 	/**

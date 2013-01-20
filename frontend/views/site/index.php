@@ -1,16 +1,9 @@
-<?php $this->pageTitle=Yii::app()->name; ?>
+<?php 
+// @var this SiteController
+$this->pageTitle=Yii::app()->name; 
+?>
 
 <!-- <h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1> -->
-
-<div class="banner">
-	<ul class="scroller">
-		<li><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/diablo3.jpg" width="482" height="250"></li>
-		<li><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/warcraft_1.jpg" width="333" height="250"></li>
-		<li><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/starcraft_1.jpg" width="364" height="250"></li>
-		<li><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/warcraft_2.jpg" width="213" height="250"></li>
-		<li><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/starcraft_2.jpg" width="375" height="250"></li>
-	</ul>
-</div>
 
 <p>You may change the content of this page by modifying the following two files:</p>
 <ul>
