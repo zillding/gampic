@@ -18,7 +18,7 @@ class Block
 				$comment .= '
 					<div class="comment">
 						<a class="ImgLink">
-							<img src="'.Yii::app()->baseUrl.'/public/img/avatar.jpg">
+							<img src="'.Yii::app()->getGlobalState('userGravatar').'">
 						</a>
 						<p class="NoImage">
 							<a class="userName">'.$data['comments'][$i]['user_name'].'</a> '.
@@ -32,7 +32,7 @@ class Block
 				$comment .= '
 					<div class="comment">
 						<a class="ImgLink">
-							<img src="'.Yii::app()->baseUrl.'/public/img/avatar.jpg">
+							<img src="'.Yii::app()->getGlobalState('userGravatar').'">
 						</a>
 						<p class="NoImage">
 							<a class="userName">'.$data['comment'][$i]['user_name'].'</a> '.
@@ -56,7 +56,7 @@ class Block
 					$comment.'
 					<div class="comment writeComment">
 						<a class="ImgLink" href="">
-							<img alt="Profile picture of you" src="'.Yii::app()->baseUrl.'/public/img/avatar.jpg">
+							<img alt="Profile picture of you" src="'.Yii::app()->getGlobalState('userGravatar').'">
 						</a>
 						<form method="POST" action="">
 							<textarea class="gridComment" placeholder="Add a comment..." maxlength="1000"></textarea>
@@ -86,4 +86,5 @@ class Block
 			$commentSection.'
 		</div>';
 	}
+
 }

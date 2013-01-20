@@ -91,4 +91,13 @@ class LoginForm extends CFormModel
 		else
 			return false;
 	}
+
+	public function generateGravatar()
+	{
+		if (!Yii::app()->user->isGuest) {
+			$user=User::model()->find('user_id=:user_id', array('user_id'=>Yii::app()->user->id));
+			$userEmailHash = md5(strtolower(trim($user->user_email)));
+			return 'http://www.gravatar.com/avatar/'.$userEmailHash.'?s=30';
+		}
+	}
 }

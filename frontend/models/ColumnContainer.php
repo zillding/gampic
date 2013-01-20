@@ -11,7 +11,7 @@ class ColumnContainer
 	public function load()
 	{
 		$blocks = '';
-		
+
 		for ($i=0; $i < $this->_loadImagesNumber; $i++) { 
 			$image_id = rand(1, Image::model()->count());
 			$image = Image::model()->find('image_id=:image_id', array(':image_id'=>$image_id));
@@ -30,6 +30,6 @@ class ColumnContainer
 			$blocks .= BlockController::createBlock($data);
 		}
 		// echo json_encode($images);
-		echo $blocks;
+		return $blocks;
 	}
 }
