@@ -64,7 +64,7 @@ class RegisterForm extends CFormModel
 		$user->attributes=$this->attributes;
 		// secure the password
 		$user->generateHashPassword();
-		$user->user_reg_time=date("Y-m-d H:i:s");
+		$user->user_reg_time=new CDbExpression('NOW()');
 		// todo: need to change when fb and twitter is used
 		$user->user_authid=1;
 		// register the user (no need to check whether the user has registered
