@@ -10,7 +10,8 @@ class BlockController extends Controller
 	public static function createBlock($data)
 	{
 		// generate a block
-		return new Block($data);
+		$block = new Block($data);
+		return $block->content;
 	}
 
 	// Uncomment the following methods and override them if needed

@@ -24,8 +24,10 @@ return CMap::mergeArray(
 	// merge frontend specific with resulting env-local merge *override by local
 	CMap::mergeArray(
 		array(
-			'originalImagePath' => dirname(dirname(__FILE__)).'/www/upload/orig',
-			'thumbnailImagePath' => dirname(dirname(__FILE__)).'/www/upload/thumb',
+			'originalImagePath' => dirname(dirname(__FILE__)).'/www/images/upload/orig',
+			'thumbnailImagePath' => dirname(dirname(__FILE__)).'/www/images/upload/thumb',
+			// 'originalImageDirUrl' => Yii::app()->baseUrl.'/www/images/upload/orig',
+			// 'thumbnailImageDirUrl' => Yii::app()->baseUrl.'/www/images/upload/thumb',
 			'url.rules' => array(
 				/* for REST please @see http://www.yiiframework.com/wiki/175/how-to-create-a-rest-api/ */
 				/* other @see http://www.yiiframework.com/doc/guide/1.1/en/topics.url */
