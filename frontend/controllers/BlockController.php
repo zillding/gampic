@@ -7,6 +7,12 @@ class BlockController extends Controller
 		$this->render('index');
 	}
 
+	public static function createBlock($data)
+	{
+		// generate a block
+		return new Block($data);
+	}
+
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()

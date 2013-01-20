@@ -1,11 +1,11 @@
 <?php
 
-class ColumnContainer 
+class ColumnContainer
 {
 	/**
 	 * load a number of images info from the database
 	 * @param integer $number the number of images need loading (default: 15)
-	 * @return json message a json encode message describing the images
+	 * @return string the html layout of the loaded images
 	 */
 	public function load($number=15)
 	{
@@ -14,11 +14,12 @@ class ColumnContainer
 			$image = Image::model()->find('image_id=:image_id', array(':image_id'=>$id));
 			$comments = Comment::model()->findAll('image_id=:image_id', array(':image_id'=>$id));
 			$likes = Like::model()->count('image_id=:image_id', array(':image_id'=>$id));
-
+			// create a single image data base on the info retrieved from database
 			$data = array('image_id'=>$id, 'title'=>$image['image_title'], 'extension'=>$image['image_extension'], 'likes'=>$likes,'comments'=>$comments);
-			$images[] = $data;
+			// create a new block based on the data and append to the array
+			$blocks[] = BlockController::createBlock($data);
 		}
 		// echo json_encode($images);
-		Helper::print_arr($images);
+		// Helper::print_arr($blocks);
 	}
 }
