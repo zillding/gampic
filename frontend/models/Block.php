@@ -71,7 +71,7 @@ class Block
 		}
 
 		$this->content = '<div class="pin">
-			<div class="buttons">
+			<div class="topButtonArea">
 				<button class="btn shareButton">share</button>'.$likeButtonStatement.'
 			</div>
 			<div class="PinHolder">

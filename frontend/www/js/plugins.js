@@ -423,7 +423,7 @@ $.simplyScroll.fn.extend({
 //
 $(function(){
     // force page scroll position to top at page refresh
-    $("html, body").animate({ scrollTop: 0 }, 200);//I don't know why, it just works...
+    $("html, body").animate({ scrollTop: 0 }, 200);// todo: the scroll to top bug!
     // auto hide the scroll to top icon
     $(window).scroll(function(){
         if ($(this).scrollTop() > 100) {
