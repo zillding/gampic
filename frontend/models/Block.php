@@ -76,7 +76,7 @@ class Block
 			</div>
 			<div class="PinHolder">
 				<a href="'.Yii::app()->baseUrl.'/images/upload/orig/'.$data['image_id'].'.'.$data['extension'].'" rel="lightbox" class="ImgLink bigImgLink" title="'.$data['title'].'">
-					<img alt="'. $data['image_id'].'" src="'.Yii::app()->baseUrl.'/images/upload/thumb/'.$data['image_id'].'.'.$data['extension'].'" class="PinImageImg" />
+					<img alt="'. $data['image_id'].'" src="'.Yii::app()->baseUrl.'/images/upload/thumb/'.$data['image_id'].'.'.$data['extension'].'" class="PinImageImg" height="'.$data['thumb_height'].'" />
 				</a>
 			</div>
 			<p class="description">'.$data['title'].'</p>

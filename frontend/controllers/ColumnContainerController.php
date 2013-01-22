@@ -11,7 +11,7 @@ class ColumnContainerController extends Controller
 	{
 		// load some images
 		$model=new ColumnContainer;
-		return $model->load();
+		echo $model->load();
 	}
 
 	// Uncomment the following methods and override them if needed

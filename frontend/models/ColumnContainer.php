@@ -21,15 +21,16 @@ class ColumnContainer
 			if (!Yii::app()->user->isGuest) {
 				$liked=Like::model()->count('user_id=:user_id AND image_id=:image_id', 
 					array(':user_id'=>Yii::app()->user->id, ':image_id'=>$image_id));
-				$data = array('image_id'=>$image_id, 'title'=>$image['image_title'], 'extension'=>$image['image_extension'], 'likes'=>$likes, 'liked'=>$liked, 'comments'=>$comments);
+				$data = array('image_id'=>$image_id, 'title'=>$image['image_title'], 'extension'=>$image['image_extension'], 'likes'=>$likes, 'liked'=>$liked, 'thumb_height'=>$image['image_thumb_height'],'comments'=>$comments);
 			} else {
-				$data = array('image_id'=>$image_id, 'title'=>$image['image_title'], 'extension'=>$image['image_extension'], 'likes'=>$likes,'comments'=>$comments);
+				$data = array('image_id'=>$image_id, 'title'=>$image['image_title'], 'extension'=>$image['image_extension'], 'likes'=>$likes, 'thumb_height'=>$image['image_thumb_height'], 'comments'=>$comments);
 			}
 			// create a single image data base on the info retrieved from database
 			// create a new block based on the data and append to the array
 			$blocks .= BlockController::createBlock($data);
+			
 		}
-		// echo json_encode($images);
+
 		return $blocks;
 	}
 }
