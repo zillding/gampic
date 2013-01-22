@@ -46,9 +46,9 @@ class Block
 		if (!Yii::app()->user->isGuest) {
 
 			if ($data['liked'] == '0') {
-				$likeButtonStatement = '<button class="likeButton">like</button>';
+				$likeButtonStatement = '<button class="btn likeButton">like</button>';
 			} else {
-				$likeButtonStatement = '<button class="likeButton likeButtonDown">unlike</button>';
+				$likeButtonStatement = '<button class="btn likeButton likeButtonDown">unlike</button>';
 			}
 
 			$commentSection = '
@@ -60,7 +60,7 @@ class Block
 						</a>
 						<form method="POST" action="">
 							<textarea class="gridComment" placeholder="Add a comment..." maxlength="1000"></textarea>
-							<button class="commentButton" type="button">Comment</button>
+							<button class="btn commentButton" type="button">Comment</button>
 						</form>
 					</div>
 				</div>';
@@ -72,7 +72,7 @@ class Block
 
 		$this->content = '<div class="pin">
 			<div class="buttons">
-				<button class="shareButton">share</button>'.$likeButtonStatement.'
+				<button class="btn shareButton">share</button>'.$likeButtonStatement.'
 			</div>
 			<div class="PinHolder">
 				<a href="'.Yii::app()->baseUrl.'/images/upload/orig/'.$data['image_id'].'.'.$data['extension'].'" rel="lightbox" class="ImgLink bigImgLink" title="'.$data['title'].'">
