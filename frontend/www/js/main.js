@@ -8,7 +8,7 @@ var spaceLeft = 0;
 $(function() {
 
 	// for the banner to scroll
-    $(".scroller").simplyScroll();
+    $(".banner").simplyScroll();
 
 	// arrange all the blocks in the positions
 	wait(2);
