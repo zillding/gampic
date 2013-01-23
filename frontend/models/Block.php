@@ -52,21 +52,21 @@ class Block
 			}
 
 			$commentSection = '
-				<div class="convo attribution clearfix">' .
+				<div class="convo clearfix">' .
 					$comment.'
 					<div class="comment writeComment">
 						<a class="imgLink" href="">
 							<img alt="Profile picture of you" src="'.Yii::app()->getGlobalState('userGravatar').'">
 						</a>
 						<form method="POST" action="">
-							<textarea class="gridComment" placeholder="Add a comment..." maxlength="1000"></textarea>
+							<textarea placeholder="Add a comment..." maxlength="1000"></textarea>
 							<button class="btn btn-small commentButton" type="button"><i class="icon-comment"></i> Comment</button>
 						</form>
 					</div>
 				</div>';
 
 		} else {
-			$commentSection = '<div class="convo attribution clearfix">'.$comment.'</div>';
+			$commentSection = '<div class="convo clearfix">'.$comment.'</div>';
 			$likeButtonStatement = '<button class="btn btn-small topButtons likeButton">Like</button>';
 		}
 
