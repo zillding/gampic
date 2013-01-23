@@ -1,3 +1,32 @@
+/* banner */
+.banner {
+	position: relative;
+	height: 250px;
+	width: 85%;
+	min-width: 700px;
+	margin: 0 auto;
+	border-style: none;
+	&:hover {
+		border-color: #707070;
+		box-shadow: 0 1px rgba(34, 25, 25, 0.15) inset, 0 1px rgba(255, 255, 255, 0.8), 0 0 14px rgba(0, 82, 82, 0.35);
+	}
+}
+/* scroll to top button */
+.scrollToTop {
+	display: none;
+	background-image: url("../images/icon_top.png");
+	position: fixed;
+	bottom: 50px;
+	height: 40px;
+	right: 50px;
+	width: 40px;
+	z-index: 4;
+	opacity: 0.6;
+	&:hover {
+		opacity: 0.9;
+	}
+}
+/* for the columns wrapper */
 #columnWrapper {
 	border: medium none;
 	border-style: none;
