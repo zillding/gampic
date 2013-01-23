@@ -5,7 +5,7 @@ var windowWidth = 0;
 var blocks = [];
 var spaceLeft = 0;
 
-$(function() {
+$('#columnWrapper').ready(function() {
 
 	// arrange all the blocks in the positions
 	wait(2);

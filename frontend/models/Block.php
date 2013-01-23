@@ -46,9 +46,9 @@ class Block
 		if (!Yii::app()->user->isGuest) {
 
 			if ($data['liked'] == '0') {
-				$likeButtonStatement = '<button class="btn likeButton">like</button>';
+				$likeButtonStatement = '<button class="btn btn-small topButtons likeButton"><i class="icon-thumbs-up"></i> like</button>';
 			} else {
-				$likeButtonStatement = '<button class="btn likeButton likeButtonDown">unlike</button>';
+				$likeButtonStatement = '<button class="btn btn-small topButtons likeButton likeButtonDown">unlike</button>';
 			}
 
 			$commentSection = '
@@ -60,19 +60,19 @@ class Block
 						</a>
 						<form method="POST" action="">
 							<textarea class="gridComment" placeholder="Add a comment..." maxlength="1000"></textarea>
-							<button class="btn commentButton" type="button">Comment</button>
+							<button class="btn btn-small commentButton" type="button"><i class="icon-comment"></i> Comment</button>
 						</form>
 					</div>
 				</div>';
 
 		} else {
 			$commentSection = '<div class="convo attribution clearfix">'.$comment.'</div>';
-			$likeButtonStatement = '<button class="likeButton">like</button>';
+			$likeButtonStatement = '<button class="btn btn-small topButtons likeButton">like</button>';
 		}
 
 		$this->content = '<div class="pin">
 			<div class="topButtonArea">
-				<button class="btn shareButton">share</button>'.$likeButtonStatement.'
+				<button class="btn btn-small topButtons shareButton"><i class="icon-share"></i> share</button>'.$likeButtonStatement.'
 			</div>
 			<div class="PinHolder">
 				<a href="'.Yii::app()->baseUrl.'/images/upload/orig/'.$data['image_id'].'.'.$data['extension'].'" rel="lightbox" class="imgLink bigImgLink" title="'.$data['title'].'">
