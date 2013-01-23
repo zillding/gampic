@@ -17,7 +17,7 @@ class Block
 			for ($i=0; $i<count($data['comments']); $i++) {
 				$comment .= '
 					<div class="comment">
-						<a class="ImgLink">
+						<a class="imgLink">
 							<img src="'.Yii::app()->getGlobalState('userGravatar').'">
 						</a>
 						<p class="NoImage">
@@ -31,7 +31,7 @@ class Block
 			for ($i=0; $i<$this->_maxNoOfComments; $i++) {
 				$comment .= '
 					<div class="comment">
-						<a class="ImgLink">
+						<a class="imgLink">
 							<img src="'.Yii::app()->getGlobalState('userGravatar').'">
 						</a>
 						<p class="NoImage">
@@ -55,7 +55,7 @@ class Block
 				<div class="convo attribution clearfix">' .
 					$comment.'
 					<div class="comment writeComment">
-						<a class="ImgLink" href="">
+						<a class="imgLink" href="">
 							<img alt="Profile picture of you" src="'.Yii::app()->getGlobalState('userGravatar').'">
 						</a>
 						<form method="POST" action="">
@@ -75,7 +75,7 @@ class Block
 				<button class="btn shareButton">share</button>'.$likeButtonStatement.'
 			</div>
 			<div class="PinHolder">
-				<a href="'.Yii::app()->baseUrl.'/images/upload/orig/'.$data['image_id'].'.'.$data['extension'].'" rel="lightbox" class="ImgLink bigImgLink" title="'.$data['title'].'">
+				<a href="'.Yii::app()->baseUrl.'/images/upload/orig/'.$data['image_id'].'.'.$data['extension'].'" rel="lightbox" class="imgLink bigImgLink" title="'.$data['title'].'">
 					<img alt="'. $data['image_id'].'" src="'.Yii::app()->baseUrl.'/images/upload/thumb/'.$data['image_id'].'.'.$data['extension'].'" class="PinImageImg" height="'.$data['thumb_height'].'" />
 				</a>
 			</div>
