@@ -8,10 +8,10 @@ var spaceLeft = 0;
 $(function() {
 
 	// for the banner to scroll
-    $(".banner").simplyScroll();
+	$(".banner").simplyScroll();
 
 	// arrange all the blocks in the positions
-	wait(2);
+	// wait(2);
 
 	// create an event to detect whether the window has done resizing
 	$(window).resize(function() {
@@ -25,29 +25,14 @@ $(function() {
 		setupBlocks();
 	});
 
-    // force page scroll position to top at page refresh
-    // $("html, body").animate({ scrollTop: 0 }, 200);// todo: the scroll to top bug!
-
-    // auto hide the scroll to top icon
-    $(window).scroll(function(){
-        if ($(this).scrollTop() > 100) {
-            $('.scrollToTop').fadeIn();
-        } else {
-            $('.scrollToTop').fadeOut();
-        }
-    });
-    // after click the button
-    $('.scrollToTop').click(function(){
-        $("html, body").animate({ scrollTop: 0 }, 600);
-        return false;
-    });
+	setupScrollToTop();
 
 });
 
 function setupBlocks() {
 	//console.log('now starting to set up blocks!!');
 	windowWidth = $('#columnWrapper').width();
-	colWidth = $('.pin').outerWidth();
+	colWidth = $('.block').outerWidth();
 	blocks = [];
 	colCount = Math.floor((windowWidth+15)/(colWidth+margin));
 	spaceLeft = (windowWidth - ((colWidth*colCount)+(margin*(colCount-1)))) / 2;
@@ -57,10 +42,10 @@ function setupBlocks() {
 	}
 	positionBlocks();
 	setupCommentTextarea();
-	// $('.pin').show("slow");
+	// $('.block').show("slow");
 }
 
-function setupCommentTextarea () {
+function setupCommentTextarea() {
 	$('textarea').on('focus', function() {
 		$(this).css('background', 'none repeat scroll 0 0 #FFFFFF');
 	});
@@ -72,7 +57,7 @@ function setupCommentTextarea () {
 
 function positionBlocks() {
 	//console.log('now starting to position blocks!');
-	$('.pin').each(function(){
+	$('.block').each(function(){
 		var min = Array.min(blocks);
 		var index = $.inArray(min, blocks);
 		var leftPos = index*(colWidth+margin);
@@ -83,7 +68,7 @@ function positionBlocks() {
 		blocks[index] = min+$(this).outerHeight()+margin;
 		// calculate after add the block the max height in the array to update the height of conlumncontainer
 		var max = Array.max(blocks);
-		$('#ColumnContainer').css({
+		$('.columnContainer').css({
 			'height': max+'px'
 		});
 	});
@@ -106,4 +91,24 @@ function wait(time) {
 
 // a trial function load at start of page for future use
 function counter(){
+}
+
+// set up the scroll to top img
+function setupScrollToTop() {
+	// force page scroll position to top at page refresh
+	$("html, body").animate({ scrollTop: 0 }, 200);// todo: the scroll to top bug!
+
+	// auto hide the scroll to top icon
+	$(window).scroll(function(){
+		if ($(this).scrollTop() > 100) {
+			$('.scrollToTop').fadeIn();
+		} else {
+			$('.scrollToTop').fadeOut();
+		}
+	});
+	// after click the button
+	$('.scrollToTop').click(function(){
+		$("html, body").animate({ scrollTop: 0 }, 600);
+		return false;
+	});
 }

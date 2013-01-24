@@ -7,9 +7,9 @@
 </div>
 
 <script>
-	$(function() {
-		$.get('columnContainer/load', function(data) {
-			$('.columnContainer').append(data);
-		});
+$(function() {
+	$.get('columnContainer/load', function(data) {
+		$('.columnContainer').append(data);
 	});
+});
 </script>

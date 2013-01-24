@@ -31,98 +31,98 @@
 	.columnContainer {
 		position: relative;
 		min-height: 500px;
-		.pin {
-			position: absolute;
-			background-color: #FFFFFF;
-			box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+	}
+}
+/* for blocks */
+.block {
+	position: absolute;
+	background-color: #FFFFFF;
+	box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+	font-size: 11px;
+	padding: 15px 15px 0;
+	width: 192px;
+	&:hover {
+		border-color: #707070;
+		box-shadow: 0 1px rgba(34, 25, 25, 0.15) inset, 0 1px rgba(255, 255, 255, 0.8), 0 0 14px rgba(0, 82, 82, 0.35);
+	}
+	.topButtonArea {
+		margin: -15px;
+		background-color: #F2F0F0;
+		height: 40px;
+	}
+	button {
+		color: rgb(100, 100, 100);
+	}
+	.topButtons {
+		float: right;
+		margin: 10px 10px 10px 0;
+	}
+	.commentButton {
+		float: right;
+		margin: 0px 5px;
+	}
+	.likeButtonDown {
+		color: #D1CDCD !important;
+	}
+	/* title of the image */
+	.description {
+		margin-bottom: 0px;
+	}
+	.status {
+		margin-bottom: 0px;
+		color: #8C7E7E;
+	}
+	.convo {
+		color: #524D4D;
+		margin: 0 -15px;
+		background-color: #F2F0F0;
+		a {
+			color: #524D4D;
+		}
+		.imgLink {
+			float: left;
+			margin-right: 6px;
+			width: 30px;
+			position: relative;
+			display: block;
+		}	
+		.comment {
+			display: block;
+			overflow: hidden;
+			border-top: 1px solid #D9D4D4;
+			padding: 10px 10px 10px 15px;
+			img {
+				height: 30px;
+				width: 30px;
+			}
+			p {
+				width: 156px;
+				margin: 0 0 0 36px;
+				overflow: hidden;
+				word-wrap: break-word;
+				line-height: 1.35em;
+			}
+			textarea {
+				resize: none;
+				font-size: 11px;
+				padding-top: 0;
+				height: 25px;
+				width: 148px;
+				background: none repeat scroll 0 0 #FCF9F9;
+			}
+		}
+		.userName {
+			font-weight: bold;
+			outline: medium none;
+		}
+		.commentMore {
+			border-top: 1px solid #D9D4D4;
+			padding-top: 10px;
+			padding-left: 15px;
+			padding-bottom: 10px;
+			font-weight: bold;
 			font-size: 11px;
-			padding: 15px 15px 0;
-			width: 192px;
-			&:hover {
-				border-color: #707070;
-				box-shadow: 0 1px rgba(34, 25, 25, 0.15) inset, 0 1px rgba(255, 255, 255, 0.8), 0 0 14px rgba(0, 82, 82, 0.35);
-			}
-			.topButtonArea {
-				margin: -15px;
-				background-color: #F2F0F0;
-				height: 40px;
-			}
-			button {
-				color: rgb(100, 100, 100);
-			}
-			.topButtons {
-				float: right;
-				margin: 10px 10px 10px 0;
-			}
-			.commentButton {
-				float: right;
-				margin: 0px 5px;
-			}
-			.likeButtonDown {
-				color: #D1CDCD !important;
-			}
-			/* title of the image */
-			.description {
-				margin-bottom: 0px;
-			}
-			.status {
-				margin-bottom: 0px;
-				color: #8C7E7E;
-			}
-			.convo {
-				color: #524D4D;
-				margin: 0 -15px;
-				background-color: #F2F0F0;
-				a {
-					color: #524D4D;
-				}
-				.imgLink {
-					float: left;
-					margin-right: 6px;
-					width: 30px;
-					position: relative;
-					display: block;
-				}	
-				.comment {
-					display: block;
-					overflow: hidden;
-					border-top: 1px solid #D9D4D4;
-					padding: 10px 10px 10px 15px;
-					img {
-						height: 30px;
-						width: 30px;
-					}
-					p {
-						width: 156px;
-						margin: 0 0 0 36px;
-						overflow: hidden;
-						word-wrap: break-word;
-						line-height: 1.35em;
-					}
-					textarea {
-						resize: none;
-						font-size: 11px;
-						padding-top: 0;
-						height: 25px;
-						width: 148px;
-						background: none repeat scroll 0 0 #FCF9F9;
-					}
-				}
-				.userName {
-					font-weight: bold;
-					outline: medium none;
-				}
-				.commentMore {
-					border-top: 1px solid #D9D4D4;
-					padding-top: 10px;
-					padding-left: 15px;
-					padding-bottom: 10px;
-					font-weight: bold;
-					font-size: 11px;
-					text-align: center;
-				}
-			}
+			text-align: center;
 		}
 	}
 }
-

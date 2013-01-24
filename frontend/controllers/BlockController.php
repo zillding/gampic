@@ -4,14 +4,37 @@ class BlockController extends Controller
 {
 	public function actionIndex()
 	{
-		$this->render('index');
+		// for debug only
+		// generate a block
+		$model = new Block();
+		if ($model->create(1)) {
+			// return $this->renderPartial('index',array('model'=>$model),true);
+			$this->render('index',array('model'=>$model));
+		} else {
+			die('error');
+		}
 	}
 
-	public static function createBlock($data)
+	/**
+	 * create a block based on the passed in array data
+	 * @param int the id of the image in the tbl_image table in db
+	 * @return string the html content of the whole block
+	 */
+	public static function createBlock($imageId)
 	{
 		// generate a block
-		$block = new Block($data);
-		return $block->content;
+		$model = new Block();
+		if ($model->create($imageId)) {
+			// return $this->renderPartial('index',array('model'=>$model),true);
+			$this->renderPartial('index',array('model'=>$model));
+		} else {
+			die('error creating block with image id='.$imageId);
+		}
+	}
+
+	public function like($data)
+	{
+		// implement the like function
 	}
 
 	// Uncomment the following methods and override them if needed
