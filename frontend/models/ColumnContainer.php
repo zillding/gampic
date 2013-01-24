@@ -1,8 +1,19 @@
 <?php
+/**
+ * column container model
+ */
 
 class ColumnContainer
 {
 	private $_loadImagesNumber=15;
+
+	/**
+	 * initiate the conlumn contailer
+	 * add necessary client scripts
+	 */
+	public function __construct()
+	{
+	}
 
 	/**
 	 * load a number of images info from the database
@@ -17,11 +28,12 @@ class ColumnContainer
 			$dataImageId = rand(1, Image::model()->count());
 			// create a single image data base on the info retrieved from database
 			// create a new block based on the data and append to the array
-			$block = new BlockController;
+			$block = new BlockController('block');
 			$blocks .= $block->createBlock($dataImageId);
 			
 		}
 
 		return $blocks;
 	}
+
 }

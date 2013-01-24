@@ -14,8 +14,8 @@
 		<?php $model->displayLikeButton(); ?>
 	</div>
 	<div class="blockHolder">
-		<a href="images/upload/orig/<?php echo $model->imageId.'.'.$model->extension; ?>" rel="lightbox" class="imgLink bigImgLink" title="<?php echo $model->title; ?>">
-			<img alt="<?php echo $model->imageId; ?>" src="images/upload/thumb/<?php echo $model->imageId.'.'.$model->extension; ?>" class="" height="<?php echo $model->thumbHeight; ?>" />
+		<a href="/images/upload/orig/<?php echo $model->imageId.'.'.$model->extension; ?>" rel="lightbox" class="imgLink bigImgLink" title="<?php echo $model->title; ?>">
+			<img alt="<?php echo $model->imageId; ?>" src="/images/upload/thumb/<?php echo $model->imageId.'.'.$model->extension; ?>" class="" height="<?php echo $model->thumbHeight; ?>" />
 		</a>
 	</div>
 	<p class="description"><?php echo $model->title; ?></p>

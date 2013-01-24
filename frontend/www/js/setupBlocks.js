@@ -5,27 +5,12 @@ var windowWidth = 0;
 var blocks = [];
 var spaceLeft = 0;
 
-$(function() {
-    // create an event to detect whether the window has done resizing
-    $(window).resize(function() {
-        if(this.resizeTO) clearTimeout(this.resizeTO);
-        this.resizeTO = setTimeout(function() {
-            $(this).trigger('resizeEnd');
-        }, 500);
-    });
-    //$(window).resize(setupBlocks);
-    $(window).bind('resizeEnd', function() {
-        setupBlocks();
-    });
-
-})
-
 function setupBlocks() {
     //console.log('now starting to set up blocks!!');
-    windowWidth = $('#wrapper').width();
-    colWidth = $('.pin').outerWidth();
+    windowWidth = $('#columnWrapper').width();
+    colWidth = $('.block').outerWidth();
     blocks = [];
-    colCount = Math.floor(windowWidth/(colWidth+margin));
+    colCount = Math.floor((windowWidth+15)/(colWidth+margin));
     spaceLeft = (windowWidth - ((colWidth*colCount)+(margin*(colCount-1)))) / 2;
 
     for(var i=0;i<colCount;i++) {
@@ -33,22 +18,22 @@ function setupBlocks() {
     }
     positionBlocks();
     setupCommentTextarea();
-    $('.pin').show("slow");
+    // $('.block').show("slow");
 }
 
-function setupCommentTextarea () {
-    $('textarea').live('focus', function() {
+function setupCommentTextarea() {
+    $('textarea').on('focus', function() {
         $(this).css('background', 'none repeat scroll 0 0 #FFFFFF');
     });
 
-    $('textarea').live('blur', function() {
+    $('textarea').on('blur', function() {
         $(this).css('background', 'none repeat scroll 0 0 #FCF9F9');
     });
 }
 
 function positionBlocks() {
     //console.log('now starting to position blocks!');
-    $('.pin').each(function(){
+    $('.block').each(function(){
         var min = Array.min(blocks);
         var index = $.inArray(min, blocks);
         var leftPos = index*(colWidth+margin);
@@ -59,7 +44,7 @@ function positionBlocks() {
         blocks[index] = min+$(this).outerHeight()+margin;
         // calculate after add the block the max height in the array to update the height of conlumncontainer
         var max = Array.max(blocks);
-        $('#ColumnContainer').css({
+        $('.columnContainer').css({
             'height': max+'px'
         });
     });
@@ -68,12 +53,12 @@ function positionBlocks() {
 // Function to get the Min value in Array
 Array.min = function(array) {
     return Math.min.apply(Math, array);
-}
+};
 
 // Function to get the Max value in Array
 Array.max = function(array) {
     return Math.max.apply(Math, array);
-}
+};
 
 // usually time = 1
 function wait(time) {

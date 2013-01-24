@@ -8,13 +8,24 @@ class AllController extends Controller
 	}
 
 	/**
+	 * add banner
+	 */
+	public function addBanner()
+	{
+		// add necessary js to let the banner scroll
+		Yii::app()->clientScript->registerScript('banner', '$(function() {$(".banner").simplyScroll();})', CClientScript::POS_BEGIN);
+		Yii::app()->clientScript->registerScriptFile('js/simplyScroll.js', CClientScript::POS_END);
+		$this->renderPartial('_banner');
+	}
+
+	/**
 	 * add this section on the site
 	 */
 	public function addColumnContainer()
 	{
 		// create a column container controller to manage this section
 		$columnContainer = new ColumnContainerController('columnContainer');
-		$columnContainer->renderPartial('index');
+		$columnContainer->initialize();
 	}
 	
 	// Uncomment the following methods and override them if needed

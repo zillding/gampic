@@ -8,7 +8,13 @@
  */
 class Controller extends CController {
 
-	public $breadcrumbs = array();
-	public $menu = array();
+	// public $breadcrumbs = array();
+	// public $menu = array();
+
+	public function beforeAction($action)
+	{
+		Yii::app()->clientScript->registerScriptFile('js/setupScrollToTop.js');
+		return parent::beforeAction($action);
+	}
 
 }

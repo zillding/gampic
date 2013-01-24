@@ -1,7 +1,9 @@
 <?php
-/* @var $this ColumnContainerController */
+/* 
+ * @var $this ColumnContainerController 
+ * @var $model ColumnContainer
+*/
 ?>
 <div id="columnWrapper">
-	<div class="columnContainer">
-	</div>
+	<div class="columnContainer"></div>
 </div>

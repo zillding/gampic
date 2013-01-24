@@ -2,10 +2,16 @@
 
 class ColumnContainerController extends Controller
 {
-	// public function actionIndex()
-	// {
-	// 	$this->render('index');
-	// }
+	/**
+	 * initialize the column container
+	 */
+	public function initialize()
+	{
+		// load some images
+		$model=new ColumnContainer;
+		$this->addJs();
+		$this->renderPartial('index');
+	}
 
 	/**
 	 * load the column container
@@ -14,9 +20,10 @@ class ColumnContainerController extends Controller
 	public function actionLoad()
 	{
 		// load some images
-		$model=new ColumnContainer;
-		$this->addJs();
+		// Helper::print_arr($this->_model);
+		$model = new ColumnContainer;
 		echo $model->load();
+		// Helper::print_arr($this->_model);
 	}
 
 	/**
@@ -25,12 +32,13 @@ class ColumnContainerController extends Controller
 	private function addJs()
 	{
 		// Helper::print_arr('hello');
-		$cs = new CClientScript;
-		$cs->registerScript('loadData',
+		Yii::app()->clientScript->registerScriptFile('js/setupBlocks.js',CClientScript::POS_END);
+		Yii::app()->clientScript->registerScript('loadData',
 			'$(function() {
 				$.get("columnContainer/load", function(data) {
 					$(".columnContainer").append(data);
 				});
+				wait(2);
 			});',
 			CClientScript::POS_END);
 	}
