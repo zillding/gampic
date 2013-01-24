@@ -2,16 +2,37 @@
 
 class ColumnContainerController extends Controller
 {
-	public function actionIndex()
-	{
-		$this->render('index');
-	}
+	// public function actionIndex()
+	// {
+	// 	$this->render('index');
+	// }
 
+	/**
+	 * load the column container
+	 * print the html of the loaded structure
+	 */
 	public function actionLoad()
 	{
 		// load some images
 		$model=new ColumnContainer;
+		$this->addJs();
 		echo $model->load();
+	}
+
+	/**
+	 * help add the needed js
+	 */
+	private function addJs()
+	{
+		// Helper::print_arr('hello');
+		$cs = new CClientScript;
+		$cs->registerScript('loadData',
+			'$(function() {
+				$.get("columnContainer/load", function(data) {
+					$(".columnContainer").append(data);
+				});
+			});',
+			CClientScript::POS_END);
 	}
 
 	// Uncomment the following methods and override them if needed

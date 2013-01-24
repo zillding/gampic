@@ -17,7 +17,8 @@ class ColumnContainer
 			$dataImageId = rand(1, Image::model()->count());
 			// create a single image data base on the info retrieved from database
 			// create a new block based on the data and append to the array
-			$blocks .= BlockController::createBlock($dataImageId);
+			$block = new BlockController;
+			$blocks .= $block->createBlock($dataImageId);
 			
 		}
 

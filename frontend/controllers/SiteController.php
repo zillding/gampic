@@ -28,7 +28,10 @@ class SiteController extends Controller
 	public function actionIndex()
 	{
 		// Helper::print_arr(Yii::app()->clientScript->corePackages);
-		$this->render('//all/index');
+		// create a all controller and render the view
+		// default is all page
+		$defaultController = new AllController('all');
+		$defaultController->render('index');
 	}
 
 	/**

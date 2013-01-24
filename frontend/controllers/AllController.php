@@ -7,6 +7,16 @@ class AllController extends Controller
 		$this->render('index');
 	}
 
+	/**
+	 * add this section on the site
+	 */
+	public function addColumnContainer()
+	{
+		// create a column container controller to manage this section
+		$columnContainer = new ColumnContainerController('columnContainer');
+		$columnContainer->renderPartial('index');
+	}
+	
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()

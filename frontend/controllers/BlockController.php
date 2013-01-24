@@ -6,8 +6,9 @@ class BlockController extends Controller
 	{
 		// for debug only
 		// generate a block
+		$imageId=1;
 		$model = new Block();
-		if ($model->create(1)) {
+		if ($model->create($imageId)) {
 			// return $this->renderPartial('index',array('model'=>$model),true);
 			$this->render('index',array('model'=>$model));
 		} else {
@@ -20,13 +21,13 @@ class BlockController extends Controller
 	 * @param int the id of the image in the tbl_image table in db
 	 * @return string the html content of the whole block
 	 */
-	public static function createBlock($imageId)
+	public function createBlock($imageId)
 	{
 		// generate a block
 		$model = new Block();
 		if ($model->create($imageId)) {
-			// return $this->renderPartial('index',array('model'=>$model),true);
-			$this->renderPartial('index',array('model'=>$model));
+			echo $this->renderPartial('index',array('model'=>$model),true);
+			// $this->renderPartial('index',array('model'=>$model));
 		} else {
 			die('error creating block with image id='.$imageId);
 		}
