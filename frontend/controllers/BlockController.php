@@ -26,7 +26,7 @@ class BlockController extends Controller
 		// generate a block
 		$model = new Block();
 		if ($model->create($imageId)) {
-			echo $this->renderPartial('index',array('model'=>$model),true);
+			return $this->renderPartial('index',array('model'=>$model),true);
 			// $this->renderPartial('index',array('model'=>$model));
 		} else {
 			die('error creating block with image id='.$imageId);
