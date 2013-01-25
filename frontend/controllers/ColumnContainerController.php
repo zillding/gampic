@@ -38,9 +38,10 @@ class ColumnContainerController extends Controller
 				$.get("columnContainer/load", function(data) {
 					$(".columnContainer").append(data);
 				});
+				// need to make sure the setup blocks run after the DOM are rendered
 				wait(2);
 			});',
-			CClientScript::POS_END);
+			CClientScript::POS_HEAD);
 	}
 
 	// Uncomment the following methods and override them if needed
