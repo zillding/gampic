@@ -7,6 +7,7 @@
  * @property integer $image_id
  * @property string $image_title
  * @property string $image_extension
+ * @property string $image_category
  * @property integer $image_thumb_height
  * @property integer $image_likes
  * @property string $image_upload_time
@@ -19,6 +20,9 @@
  */
 class Image extends CActiveRecord
 {
+	const CATEGORY_WARCRAFT=1;
+	const CATEGORY_STARCRAFT=2;
+	const CATEGORY_DIABLO=3;
 	// attribute to store the image file
 	public $file;
 
@@ -48,10 +52,10 @@ class Image extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('image_title, image_extension, image_upload_time, user_id', 'required'),
+			array('image_title, image_extension, image_category, image_upload_time, user_id', 'required'),
 			array('image_thumb_height, image_likes, user_id', 'numerical', 'integerOnly'=>true),
-			array('image_title', 'length', 'max'=>127),
-			array('image_extension', 'length', 'max'=>255),
+			array('image_title', 'length', 'max'=>50, 'min'=>2),
+			array('image_extension', 'in', 'range'=>array('jpg', 'jpeg', 'gif', 'png'), 'allowEmpty'=>false),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('image_id, image_title, image_extension, image_thumb_height, image_likes, image_upload_time, user_id', 'safe', 'on'=>'search'),
@@ -78,13 +82,13 @@ class Image extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'image_id' => 'Image',
-			'image_title' => 'Image Title',
-			'image_extension' => 'Image Extension',
-			'image_thumb_height' => 'Image Thumb Height',
-			'image_likes' => 'Image Likes',
-			'image_upload_time' => 'Image Upload Time',
-			'user_id' => 'User',
+			// 'image_id' => 'Image',
+			// 'image_title' => 'Image Title',
+			// 'image_extension' => 'Image Extension',
+			// 'image_thumb_height' => 'Image Thumb Height',
+			// 'image_likes' => 'Image Likes',
+			// 'image_upload_time' => 'Image Upload Time',
+			// 'user_id' => 'User',
 		);
 	}
 
@@ -102,6 +106,7 @@ class Image extends CActiveRecord
 		$criteria->compare('image_id',$this->image_id);
 		$criteria->compare('image_title',$this->image_title,true);
 		$criteria->compare('image_extension',$this->image_extension,true);
+		$criteria->compare('image_category',$this->image_category,true);
 		$criteria->compare('image_thumb_height',$this->image_thumb_height);
 		$criteria->compare('image_likes',$this->image_likes);
 		$criteria->compare('image_upload_time',$this->image_upload_time,true);

@@ -30,10 +30,12 @@ class UploadController extends Controller
 		{
 			$model->attributes=$_POST['UploadForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->upload());
+			if($model->validate() && $model->upload()) {
 				Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You have successfully uploaded to database.');
-				// print 'successfully uploaded to database';
+				$this->redirect('/upload/');
+			}
 		}
+
 		// display the upload form
 		$this->render('index',array('model'=>$model));
 	}

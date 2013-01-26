@@ -10,6 +10,7 @@ class UploadForm extends CFormModel
 	// store the image file
 	public $image;
 	public $image_title;
+	public $image_category;
 
 	/**
 	 * Declares the validation rules.
@@ -18,15 +19,16 @@ class UploadForm extends CFormModel
 	{
 		return array(
 			// for text inputs only
-			array('image_title', 'required'),
+			array('image_title, image_category', 'required'),
 			// define the file type
 			array('image', 'file', 'types'=>'jpg,jpeg,gif,png', 'allowEmpty'=>true),
 			// set the upper bound of the file size
 			array('image', 'file', 'maxSize'=>1024*1024*2),
 			array('image_title', 'length', 'max'=>50, 'min'=>2),
+			array('image_category', 'in', 'range'=>array_keys(Lookup::items('ImageCategory')), 'allowEmpty'=>false),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('image_title', 'safe', 'on'=>'search'),
+			array('image_title, image_category', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -38,11 +40,11 @@ class UploadForm extends CFormModel
 		return array(
 			'image' => 'Upload An Image',
 			'image_title' => 'Image Title',
+			'image_category' => 'Category',
 		);
 	}
 
 	/**
-	 * todo: upload the image
 	 * @return boolean whether the upload is successful
 	 */
 	public function upload()
@@ -60,6 +62,7 @@ class UploadForm extends CFormModel
 		$image->image_extension=$extension;
 		// get the current time
 		$image->image_upload_time=date("Y-m-d H:i:s");
+		// Helper::print_arr(array_keys(Lookup::items('ImageCategory'))); // for debug only
 		if ($image->save()) {
 			$image_id=$image->primaryKey;
 			$image->file->saveAs(Yii::app()->params['originalImagePath'].'/'.$image_id.'.'.$extension);

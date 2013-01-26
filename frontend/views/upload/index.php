@@ -37,6 +37,11 @@ $this->pageTitle=Yii::app()->name . ' - Upload';
 	<div class='control-group'>
 	<?php echo $form->textFieldRow($model,'image_title'); ?>
 	</div>
+	<div class='control-group'>
+	<?php echo $form->dropDownListRow($model,'image_category',
+		CMap::mergeArray(array('choose a category...'),
+		Lookup::items('ImageCategory'))); ?>
+	</div>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Upload', 'icon'=>'ok'));?>

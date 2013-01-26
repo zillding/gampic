@@ -20,6 +20,11 @@ CREATE TABLE tbl_lookup
   position INTEGER NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+INSERT INTO tbl_lookup (name, type, code, position) VALUES
+('Warcraft', 'ImageCategory', 1, 1),
+('Starcraft', 'ImageCategory', 2, 2),
+('Diablo', 'ImageCategory', 3, 3);
+
 -- table for tag
 CREATE TABLE tbl_tag
 (
@@ -49,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `tbl_image` (
   `image_id` int(11) NOT NULL AUTO_INCREMENT,
   `image_title` varchar(127) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `image_extension` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `image_category` enum('warcraft','starcraft','diablo') NOT NULL,
   `image_thumb_height` int(11) NOT NULL DEFAULT '0',
   `image_likes` int(11) NOT NULL DEFAULT '0',
   `image_upload_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -61,24 +67,24 @@ CREATE TABLE IF NOT EXISTS `tbl_image` (
 -- Dumping data for table `image`
 --
 
-INSERT INTO `tbl_image` (`image_id`, `image_title`, `image_extension`, `image_thumb_height`, `image_likes`, `image_upload_time`, `user_id`) VALUES
-(1, 'adfasdfasf', 'jpg', 30, 0, '2012-10-09 21:01:53', 1),
-(2, 'Defalut', 'png', 40, 0, '2012-10-09 21:37:28', 1),
-(3, 'Defalut', 'jpg', 30, 0, '2012-10-09 21:39:21', 1),
-(4, 'Test', 'jpg', 20, 0, '2012-10-09 21:46:03', 1),
-(5, 'Yes!', 'jpeg', 30, 0, '2012-10-09 21:48:53', 1),
-(6, 'TestTest', 'jpeg', 30, 0, '2012-10-11 10:35:44', 1),
-(7, 'Cool', 'jpg', 30, 0, '2012-10-11 16:59:34', 1),
-(8, 'sdfs', 'jpg', 50, 0, '2012-10-11 17:02:42', 1),
-(9, 'sdfs', 'jpg', 30, 0, '2012-10-11 17:10:06', 1),
-(10, 'sdfs', 'jpg', 30, 0, '2012-10-11 17:15:16', 1),
-(11, 'sdfs', 'jpg', 40, 0, '2012-10-11 17:26:03', 1),
-(12, 'sdfs', 'jpg', 40, 0, '2012-10-11 17:27:50', 1),
-(13, 'sdfs', 'jpg', 30, 0, '2012-10-11 17:29:30', 1),
-(14, 'sdfs', 'jpg', 20, 0, '2012-10-11 17:32:47', 1),
-(15, 'sdfs', 'jpg', 30, 0, '2012-10-11 17:35:16', 1),
-(16, 'sdfs', 'jpg', 50, 0, '2012-10-11 17:41:09', 1),
-(17, 'Characters', 'jpg', 30, 0, '2012-10-11 17:56:32', 1);
+-- INSERT INTO `tbl_image` (`image_id`, `image_title`, `image_extension`, `image_thumb_height`, `image_likes`, `image_upload_time`, `user_id`) VALUES
+-- (1, 'adfasdfasf', 'jpg', 30, 0, '2012-10-09 21:01:53', 1),
+-- (2, 'Defalut', 'png', 40, 0, '2012-10-09 21:37:28', 1),
+-- (3, 'Defalut', 'jpg', 30, 0, '2012-10-09 21:39:21', 1),
+-- (4, 'Test', 'jpg', 20, 0, '2012-10-09 21:46:03', 1),
+-- (5, 'Yes!', 'jpeg', 30, 0, '2012-10-09 21:48:53', 1),
+-- (6, 'TestTest', 'jpeg', 30, 0, '2012-10-11 10:35:44', 1),
+-- (7, 'Cool', 'jpg', 30, 0, '2012-10-11 16:59:34', 1),
+-- (8, 'sdfs', 'jpg', 50, 0, '2012-10-11 17:02:42', 1),
+-- (9, 'sdfs', 'jpg', 30, 0, '2012-10-11 17:10:06', 1),
+-- (10, 'sdfs', 'jpg', 30, 0, '2012-10-11 17:15:16', 1),
+-- (11, 'sdfs', 'jpg', 40, 0, '2012-10-11 17:26:03', 1),
+-- (12, 'sdfs', 'jpg', 40, 0, '2012-10-11 17:27:50', 1),
+-- (13, 'sdfs', 'jpg', 30, 0, '2012-10-11 17:29:30', 1),
+-- (14, 'sdfs', 'jpg', 20, 0, '2012-10-11 17:32:47', 1),
+-- (15, 'sdfs', 'jpg', 30, 0, '2012-10-11 17:35:16', 1),
+-- (16, 'sdfs', 'jpg', 50, 0, '2012-10-11 17:41:09', 1),
+-- (17, 'Characters', 'jpg', 30, 0, '2012-10-11 17:56:32', 1);
 -- (18, '', 'jpg', 0, '2012-10-15 02:33:51', 1),
 -- (19, '', 'jpg', 0, '2012-10-15 02:34:54', 1),
 -- (20, 'This is me', 'jpg', 0, '2012-10-23 12:16:29', 1),
