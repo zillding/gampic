@@ -35,11 +35,9 @@ class ColumnContainerController extends Controller
 		Yii::app()->clientScript->registerScriptFile('js/setupBlocks.js',CClientScript::POS_END);
 		Yii::app()->clientScript->registerScript('loadData',
 			'$(function() {
-				$.get("columnContainer/load", function(data) {
-					$(".columnContainer").append(data);
+				$(".columnContainer").load("columnContainer/load", function() {
+					wait(0);
 				});
-				// need to make sure the setup blocks run after the DOM are rendered
-				wait(2);
 			});',
 			CClientScript::POS_HEAD);
 	}
