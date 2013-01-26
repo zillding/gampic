@@ -11,10 +11,11 @@ class Controller extends CController {
 	// public $breadcrumbs = array();
 	// public $menu = array();
 
-	public function beforeAction($action)
+	public function init()
 	{
-		Yii::app()->clientScript->registerScriptFile('js/setupScrollToTop.js');
-		return parent::beforeAction($action);
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/setupScrollToTop.js');
+		// Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/script.js'); 
+		parent::init();
 	}
 
 }

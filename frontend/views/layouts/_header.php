@@ -9,7 +9,7 @@
 	'brand' => 'Gampic',
 	'brandUrl' => '/',
 	'collapse' => true,
-	'items'=>array(
+	'items' => array(
 		array(
 			'class' => 'bootstrap.widgets.TbMenu',
 			'items' => array(
@@ -35,9 +35,9 @@
 			'htmlOptions' => array('class' => 'pull-right'),
 			'items' => array(
 				array(
-					'label'=>'Upload',
-					'url'=>array('/upload'),
-					'visible'=>!Yii::app()->user->isGuest,
+					'label' => 'Upload',
+					'url' => array('/upload'),
+					'visible' => !Yii::app()->user->isGuest,
 				),
 				array('---', 'visible' => !Yii::app()->user->isGuest),
 				// '---',
@@ -45,14 +45,15 @@
 					'label' => 'About', 
 					'htmlOptions' => array('data-target' => '#'),
 					'items' => array(
+						array('label' => 'Info', 'url' => array('/site/page', 'view'=>'info')),
 						array('label' => 'Help', 'url' => '#'),
-						array('label'=>'Contact', 'url'=>array('/site/contact')),
+						array('label' => 'Contact', 'url' => array('/site/contact')),
 						'---',
 						array('label' => 'Copyright', 'url' => '#'),
 					),
 				),
-				array('label'=>'Register', 'url'=>array('/register'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Login', 'url'=>array('/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label' => 'Register', 'url' => array('/register'), 'visible' => Yii::app()->user->isGuest),
+				array('label' => 'Login', 'url' => array('/login'), 'visible' => Yii::app()->user->isGuest),
 				array('label' => 'Logged in as '.Yii::app()->user->name.'('.Yii::app()->user->id.')', 'url' => '#', 'visible' => !Yii::app()->user->isGuest, 'items' => array(
 					array('label' => 'Invite Friends', 'url' => '#'),
 					'---',
@@ -60,10 +61,9 @@
 					array('label' => 'Likes', 'url' => '#'),
 					'---',
 					array('label' => 'Settings', 'url' => '#'),
-					array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+					array('label' => 'Logout', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
 				)),
 			),
 		),
 	),
 )); ?>
-
