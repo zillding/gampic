@@ -34,11 +34,25 @@ class ColumnContainerController extends Controller
 		// Helper::print_arr('hello');
 		Yii::app()->clientScript->registerScriptFile('js/setupBlocks.js',CClientScript::POS_END);
 		Yii::app()->clientScript->registerScript('loadData',
-			'$(function() {
-				$(".columnContainer").load("columnContainer/load", function() {
-					wait(1);
-				});
-		
+			'$("#columnContainer").infinitescroll({
+				navSelector: "#next:last",
+				nextSelector: "a#next:last",
+				itemSelector: ".block",
+				debug: true,
+				dataType: "html",
+				path: function(index) {
+					return "/columnContainer/load";
+				}
+			}, function(newElements, data, url) {
+				wait(1);
+			});
+
+			$(function() {
+				// $("#columnContainer").load("columnContainer/load", function() {
+				// 	wait(0);
+				// });
+
+
 				// create an event to detect whether the window has done resizing
 				$(window).resize(function() {
 					if(this.resizeTO) clearTimeout(this.resizeTO);
@@ -52,7 +66,7 @@ class ColumnContainerController extends Controller
 				});
 
 			});',
-			CClientScript::POS_HEAD);
+			CClientScript::POS_END);
 	}
 
 	// Uncomment the following methods and override them if needed

@@ -1,7 +1,7 @@
 <?php
 /* @var $this AddController */
 /* @var $uploadModel UploadForm */
-/* @var $addModel UploadForm */
+/* @var $addModel AddForm */
 /* @var $form CActiveForm */
 $this->pageTitle=Yii::app()->name . ' - Add';
 ?>
@@ -33,7 +33,7 @@ $this->pageTitle=Yii::app()->name . ' - Add';
 				<legend>Add a Gampic</legend>
 				<?php echo $form->errorSummary($addModel); ?>
 
-				<?php echo $form->textFieldRow($addModel,'image_url', array('class'=>'span5')); // todo: css need adjusting ?>
+				<?php echo $form->textFieldRow($addModel,'image_url', array('class'=>'span5', 'placeholder'=>'http://')); ?>
 				<?php echo $form->textFieldRow($addModel,'image_title', array('class'=>'span5')); ?>
 				<?php echo $form->dropDownListRow($addModel,'image_category',
 					CMap::mergeArray(array('choose a category...'),

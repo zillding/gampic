@@ -7,7 +7,7 @@ var spaceLeft = 0;
 
 function setupBlocks() {
     //console.log('now starting to set up blocks!!');
-    windowWidth = $('#columnWrapper').width();
+    windowWidth = $('#columnContainer').width();
     colWidth = $('.block').outerWidth();
     blocks = [];
     colCount = Math.floor((windowWidth+15)/(colWidth+margin));
@@ -44,7 +44,7 @@ function positionBlocks() {
         blocks[index] = min+$(this).outerHeight()+margin;
         // calculate after add the block the max height in the array to update the height of conlumncontainer
         var max = Array.max(blocks);
-        $('.columnContainer').css({
+        $('#columnContainer').css({
             'height': max+'px'
         });
     });

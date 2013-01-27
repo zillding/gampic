@@ -4,5 +4,3 @@
  *
  */
 ?>
-<div class="footer">
-</div>
