@@ -35,12 +35,10 @@
 			'htmlOptions' => array('class' => 'pull-right'),
 			'items' => array(
 				array(
-					'label' => 'Upload',
-					'url' => array('/upload'),
+					'label' => 'Add +',
+					'url' => array('/add'),
 					'visible' => !Yii::app()->user->isGuest,
 				),
-				array('---', 'visible' => !Yii::app()->user->isGuest),
-				// '---',
 				array(
 					'label' => 'About', 
 					'htmlOptions' => array('data-target' => '#'),

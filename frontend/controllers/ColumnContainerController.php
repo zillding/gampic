@@ -36,8 +36,21 @@ class ColumnContainerController extends Controller
 		Yii::app()->clientScript->registerScript('loadData',
 			'$(function() {
 				$(".columnContainer").load("columnContainer/load", function() {
-					wait(0);
+					wait(1);
 				});
+		
+				// create an event to detect whether the window has done resizing
+				$(window).resize(function() {
+					if(this.resizeTO) clearTimeout(this.resizeTO);
+					this.resizeTO = setTimeout(function() {
+						$(this).trigger("resizeEnd");
+					}, 500);
+				});
+
+				$(window).bind("resizeEnd", function() {
+					setupBlocks();
+				});
+
 			});',
 			CClientScript::POS_HEAD);
 	}
