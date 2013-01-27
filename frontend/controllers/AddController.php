@@ -2,7 +2,7 @@
  class AddController extends Controller
 {
 	/**
-	 * display the add page default use upload
+	 * display the add page default use add from url
 	 */
 	public function actionIndex()
 	{
@@ -10,8 +10,8 @@
 		$addModel = new AddForm;
 		Yii::app()->clientScript->registerScript('displayUploadTab',
 			'$(function() {
-				$("li#uploadTab").addClass("active");
-				$("li#addTab").removeClass("active");
+				$("li#uploadTab").removeClass("active");
+				$("li#addTab").addClass("active");
 			});',
 			CClientScript::POS_END); // have to be placed before render
 		$this->render('index',array('uploadModel'=>$uploadModel, 'addModel'=>$addModel));
@@ -76,6 +76,8 @@
 			if($addModel->validate() && $addModel->add()) {
 				Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You have successfully added to database.');
 				$this->redirect('/add/');
+			} else {
+				Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> There seems to be some problem.');
 			}
 		}
 
@@ -108,6 +110,20 @@
 			$this->redirect(Yii::app()->user->returnUrl);
 		}
 		$filterChain->run();
+	}
+
+	/**
+	 * a helper function to help create the thumbnail of the uploaded image
+	 * @param string file name of the file
+	 * @return int the thumbnail height of the image
+	 */
+	public static function createThumbnail($file) {
+		require Yii::app()->basePath.'/extensions/SimpleImage.php';
+		$image=new SimpleImage();
+		$image->load(Yii::app()->params['originalImagePath'].'/'.$file);
+		$image->resizeToWidth(192);
+		$image->save(Yii::app()->params['thumbnailImagePath'].'/'.$file);
+		return $image->getHeight();
 	}
 
 	// Uncomment the following methods and override them if needed
