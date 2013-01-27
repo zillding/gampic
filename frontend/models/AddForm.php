@@ -12,6 +12,8 @@ class AddForm extends CFormModel
 	public $image_title;
 	public $image_category;
 
+	private $_errorMessage;
+
 	/**
 	 * Declares the validation rules.
 	 */
@@ -85,21 +87,15 @@ class AddForm extends CFormModel
 					// update the image thumbnail height in the database
 					$image->save();
 					return true;
-				} else {
-					// failed saving the file
-					return false;
-				}
-				return true;
+				};
 			} else {
-				print 'Add failed';
-				// for debug
-				print_r($image->getErrors());
-				return false;
+				$this->_errorMessage = 'Unable to save the image right now. Please try again later.';
 			}
 		} else {
-			echo 'invalid file!';
-			return false;
+			$this->_errorMessage = 'This is a invalid file.';
 		}
+
+		return false;
 	}
 
 	/**
@@ -123,6 +119,15 @@ class AddForm extends CFormModel
 		curl_close($uh);	
 
 		return $filesize;
+	}
+
+	/**
+	 * give the error message
+	 * @return string error message
+	 */
+	public function getErrorMessage()
+	{
+		return $this->_errorMessage;
 	}
 
 }

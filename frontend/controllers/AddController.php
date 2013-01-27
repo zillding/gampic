@@ -77,7 +77,7 @@
 				Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You have successfully added to database.');
 				$this->redirect('/add/');
 			} else {
-				Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> There seems to be some problem.');
+				Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> There seems to be some problem. '.$addModel->getErrorMessage());
 			}
 		}
 
