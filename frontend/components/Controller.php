@@ -14,9 +14,7 @@ class Controller extends CController {
 	public function init()
 	{
 		// include some js which is globally shared across the site
-		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/setupScrollToTop.js');
-		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery.infinitescroll.min.js');
-		// Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/script.js'); 
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/setupScrollToTop.js', CClientScript::POS_END);
 		parent::init();
 	}
 

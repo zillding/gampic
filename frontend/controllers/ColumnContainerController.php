@@ -32,41 +32,30 @@ class ColumnContainerController extends Controller
 	private function addJs()
 	{
 		// Helper::print_arr('hello');
-		Yii::app()->clientScript->registerScriptFile('js/setupBlocks.js',CClientScript::POS_END);
-		Yii::app()->clientScript->registerScript('loadData',
-			'$("#columnContainer").infinitescroll({
-				navSelector: "#next:last",
-				nextSelector: "a#next:last",
-				itemSelector: ".block",
-				debug: true,
-				dataType: "html",
-				path: function(index) {
-					return "/columnContainer/load";
-				}
-			}, function(newElements, data, url) {
-				wait(1);
-			});
+		Yii::app()->clientScript->registerScriptFile('js/jquery.waypoints.min.js',CClientScript::POS_END);
+		Yii::app()->clientScript->registerScriptFile('js/columnContainer.js',CClientScript::POS_END);
+		// Yii::app()->clientScript->registerScript('loadData',
+		// 	'$(function() {
 
-			$(function() {
-				// $("#columnContainer").load("columnContainer/load", function() {
-				// 	wait(0);
-				// });
+		// 		$("<div class=\'chunk\' />").load("columnContainer/load", function(){
+		// 			$(this).appendTo("#columnContainer");
+		// 			wait(1);
+		// 		});
 
+		// 		// create an event to detect whether the window has done resizing
+		// 		$(window).resize(function() {
+		// 			if(this.resizeTO) clearTimeout(this.resizeTO);
+		// 			this.resizeTO = setTimeout(function() {
+		// 				$(this).trigger("resizeEnd");
+		// 			}, 500);
+		// 		});
 
-				// create an event to detect whether the window has done resizing
-				$(window).resize(function() {
-					if(this.resizeTO) clearTimeout(this.resizeTO);
-					this.resizeTO = setTimeout(function() {
-						$(this).trigger("resizeEnd");
-					}, 500);
-				});
+		// 		$(window).bind("resizeEnd", function() {
+		// 			setupBlocks();
+		// 		});
 
-				$(window).bind("resizeEnd", function() {
-					setupBlocks();
-				});
-
-			});',
-			CClientScript::POS_END);
+		// 	});',
+		// 	CClientScript::POS_END);
 	}
 
 	// Uncomment the following methods and override them if needed

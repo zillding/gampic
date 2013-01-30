@@ -14,7 +14,7 @@ class AllController extends Controller
 	{
 		// add necessary js to let the banner scroll
 		Yii::app()->clientScript->registerScript('banner', '$(function() {$(".banner").simplyScroll();})', CClientScript::POS_BEGIN);
-		Yii::app()->clientScript->registerScriptFile('js/simplyScroll.js', CClientScript::POS_END);
+		Yii::app()->clientScript->registerScriptFile('js/jquery.simplyscroll.min.js', CClientScript::POS_END);
 		$this->renderPartial('_banner');
 	}
 

@@ -5,9 +5,8 @@
 */
 ?>
 
-<div id="columnContainer">
-	<div class="block">
-		<p>Welcome to Gampic!</p>
-	</div>
+<div id="columnContainer"></div>
+<div id="more">
+	<img src="images/bouncingLoader.gif">
+	Loading More
 </div>
-<a id="next" href="columnContainer/load">next page?</a>

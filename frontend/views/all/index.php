@@ -3,7 +3,7 @@
 
 $this->pageTitle = Yii::app()->name; // set the title of the page
 
-$this->addBanner();
+// $this->addBanner();
 
 $this->addColumnContainer();
 

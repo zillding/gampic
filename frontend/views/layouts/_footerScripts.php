@@ -4,6 +4,7 @@
  *
  */
 ?>
+
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/less-1.3.3.min.js"></script>
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/plugins.js"></script>
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/main.js"></script>
