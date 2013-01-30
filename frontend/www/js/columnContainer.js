@@ -8,17 +8,17 @@ var spaceLeft = 0;
 
 $(function() {
 
+	$("<div class=\'chunk\' />").load("columnContainer/load", function(){
+		$(this).appendTo("#columnContainer");
+		setupBlocks();
+	});
+
 	$("#more").waypoint(function(direction) {
 		if (direction === "down") {
-			alert(direction);
+			// do something
 		};
 	}, {
 		offset: window.innerHeight
-	});
-
-	$("<div class=\'chunk\' />").load("columnContainer/load", function(){
-		$(this).appendTo("#columnContainer");
-		wait(1);
 	});
 
 	// create an event to detect whether the window has done resizing
