@@ -10,3 +10,5 @@ The "hover" event in jquery doesn't work?? how???!!
 
 Should consider using OOP in javascript.
 The current implementation has some flaws.
+
+the "viewport" in the jquery waypoint means the top of the windew!!!
