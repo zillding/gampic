@@ -10,3 +10,4 @@
 	<img src="images/ajax-loader.gif"><br>
 	Loading more...
 </div>
+<div id="no-more">There is no more image.</div>
