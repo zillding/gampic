@@ -34,6 +34,7 @@ class ColumnContainerController extends Controller
 		// Helper::print_arr('hello');
 		Yii::app()->clientScript->registerScriptFile('js/jquery.waypoints.min.js',CClientScript::POS_END);
 		Yii::app()->clientScript->registerScriptFile('js/columnContainer.js',CClientScript::POS_END);
+		Yii::app()->clientScript->registerScriptFile('js/block.js',CClientScript::POS_END);
 	}
 
 	// Uncomment the following methods and override them if needed

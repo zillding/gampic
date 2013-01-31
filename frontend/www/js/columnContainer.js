@@ -117,16 +117,3 @@ Array.max = function(array) {
 	return Math.max.apply(Math, array);
 };
 
-/* * * * * */
-/*
-
-function setupCommentTextarea() {
-	$('textarea').on('focus', function() {
-		$(this).css('background', 'none repeat scroll 0 0 #FFFFFF');
-	});
-
-	$('textarea').on('blur', function() {
-		$(this).css('background', 'none repeat scroll 0 0 #FCF9F9');
-	});
-}
-*/

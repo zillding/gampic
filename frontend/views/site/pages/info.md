@@ -21,3 +21,18 @@ when trying some new features, a big development step, especially when there is 
 branching in git
 
 jquery on is not working properly. or i haven't figure out how to use it
+
+the z-index property in html is "auto" by default which means equal to the z-index of the parent. the root "html"
+z-index is 0!
+
+Two ways of defining a javascript class
+
+*	constructor version
+*	literal version
+
+if only need one object of its kind, then use an object literal, but if need several instances of an object, where each instance
+is independent of the other and can have different properties or methods depending on the way it’s constructed, then use a constructor function.
+
+when a change is made to an Object Literal it affects that object across the entire script, whereas when
+a Constructor function is instantiated and then a change is made to that instance, it won’t affect any
+other instances of that object.

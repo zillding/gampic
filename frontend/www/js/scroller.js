@@ -1,7 +1,6 @@
 // the scroller class
 function Scroller (selector) {
 	// for debug
-	console.log("new scroller instantiated: " + selector);
 	this.selector = selector;
 	this.scrollToTop(); // force to scroll to top when refresh the page
 }
