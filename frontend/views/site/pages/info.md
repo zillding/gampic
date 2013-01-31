@@ -19,3 +19,5 @@ in order to reserver space for an image, has to adjust the css of the container 
 
 when trying some new features, a big development step, especially when there is a need to change sth, can try using
 branching in git
+
+jquery on is not working properly. or i haven't figure out how to use it

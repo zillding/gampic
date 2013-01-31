@@ -1,14 +1,4 @@
-// set up the scroll to top img
-// function setupScrollToTop() {
-// 	// auto hide the scroll to top icon
-// 	// after click the button
-// 	$('.scrollToTop').click(function(){
-// 		$("html, body").animate({ scrollTop: 0 }, 600);
-// 		return false;
-// 	});
-// }
-
-// the new scroller class
+// the scroller class
 function Scroller (selector) {
 	// for debug
 	console.log("new scroller instantiated: " + selector);
