@@ -29,6 +29,7 @@
 /* for blocks */
 .block {
 	position: absolute;
+	z-index: -99;
 	float: left;
 	background-color: #FFFFFF;
 	box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
@@ -125,14 +126,12 @@
 }
 /* when loading more content */
 #more {
-    border-color: rgba(34, 25, 25, 0.14);
-    border-style: double;
-    border-width: 3px 0;
-    font-weight: bold;
-    margin: 25px;
-    padding: 10px 0;
+	display: none;
+	margin-top: -100px;
+	opacity: 0.9;
+	z-index: 99;
     text-align: center;
-    display: block;
+    font-weight: bold;
 }
 
 #no-more {
