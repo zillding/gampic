@@ -1,6 +1,5 @@
 // main funciton, called when the page finish loading
 $(function(){
-	ColumnContainer.setupLoader($("#more"));
 	ColumnContainer.load("columnContainer/load", true);
 
 	// create an event to detect whether the window has done resizing
@@ -14,6 +13,9 @@ $(function(){
 	$(window).bind("resizeEnd", function() {
 		ColumnContainer.setupBlocks();
 	});
+
+	// set up the loader
+	ColumnContainer.setupLoader($("#more"));
 })
 
 // define the columnContainer class
@@ -24,16 +26,24 @@ var ColumnContainer = {
 	blocks : [],
 	margin : 15,
 	spaceLeft : 0,
+	// initialize the load page variable
+	page : 0,
 
 	setupLoader : function(loader) {
 		// set the loader
 		ColumnContainer.loader = loader;
 		$(ColumnContainer.selector).waypoint(function(direction) {
 			if (direction === "down") {
-				// display the loader
-				loader.fadeIn();
-				// waypoint reached, load next page
-				ColumnContainer.load("columnContainer/load", false);
+				if ($("#noMore").length) {
+					// no more image to display
+					$("#noMore").css("top", $(ColumnContainer.selector).css("height"));
+				} else{
+					// display the loader
+					loader.fadeIn();
+					// waypoint reached, load next page
+					ColumnContainer.page++;
+					ColumnContainer.load("columnContainer/load/?page="+ColumnContainer.page, false);
+				};
 			};
 		}, {
 			// trigger when the bottom of the columnContainer come into view

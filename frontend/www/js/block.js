@@ -1,14 +1,24 @@
 // main function called at the page load
 $(function() {
-	$(document).on("click", ".block .likeButton", Block.like);
-	$(document).on("click", ".block .shareButton", Block.share);
-	$(document).on("click", ".block .commentButton", Block.comment);
-	setupCommentTextarea();
+	Block.setupSocialButtons();
 })
-
 
 // create the block class
 var Block = {
+	setupSocialButtons: function() {
+		this.setupLikeButton();
+		this.setupShareButton();
+		this.setupCommentButton();
+	},
+	setupLikeButton: function() {
+		$(document).on("click", ".block .likeButton", this.like);
+	},
+	setupShareButton: function() {
+		$(document).on("click", ".block .shareButton", this.share);
+	},
+	setupCommentButton: function() {
+		$(document).on("click", ".block .commentButton", this.comment);
+	}	,
 	like : function() {
 		console.log("like");
 	},
@@ -19,17 +29,6 @@ var Block = {
 		console.log("comment");
 	}
 
-}
-
-function setupCommentTextarea() {
-	$('textarea').on('focus', function() {
-		console.log(this);
-		$(this).css('background', 'none repeat scroll 0 0 #FFFFFF');
-	});
-
-	$('textarea').on('blur', function() {
-		$(this).css('background', 'none repeat scroll 0 0 #FCF9F9');
-	});
 }
 
 /*

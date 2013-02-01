@@ -19,11 +19,24 @@ class ColumnContainerController extends Controller
 	 */
 	public function actionLoad()
 	{
-		// load some images
-		// Helper::print_arr($this->_model);
-		$model = new ColumnContainer;
-		echo $model->load();
-		// Helper::print_arr($this->_model);
+		$page = Yii::app()->getRequest()->getQuery("page");
+		$page = isset($page) ? $page : 0;
+		if (TypeValidator::isInt($page)) {
+			// need to pass in a page param
+			// url: columnContainer/load/?page=2
+			// load some images
+			$model = new ColumnContainer;
+			if ($model->hasMore($page)) {
+				// there are un-displayed images
+				echo $model->load($page);
+			} else {
+				// no more images to display
+				echo $this->renderPartial('_noMore', array(), true);
+			}
+		} else {
+			echo "unidentified param page: " . $page; // todo: need to be refined
+		}
+		
 	}
 
 	/**

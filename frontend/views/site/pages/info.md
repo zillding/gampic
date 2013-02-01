@@ -4,6 +4,8 @@
 
 This web site is developed by Ding Zeyu.
 
+The objective of this project is not only to simply develop a website, but most importantly, learn the cutting-edge technology and write **quality** code. The design process is thought highly of and should be refined during the implementation process.
+
 #####Notes:
 
 The "hover" event in jquery doesn't work?? how???!!
