@@ -66,7 +66,7 @@ CREATE TABLE `tbl_image` (
   PRIMARY KEY (`image_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `image_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +75,7 @@ CREATE TABLE `tbl_image` (
 
 LOCK TABLES `tbl_image` WRITE;
 /*!40000 ALTER TABLE `tbl_image` DISABLE KEYS */;
-INSERT INTO `tbl_image` VALUES (1,'all legendary gear!!!','jpeg','diablo',119,0,'2013-01-25 19:37:47',1),(2,'what a scene!!!','jpeg','starcraft',143,0,'2013-01-25 19:41:28',1),(3,'check out what i got~','png','diablo',154,0,'2013-01-25 19:41:59',1),(4,'this is nice','jpeg','starcraft',143,0,'2013-01-25 19:42:16',1),(5,'cool wings','jpeg','diablo',139,0,'2013-01-25 19:42:36',1),(6,'who is this?','jpeg','warcraft',256,0,'2013-01-25 19:43:07',1),(7,'blizzard','jpeg','warcraft',115,0,'2013-01-25 19:43:42',1),(8,'a bunch of monsters','jpeg','diablo',142,0,'2013-01-25 19:44:35',1),(9,'intense battle','jpeg','starcraft',131,0,'2013-01-25 19:48:45',1),(10,'what a monster!','jpeg','diablo',154,0,'2013-01-25 19:49:34',1),(11,'this is my barb~','jpeg','diablo',108,0,'2013-01-25 19:50:26',1),(12,'paragon system started','png','diablo',113,0,'2013-01-25 19:51:00',1),(13,'cool pic!','jpeg','diablo',120,0,'2013-01-25 19:51:38',1),(14,'nice poster!','jpeg','starcraft',128,0,'2013-01-25 19:52:12',1),(15,'this is typical','jpeg','warcraft',144,0,'2013-01-25 19:52:45',1),(16,'dota allstars','jpeg','warcraft',127,0,'2013-01-27 02:31:28',1),(17,'new undying tombstone','jpeg','warcraft',264,0,'2013-01-27 02:32:53',1),(18,'starcraft 1 human','png','starcraft',144,0,'2013-01-27 02:35:26',1);
+INSERT INTO `tbl_image` VALUES (1,'all legendary gear!!!','jpeg','diablo',119,0,'2013-01-25 19:37:47',1),(2,'what a scene!!!','jpeg','starcraft',143,0,'2013-01-25 19:41:28',1),(3,'check out what i got~','png','diablo',154,0,'2013-01-25 19:41:59',1),(4,'this is nice','jpeg','starcraft',143,0,'2013-01-25 19:42:16',1),(5,'cool wings','jpeg','diablo',139,0,'2013-01-25 19:42:36',1),(6,'who is this?','jpeg','warcraft',256,0,'2013-01-25 19:43:07',1),(7,'blizzard','jpeg','warcraft',115,0,'2013-01-25 19:43:42',1),(8,'a bunch of monsters','jpeg','diablo',142,0,'2013-01-25 19:44:35',1),(9,'intense battle','jpeg','starcraft',131,0,'2013-01-25 19:48:45',1),(10,'what a monster!','jpeg','diablo',154,0,'2013-01-25 19:49:34',1),(11,'this is my barb~','jpeg','diablo',108,0,'2013-01-25 19:50:26',1),(12,'paragon system started','png','diablo',113,0,'2013-01-25 19:51:00',1),(13,'cool pic!','jpeg','diablo',120,0,'2013-01-25 19:51:38',1),(14,'nice poster!','jpeg','starcraft',128,0,'2013-01-25 19:52:12',1),(15,'this is typical','jpeg','warcraft',144,0,'2013-01-25 19:52:45',1),(16,'dota allstars','jpeg','warcraft',127,0,'2013-01-27 02:31:28',1),(17,'new undying tombstone','jpeg','warcraft',264,0,'2013-01-27 02:32:53',1),(18,'starcraft 1 human','png','starcraft',144,0,'2013-01-27 02:35:26',1),(19,'this is classic','jpeg','warcraft',275,0,'2013-02-01 07:27:27',1),(20,'a random search','jpeg','warcraft',153,0,'2013-02-01 07:29:46',1),(21,'check this out','jpeg','warcraft',204,0,'2013-02-01 07:31:35',1),(22,'this guy looks cool!','png','warcraft',192,0,'2013-02-01 07:33:02',1),(23,'awesome image!','jpeg','warcraft',108,0,'2013-02-01 07:33:52',1),(24,'one of my favourite charactors','png','warcraft',288,0,'2013-02-01 07:35:13',1),(25,'what is this?','jpeg','warcraft',144,0,'2013-02-01 07:36:55',1),(26,'warcraft mouse!','jpeg','warcraft',145,0,'2013-02-01 07:38:38',1),(27,'dota is also warcraft!!!','jpeg','warcraft',153,0,'2013-02-01 07:39:46',1),(28,'great wall paper','jpeg','warcraft',120,0,'2013-02-01 07:41:34',1),(29,'dota 2 rocks!','jpeg','warcraft',120,0,'2013-02-01 07:43:25',1),(30,'so looking forward for dota2!','jpeg','warcraft',108,0,'2013-02-01 07:44:14',1),(31,'roshan! you are going to die!','jpeg','warcraft',103,0,'2013-02-01 07:45:28',1);
 /*!40000 ALTER TABLE `tbl_image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,4 +196,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-01-27 18:36:59
+-- Dump completed on 2013-02-02  0:13:48

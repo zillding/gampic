@@ -23,7 +23,7 @@ class AddForm extends CFormModel
 			// for text inputs only
 			array('image_url, image_title, image_category', 'required'),
 			// define the file type
-			array('image_url', 'url', 'allowEmpty'=>false, 'pattern'=>'"[.](jpeg|jpg|png|gif)$"'),
+			array('image_url', 'url', 'allowEmpty'=>false, 'pattern'=>'"[.](jpeg|jpg|png|gif)$"'), // todo: should make this case insensitive
 			// set the upper bound of the file size
 			array('image_url', 'sizeLimit', 'maxSize'=>1024*1024*2),
 			array('image_title', 'length', 'max'=>50, 'min'=>2),
