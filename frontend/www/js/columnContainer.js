@@ -1,6 +1,6 @@
 // main funciton, called when the page finish loading
 $(function(){
-	ColumnContainer.load("columnContainer/load", true);
+	ColumnContainer.load("columnContainer/load", true, ColumnContainer.checkNoMore);
 
 	// create an event to detect whether the window has done resizing
 	$(window).resize(function() {
@@ -23,6 +23,7 @@ $(function(){
 var ColumnContainer = {
 	selector : "#columnContainer",  // define the container
 	itemSelector : ".block", // define the items need to be arranged
+	noMoreSelector: "#noMore",
 	blocks : [],
 	margin : 15,
 	spaceLeft : 0,
@@ -34,21 +35,27 @@ var ColumnContainer = {
 		ColumnContainer.loader = loader;
 		$(ColumnContainer.selector).waypoint(function(direction) {
 			if (direction === "down") {
-				if ($("#noMore").length) {
-					// no more image to display
-					$("#noMore").css("top", $(ColumnContainer.selector).css("height"));
-				} else{
-					// display the loader
-					loader.fadeIn();
-					// waypoint reached, load next page
-					ColumnContainer.page++;
-					ColumnContainer.load("columnContainer/load/?page="+ColumnContainer.page, false);
-				};
+				// display the loader
+				loader.fadeIn();
+				// waypoint reached, load next page
+				ColumnContainer.page++;
+				ColumnContainer.load("columnContainer/load/?page="+ColumnContainer.page, false, ColumnContainer.checkNoMore);
 			};
 		}, {
 			// trigger when the bottom of the columnContainer come into view
 			offset: "bottom-in-view"
 		});
+	},
+
+	checkNoMore : function() {
+		if ($(ColumnContainer.noMoreSelector).length) {
+			// no more image to display
+			$.waypoints("destroy");
+			$(ColumnContainer.noMoreSelector).fadeIn();
+			setTimeout(function() {
+				$(ColumnContainer.noMoreSelector).fadeOut();
+			}, 1000);
+		};
 	},
 
 	refreshLoader : function() {
@@ -59,7 +66,7 @@ var ColumnContainer = {
 	 * @param  {string} link    the link which the ajax send request to in order to get data
 	 * @param  {boolean} newFlag whether this is the first time to load images
 	 */
-	load : function(link, newFlag) {
+	load : function(link, newFlag, callback) {
 		$("<div class=\'chunk\' />").load(link, function(){
 			$(this).appendTo($(ColumnContainer.selector));
 			// remove the loader
@@ -72,6 +79,7 @@ var ColumnContainer = {
 				ColumnContainer.positionBlocks(ColumnContainer.selector + " .chunk:last " + ColumnContainer.itemSelector);	
 			};
 			ColumnContainer.refreshLoader(); // refresh the way point to make it more accurate
+			callback();
 		});
 	},
 	/**
