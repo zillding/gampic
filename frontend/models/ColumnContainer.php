@@ -33,16 +33,23 @@ class ColumnContainer
 	public function load($page=0)
 	{
 		$blocks = '';
+		$model = Image::model();
 
-		$start = Image::model()->count() - $page * $this->_loadImagesNumber;
-		$end = ($start - $this->_loadImagesNumber) > 0 ? $start - $this->_loadImagesNumber : 0;
-		for ($i=$start; $i > $end; $i--) { 
-			// create a single image data base on the info retrieved from database
-			// create a new block based on the data and append to the array
+		$condition = '';
+		$totalItems = $model->count($condition);
+
+		$criteria = new CDbCriteria(array(
+			'condition' => $condition,
+			'order' => 'image_upload_time DESC',
+			'limit' => $this->_loadImagesNumber,
+			'offset' => $page * $this->_loadImagesNumber
+		));
+		$result = $model->findAll($criteria);
+		foreach ($result as $record) {
 			$block = new BlockController('block');
-			$blocks .= $block->createBlock($i);
-			
+			$blocks .= $block->createBlock($record['image_id']);
 		}
+
 		return $blocks;
 		
 	}
