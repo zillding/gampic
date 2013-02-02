@@ -1,6 +1,7 @@
 <?php
 /**
  * main.php
+ * $this the controller which changes according to the context
  *
  */
 ?>
@@ -13,7 +14,7 @@
 
 	<?php $this->renderPartial('//layouts/_header') ?>
 
-	<div class="container" style="margin-top:80px">
+	<div class="container" style="margin-top:60px">
 		<?php 
 			echo $content; 
 		?>

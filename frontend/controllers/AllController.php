@@ -4,6 +4,9 @@ class AllController extends Controller
 {
 	public function actionIndex()
 	{
+		// get the category
+		$category = Yii::app()->getRequest()->getQuery('category');
+		// validate category and route
 		$this->render('index');
 	}
 

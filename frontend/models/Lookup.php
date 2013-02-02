@@ -93,9 +93,15 @@ class Lookup extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-
+	
+	// the array to store items
 	private static $_items=array();
- 
+
+	/**
+	 * to get items of a certain type
+	 * @param  string $type the type field in the lookup table
+	 * @return array       the array of items in the format of string
+	 */
 	public static function items($type)
 	{
 		if(!isset(self::$_items[$type]))

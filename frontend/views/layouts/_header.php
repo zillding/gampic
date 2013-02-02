@@ -16,15 +16,19 @@
 				array(
 					'label' => 'Categories', 
 					'url' => '#', 
-					'items' => array(
-						array('label' => 'Everything', 'url' => '#'),
-						array('label' => 'Popular', 'url' => '#'),
-						'---',
-						array('label' => 'GAMES'),
-						array('label' => 'Warcraft', 'url' => '#'),
-						array('label' => 'Starcraft', 'url' => '#'),
-						array('label' => 'Diablo', 'url' => '#'),
+					'items' => CMap::mergeArray(
+						array(
+							array('label' => 'Everything', 'url' => '#'),
+							array('label' => 'Popular', 'url' => '#'),
+							'---',
+						),
+						SiteController::gameCategoryMenu()
 					),
+					// 	array('label' => 'GAMES'),
+					// 	array('label' => 'Warcraft', 'url' => '#'),
+					// 	array('label' => 'Starcraft', 'url' => '#'),
+					// 	array('label' => 'Diablo', 'url' => '#'),
+					// ),
 				),
 				// array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 			),

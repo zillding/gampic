@@ -3,7 +3,9 @@
 
 $this->pageTitle = Yii::app()->name; // set the title of the page
 
-$this->addBanner();
+if (Yii::app()->user->isGuest) {
+	$this->addBanner();
+}
 
 $this->addColumnContainer();
 
