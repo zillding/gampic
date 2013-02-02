@@ -40,3 +40,5 @@ a Constructor function is instantiated and then a change is made to that instanc
 other instances of that object.
 
 callback function is a very important concept in js
+
+the comment should be a weak entity. the database design need to be re-considered

@@ -72,8 +72,6 @@ class UploadForm extends CFormModel
 			$image->save();
 			return true;
 		} else {
-			print 'upload failed';
-			// for debug
 			print_r($image->getErrors());
 			return false;
 		}

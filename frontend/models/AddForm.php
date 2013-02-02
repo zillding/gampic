@@ -25,7 +25,7 @@ class AddForm extends CFormModel
 			// define the file type
 			array('image_url', 'url', 'allowEmpty'=>false),
 			array('image_url', 'match',
-				'pattern'=>'/([a-zA-Z0-9\._-]+)+[.](jpg|jpeg|png|gif)$/i',
+				'pattern'=>'/[a-zA-Z0-9\._-]+[.](jpg|jpeg|png|gif)$/i',
 				'message'=>'the url is not a valid image'),
 			// set the upper bound of the file size
 			array('image_url', 'sizeLimit', 'maxSize'=>1024*1024*2),
