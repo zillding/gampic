@@ -24,10 +24,10 @@
 return array(
 	'env.code' => 'private',
 	// DB connection configurations
-	'db.name' => 'gamimag',
-	'db.connectionString' => 'mysql:host=localhost;dbname=gamimag',
-	'db.username' => 'gamimag',
-	'db.password' => 'gamimag',
+	'db.name' => 'gampic',
+	'db.connectionString' => 'mysql:host=localhost;dbname=gampic',
+	'db.username' => 'gampic',
+	'db.password' => 'gampic',
 
 	// test database {
 	'testdb.name' => '',
