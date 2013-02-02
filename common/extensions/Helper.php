@@ -14,6 +14,14 @@ class Helper
 		print "<pre>".dump($array)."</pre>";
 		die();
 	}
+
+	public static function log($value)
+	{
+		Yii::app()->clientScript->registerScript('log', 
+			'$(function() {
+				console.log('.$value.');
+			})', CClientScript::POS_END);
+	}
 }
 
 ?>

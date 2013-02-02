@@ -1,26 +1,8 @@
-// main funciton, called when the page finish loading
-$(function(){
-	ColumnContainer.load("/columnContainer/load", true, ColumnContainer.checkNoMore);
-
-	// create an event to detect whether the window has done resizing
-	$(window).resize(function() {
-		if(this.resizeTo) clearTimeout(this.resizeTo);
-		this.resizeTo = setTimeout(function() {
-			$(this).trigger("resizeEnd");
-		}, 500);
-	});
-	// if the window is resized, need to re-arrange all blocks
-	$(window).bind("resizeEnd", function() {
-		ColumnContainer.setupBlocks();
-	});
-
-	// set up the loader
-	ColumnContainer.setupLoader($("#more"));
-})
-
 // define the columnContainer class
 // note: for this class, everything has to be global, that why use this pattern
 var ColumnContainer = {
+	category : "", // the image category
+	loadLink : "/columnContainer/load",
 	selector : "#columnContainer",  // define the container
 	itemSelector : ".block", // define the items need to be arranged
 	noMoreSelector: "#noMore",
@@ -29,6 +11,19 @@ var ColumnContainer = {
 	spaceLeft : 0,
 	// initialize the load page variable
 	page : 0,
+
+	setImageCategory : function(category) {
+		this.category = category;
+		ColumnContainer.setLoadLink();
+	},
+
+	setLoadLink : function() {
+		if (this.category == "") {
+			this.loadLink = "/columnContainer/load/?";
+		} else{
+			this.loadLink = "/columnContainer/load/?category=" + this.category;
+		};
+	},
 
 	setupLoader : function(loader) {
 		// set the loader
@@ -39,7 +34,7 @@ var ColumnContainer = {
 				loader.fadeIn();
 				// waypoint reached, load next page
 				ColumnContainer.page++;
-				ColumnContainer.load("/columnContainer/load/?page="+ColumnContainer.page, false, ColumnContainer.checkNoMore);
+				ColumnContainer.load(ColumnContainer.loadLink+"&page="+ColumnContainer.page, false, ColumnContainer.checkNoMore);
 			};
 		}, {
 			// trigger when the bottom of the columnContainer come into view
@@ -123,6 +118,25 @@ var ColumnContainer = {
 				'height': max+'px'
 			});
 		});
+	},
+
+	start : function() {
+		ColumnContainer.load(ColumnContainer.loadLink, true, ColumnContainer.checkNoMore);
+
+		// create an event to detect whether the window has done resizing
+		$(window).resize(function() {
+			if(this.resizeTo) clearTimeout(this.resizeTo);
+			this.resizeTo = setTimeout(function() {
+				$(this).trigger("resizeEnd");
+			}, 500);
+		});
+		// if the window is resized, need to re-arrange all blocks
+		$(window).bind("resizeEnd", function() {
+			ColumnContainer.setupBlocks();
+		});
+
+		// set up the loader
+		ColumnContainer.setupLoader($("#more"));
 	}
 }
 // Function to get the Min value in Array

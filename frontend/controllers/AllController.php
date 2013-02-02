@@ -13,7 +13,6 @@ class AllController extends Controller
 		} else {
 			// validate category and route
 			if ($this->isValidCategory($category)) {
-				$this->_category = $category;
 				// Helper::print_arr($this->_category);
 				// todo: render corresponding page
 				$this->render('index');
@@ -43,6 +42,7 @@ class AllController extends Controller
 	{
 		// create a column container controller to manage this section
 		$columnContainer = new ColumnContainerController('columnContainer');
+		// the category passed is in the int form
 		$columnContainer->initialize($this->_category);
 	}
 
@@ -54,8 +54,13 @@ class AllController extends Controller
 	private function isValidCategory($category)
 	{
 		// chekc whether $category is valid
-		foreach (Lookup::items('ImageCategory') as $value) {
-			if (preg_match('/^'.$value.'$/i', $category)) {
+		foreach (Lookup::model()->findAll(array(
+			'condition' => 'type=:type',
+			'params' => array(':type'=>'ImageCategory'))
+			) as $record) {
+			if (preg_match('/^'.$record['name'].'$/i', $category)) {
+				// set the category to the corresponding code instead of name
+				$this->_category = $record['code'];
 				return true;
 			}
 		}

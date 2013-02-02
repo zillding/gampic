@@ -9,10 +9,15 @@ class ColumnContainerController extends Controller
 	public function initialize($category)
 	{
 		// load some images
-		$model=new ColumnContainer;
-		$model->setCategory($category);
+		$model=new ColumnContainer($category);
 		$this->addJs();
-		$this->renderPartial('index');
+		// need to pass the $category to javascript
+		Yii::app()->clientScript->registerScript('setCategory', 
+			'$(function() {
+				ColumnContainer.setImageCategory("'.$category.'");
+				ColumnContainer.start();
+			})', CClientScript::POS_END);
+		$this->renderPartial('index'); // render the column container, filled later buy actionLoad
 	}
 
 	/**
@@ -21,13 +26,15 @@ class ColumnContainerController extends Controller
 	 */
 	public function actionLoad()
 	{
+		$category = Yii::app()->getRequest()->getQuery("category");
+		$category = isset($category) ? $category : "";
 		$page = Yii::app()->getRequest()->getQuery("page");
 		$page = isset($page) ? $page : 0;
 		if (TypeValidator::isInt($page)) {
 			// need to pass in a page param
 			// url: columnContainer/load/?page=2
 			// load some images
-			$model = new ColumnContainer;
+			$model = new ColumnContainer($category);
 			if ($model->hasMore($page)) {
 				// there are un-displayed images
 				echo $model->load($page);

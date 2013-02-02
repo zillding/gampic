@@ -12,8 +12,9 @@ class ColumnContainer
 	 * initiate the conlumn contailer
 	 * add necessary client scripts
 	 */
-	public function __construct()
+	public function __construct($category)
 	{
+		$this->_category = $category;
 	}
 
 	/**
@@ -23,7 +24,9 @@ class ColumnContainer
 	 */
 	public function hasMore($page=0)
 	{
-		return (Image::model()->count() - $page * $this->_loadImagesNumber) > 0;
+		// have to take the condition into consideration
+		$condition = empty($this->_category) ? "" : 'image_category='.$this->_category;
+		return (Image::model()->count($condition) - $page * $this->_loadImagesNumber) > 0;
 	}
 
 	/**
@@ -36,7 +39,7 @@ class ColumnContainer
 		$blocks = '';
 		$model = Image::model();
 
-		$condition = '';
+		$condition = empty($this->_category) ? "" : 'image_category='.$this->_category;
 		$totalItems = $model->count($condition);
 
 		$criteria = new CDbCriteria(array(
@@ -53,11 +56,6 @@ class ColumnContainer
 
 		return $blocks;
 		
-	}
-
-	public function setCategory($category)
-	{
-		$this->_category = $category;
 	}
 
 }
