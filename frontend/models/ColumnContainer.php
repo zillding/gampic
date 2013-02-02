@@ -5,7 +5,8 @@
 
 class ColumnContainer
 {
-	private $_loadImagesNumber=15;
+	private $_loadImagesNumber = 15;
+	private $_category;
 
 	/**
 	 * initiate the conlumn contailer
@@ -52,6 +53,11 @@ class ColumnContainer
 
 		return $blocks;
 		
+	}
+
+	public function setCategory($category)
+	{
+		$this->_category = $category;
 	}
 
 }

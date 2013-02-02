@@ -2,12 +2,27 @@
 
 class AllController extends Controller
 {
+	private $_category='';
+
 	public function actionIndex()
 	{
 		// get the category
 		$category = Yii::app()->getRequest()->getQuery('category');
-		// validate category and route
-		$this->render('index');
+		if (!isset($category)) {
+			$this->render('index');
+		} else {
+			// validate category and route
+			if ($this->isValidCategory($category)) {
+				$this->_category = $category;
+				// Helper::print_arr($this->_category);
+				// todo: render corresponding page
+				$this->render('index');
+			} else {
+				// re-direct to the home page
+				$this->redirect('/');
+			}
+			
+		}
 	}
 
 	/**
@@ -17,7 +32,7 @@ class AllController extends Controller
 	{
 		// add necessary js to let the banner scroll
 		Yii::app()->clientScript->registerScript('banner', '$(function() {$(".banner").simplyScroll();})', CClientScript::POS_BEGIN);
-		Yii::app()->clientScript->registerScriptFile('js/jquery.simplyscroll.min.js', CClientScript::POS_END);
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.simplyscroll.min.js', CClientScript::POS_END);
 		$this->renderPartial('_banner');
 	}
 
@@ -28,7 +43,23 @@ class AllController extends Controller
 	{
 		// create a column container controller to manage this section
 		$columnContainer = new ColumnContainerController('columnContainer');
-		$columnContainer->initialize();
+		$columnContainer->initialize($this->_category);
+	}
+
+	/**
+	 * check whether the passed in category is valid again the database
+	 * @param  string  $category the game category
+	 * @return boolean           whether this category exists in db
+	 */
+	private function isValidCategory($category)
+	{
+		// chekc whether $category is valid
+		foreach (Lookup::items('ImageCategory') as $value) {
+			if (preg_match('/^'.$value.'$/i', $category)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	// Uncomment the following methods and override them if needed

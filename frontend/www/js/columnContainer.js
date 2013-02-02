@@ -1,6 +1,6 @@
 // main funciton, called when the page finish loading
 $(function(){
-	ColumnContainer.load("columnContainer/load", true, ColumnContainer.checkNoMore);
+	ColumnContainer.load("/columnContainer/load", true, ColumnContainer.checkNoMore);
 
 	// create an event to detect whether the window has done resizing
 	$(window).resize(function() {
@@ -39,7 +39,7 @@ var ColumnContainer = {
 				loader.fadeIn();
 				// waypoint reached, load next page
 				ColumnContainer.page++;
-				ColumnContainer.load("columnContainer/load/?page="+ColumnContainer.page, false, ColumnContainer.checkNoMore);
+				ColumnContainer.load("/columnContainer/load/?page="+ColumnContainer.page, false, ColumnContainer.checkNoMore);
 			};
 		}, {
 			// trigger when the bottom of the columnContainer come into view

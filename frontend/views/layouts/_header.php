@@ -18,7 +18,7 @@
 					'url' => '#', 
 					'items' => CMap::mergeArray(
 						array(
-							array('label' => 'Everything', 'url' => '#'),
+							array('label' => 'Everything', 'url' => '/all'),
 							array('label' => 'Popular', 'url' => '#'),
 							'---',
 						),

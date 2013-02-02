@@ -2,13 +2,15 @@
 
 class ColumnContainerController extends Controller
 {
+
 	/**
 	 * initialize the column container
 	 */
-	public function initialize()
+	public function initialize($category)
 	{
 		// load some images
 		$model=new ColumnContainer;
+		$model->setCategory($category);
 		$this->addJs();
 		$this->renderPartial('index');
 	}
@@ -45,9 +47,9 @@ class ColumnContainerController extends Controller
 	private function addJs()
 	{
 		// Helper::print_arr('hello');
-		Yii::app()->clientScript->registerScriptFile('js/jquery.waypoints.min.js',CClientScript::POS_END);
-		Yii::app()->clientScript->registerScriptFile('js/columnContainer.js',CClientScript::POS_END);
-		Yii::app()->clientScript->registerScriptFile('js/block.js',CClientScript::POS_END);
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.waypoints.min.js',CClientScript::POS_END);
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/columnContainer.js',CClientScript::POS_END);
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/block.js',CClientScript::POS_END);
 	}
 
 	// Uncomment the following methods and override them if needed

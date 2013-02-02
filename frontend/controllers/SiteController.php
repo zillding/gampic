@@ -92,7 +92,7 @@ class SiteController extends Controller
 		$games = array();
 		foreach (Lookup::items('ImageCategory') as $value) {
 			$games = CMap::mergeArray($games, array(
-				array('label' => $value, 'url' => '#')));
+				array('label' => $value, 'url' => '/all/?category='.strtolower($value))));
 		};
 
 		return $games;

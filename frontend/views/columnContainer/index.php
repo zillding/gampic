@@ -7,6 +7,6 @@
 
 <div id="columnContainer"></div>
 <div id="more"> 
-	<img src="images/ajax-loader.gif"><br>
+	<img src="/images/ajax-loader.gif"><br>
 	Loading more...
 </div>
