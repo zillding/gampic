@@ -24,7 +24,7 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
 					'htmlOptions' => array('data-target' => '#'),
 					'items' => CMap::mergeArray(
 						array(
-							array('label' => 'Everything', 'url' => array('/all/show')),
+							array('label' => 'Everything', 'url' => array('/all/show', 'category' => 'all')),
 							array('label' => 'Popular', 'url' => '#'),
 							'---',
 						),

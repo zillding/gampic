@@ -33,7 +33,12 @@ class BlockController extends Controller
 		}
 	}
 
-	public function like($data)
+	/**
+	 * the like feature. like an image
+	 * @param  [type] $data [description]
+	 * @return [type]       [description]
+	 */
+	public function actionLike($data)
 	{
 		// implement the like function
 	}

@@ -60,6 +60,10 @@ class AllController extends Controller
 	 */
 	private function isValidCategory($category)
 	{
+		if (preg_match('/^all$/i', $category)) {
+			return true;
+		}
+		
 		// chekc whether $category is valid
 		foreach (Lookup::model()->findAll(array(
 			'condition' => 'type=:type',

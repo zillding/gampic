@@ -20,7 +20,7 @@ var Block = {
 		$(document).on("click", ".block .commentButton", this.comment);
 	}	,
 	like : function() {
-		console.log("like");
+		console.log(this);
 	},
 	share : function() {
 		console.log("share");
