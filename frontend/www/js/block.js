@@ -20,7 +20,24 @@ var Block = {
 		$(document).on("click", ".block .commentButton", this.comment);
 	}	,
 	like : function() {
-		console.log(this);
+		button = $(this);
+		// 'this' refer to the button object
+		image_id = $(this).attr("data-id");
+		$.getJSON("/block/like/?image_id="+image_id, function(data) {
+			if (data) {
+				button.toggleClass('likeButtonDown'); // change the css style of the button
+				likeCount = button.parentsUntil('.chunk').find('.likeCount'); // get the like count element
+				if (data.liked == 1) {
+					// this image has successfully been liked
+					button.html('<i class="icon-thumbs-down"></i> Unlike');
+					likeCount.html(parseInt(likeCount.html()) + 1);
+				} else{
+					// this image is unliked successfully
+					button.html('<i class="icon-thumbs-up"></i> Like');
+					likeCount.html(parseInt(likeCount.html()) - 1);
+				};
+			};
+		});
 	},
 	share : function() {
 		console.log("share");

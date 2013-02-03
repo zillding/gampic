@@ -1,7 +1,6 @@
 <?php
-
 /**
-* Block class
+* Block model class
 */
 class Block
 {
@@ -135,6 +134,36 @@ class Block
 			$commentSection = '<div class="convo clearfix">'.$comment.'</div>';
 		}
 		echo $commentSection;
+	}
+
+	/**
+	 * like an image
+	 * @param  int $imageId the image id
+	 * @return boolean          whether the like is successful
+	 */
+	public function like($imageId)
+	{
+		// like an image
+		if (Image::model()->findByPk($imageId)) {
+			// the image exists, like/unlike the image
+			if (Like::model()->findByPk(array(array('user_id'=>Yii::app()->user->id, 'image_id'=>$imageId)))) {
+				// already liked it, unlike it
+				if (Like::model()->deleteByPk(array(array('user_id'=>Yii::app()->user->id, 'image_id'=>$imageId)))) {
+					$this->liked = 0;
+					return true;
+				}
+			} else {
+				// like this image
+				$like = new Like;
+				$like->image_id = $imageId;
+				$like->user_id = Yii::app()->user->id;
+				if ($like->save()) {
+					$this->liked = 1;
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }

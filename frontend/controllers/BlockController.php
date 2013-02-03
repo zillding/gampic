@@ -34,13 +34,23 @@ class BlockController extends Controller
 	}
 
 	/**
-	 * the like feature. like an image
-	 * @param  [type] $data [description]
-	 * @return [type]       [description]
+	 * the like feature. like/unlike an image
+	 * @return json      indicate the like status 
 	 */
-	public function actionLike($data)
+	public function actionLike()
 	{
-		// implement the like function
+		if (!Yii::app()->user->isGuest) {
+			// implement the like function
+			$id = Yii::app()->getRequest()->getQuery("image_id");
+			$id = isset($id) ? $id : "";
+			if (TypeValidator::isInt($id)) {
+				$model = new Block;
+				if($model->like($id)) {
+					$arr = array('image_id'=>$id, 'liked'=>$model->liked);
+					echo json_encode($arr);
+				}
+			}
+		}
 	}
 
 	// Uncomment the following methods and override them if needed

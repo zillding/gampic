@@ -26,7 +26,7 @@ class ColumnContainerController extends Controller
 	 */
 	public function actionLoad()
 	{
-		$category = Yii::app()->getRequest()->getQuery("category");
+		$category = Yii::app()->getRequest()->getQuery("category"); // the category var here is the int representation
 		$category = isset($category) ? $category : "";
 		$page = Yii::app()->getRequest()->getQuery("page");
 		$page = isset($page) ? $page : 0;
