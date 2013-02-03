@@ -118,6 +118,7 @@ var ColumnContainer = {
 				'height': max+'px'
 			});
 		});
+		$(ColumnContainer.itemSelector).show("slow");
 	},
 
 	start : function() {
