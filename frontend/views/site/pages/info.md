@@ -2,13 +2,14 @@
 
 ####This is the info page of Gampic
 
-This web site is developed by Ding Zeyu.
+This web site is developed by **Ding Zeyu** as the **Final Year Project**.
 
 The objective of this project is not only to simply develop a website, but most importantly, learn the cutting-edge technology and write **quality** code. The design process is thought highly of and should be refined during the implementation process.
 
-#####Notes:
+Some of the features are under development and can only be tested on the local machine through localhost, for example, the disqus
+integration.
 
-The "hover" event in jquery doesn't work?? how???!!
+#####Notes:
 
 Should consider using OOP in javascript.
 The current implementation has some flaws.

@@ -27,6 +27,7 @@
 <a class="scrollToTop"></a>
 
 <?php $this->renderPartial('//layouts/_footerScripts'); ?>
+<?php SiteController::addDisqusSupport(); ?>
 
 </body>
 </html>

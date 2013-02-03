@@ -2,5 +2,6 @@
 /**
  * _footer.php
  *
+ * for disqus plugin
  */
 ?>
