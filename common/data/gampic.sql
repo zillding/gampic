@@ -25,12 +25,12 @@ DROP TABLE IF EXISTS `tbl_comment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tbl_comment` (
-  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `comment_id` int(11) NOT NULL,
+  `image_id` int(11) NOT NULL,
   `comment_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `comment_content` varchar(255) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `image_id` int(11) NOT NULL,
-  PRIMARY KEY (`comment_id`),
+  PRIMARY KEY (`comment_id`, `image_id`),
   KEY `user_id` (`user_id`),
   KEY `image_id` (`image_id`),
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`),
