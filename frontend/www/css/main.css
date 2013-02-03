@@ -104,10 +104,6 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-/* bootstrap dropdown list hover to show */
-ul.nav li.dropdown:hover ul.dropdown-menu {
-    display: block;    
-}
 /*
  * simplyScroll 2 - a scroll-tastic jQuery plugin
  *

@@ -69,14 +69,6 @@ return CMap::mergeArray(
 			)
 		),
 		'components' => array(
-			// 'clientScript' => array(
-			// 	'packages' => array(
-			// 		'jquery' => array(
-			// 			'baseUrl' => '//ajax.googleapis.com/ajax/libs/jquery/1/',
-			// 			'js' => array('jquery.min.js'),
-			// 		),
-			// 	),
-			// ),
 			'errorHandler' => array(
 				// @see http://www.yiiframework.com/doc/api/1.1/CErrorHandler#errorAction-detail
 				'errorAction'=>'site/error'

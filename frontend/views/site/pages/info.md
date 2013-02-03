@@ -43,4 +43,9 @@ callback function is a very important concept in js
 
 the comment should be a weak entity. the database design need to be re-considered
 
-todo: some bug in the navigation bar observed! the style is werid 
+some bug in the navigation bar observed! the style is werid, need to be fixed manually
+note: the 'url' has to be a array in order to let it highlight after click. be careful with the url, so the nav bar can show
+the highlight correctly
+
+Yii url doesnot recognize the trailing slash
+

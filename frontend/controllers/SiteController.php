@@ -82,20 +82,4 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
-
-	/**
-	 * the category menu on the header of main layout page
-	 * @return array the game category menu
-	 */
-	public static function gameCategoryMenu()
-	{
-		$games = array();
-		foreach (Lookup::items('ImageCategory') as $value) {
-			$games = CMap::mergeArray($games, array(
-				array('label' => $value, 'url' => '/all/?category='.strtolower($value))));
-		};
-
-		return $games;
-		
-	}
 }

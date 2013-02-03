@@ -6,6 +6,13 @@ class AllController extends Controller
 
 	public function actionIndex()
 	{
+		// default action is show
+		$this->actionShow();
+	}
+
+	// display images
+	public function actionShow()
+	{
 		// get the category
 		$category = Yii::app()->getRequest()->getQuery('category');
 		if (!isset($category)) {
@@ -65,6 +72,25 @@ class AllController extends Controller
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * the category menu on the header of main layout page
+	 * @return array the game category menu
+	 */
+	public static function gameCategoryMenu()
+	{
+		$games = array();
+		foreach (Lookup::items('ImageCategory') as $value) {
+			$games = CMap::mergeArray($games, array(
+				array('label' => $value,
+					'url' => array('/all/show', 'category'=>strtolower($value))
+				)
+			));
+		};
+
+		return $games;
+		
 	}
 	
 	// Uncomment the following methods and override them if needed
