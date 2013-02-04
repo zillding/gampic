@@ -14,8 +14,8 @@
 		<?php $model->displayLikeButton(); ?>
 	</div>
 	<div class="blockHolder" style="height: <?php echo $model->thumbHeight; ?>px">
-		<a href="/images/upload/orig/<?php echo $model->imageId.'.'.$model->extension; ?>" rel="lightbox" class="imgLink bigImgLink" title="<?php echo $model->title; ?>">
-			<img alt="<?php echo $model->imageId; ?>" src="/images/upload/thumb/<?php echo $model->imageId.'.'.$model->extension; ?>" />
+		<a href="<?php echo Yii::app()->params['originalImageDir'].'/'.$model->imageId.'.'.$model->extension; ?>" class="imgLink bigImgLink fancybox" title="<?php echo $model->title; ?>">
+			<img alt="<?php echo $model->imageId; ?>" src="<?php echo Yii::app()->params['thumbnailImageDir'].'/'.$model->imageId.'.'.$model->extension; ?>" />
 		</a>
 	</div>
 	<p class="description"><?php echo $model->title; ?></p>

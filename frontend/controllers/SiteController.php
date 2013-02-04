@@ -107,6 +107,6 @@ class SiteController extends Controller
 	// add the disqus count comment support
 	public static function addDisqusSupport()
 	{
-		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/disqus.js',CClientScript::POS_END);
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/plugins/disqus/disqus.js',CClientScript::POS_END);
 	}
 }

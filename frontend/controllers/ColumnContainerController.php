@@ -10,7 +10,7 @@ class ColumnContainerController extends Controller
 	{
 		// load some images
 		$model=new ColumnContainer($category);
-		$this->addJs();
+		$this->addClientScripts();
 		// need to pass the $category to javascript
 		Yii::app()->clientScript->registerScript('setCategory', 
 			'$(function() {
@@ -51,12 +51,15 @@ class ColumnContainerController extends Controller
 	/**
 	 * help add the needed js
 	 */
-	private function addJs()
+	private function addClientScripts()
 	{
 		// Helper::print_arr('hello');
-		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.waypoints.min.js',CClientScript::POS_END);
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/plugins/waypoints/jquery.waypoints.min.js',CClientScript::POS_END);
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/columnContainer.js',CClientScript::POS_END);
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/block.js',CClientScript::POS_END);
+		// for image display
+		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/plugins/fancybox/jquery.fancybox.css');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/plugins/fancybox/jquery.fancybox.pack.js',CClientScript::POS_END);
 	}
 
 	// Uncomment the following methods and override them if needed

@@ -34,7 +34,7 @@ var ColumnContainer = {
 				loader.fadeIn();
 				// waypoint reached, load next page
 				ColumnContainer.page++;
-				ColumnContainer.load(ColumnContainer.loadLink+"&page="+ColumnContainer.page, false, ColumnContainer.checkNoMore);
+				ColumnContainer.load(ColumnContainer.loadLink+"&page="+ColumnContainer.page, false, ColumnContainer.finishLoad);
 			};
 		}, {
 			// trigger when the bottom of the columnContainer come into view
@@ -42,7 +42,11 @@ var ColumnContainer = {
 		});
 	},
 
-	checkNoMore : function() {
+	// this function is a callback function passed to load function
+	// it exectutes when loading is done
+	finishLoad : function() {
+		// check whether there are more images to display
+		// in order to display any indication
 		if ($(ColumnContainer.noMoreSelector).length) {
 			// no more image to display
 			$.waypoints("destroy");
@@ -51,6 +55,28 @@ var ColumnContainer = {
 				$(ColumnContainer.noMoreSelector).fadeOut();
 			}, 1000);
 		};
+		// use fancybox to display images
+		ColumnContainer.setupFancyBox();
+	},
+
+	setupFancyBox : function() {
+		items = $(ColumnContainer.selector + " .chunk:last " + ColumnContainer.itemSelector + " .fancybox");
+		items.fancybox({
+			openEffect : 'elastic',
+			closeEffect : 'elastic',
+			prevEffect : 'none',
+			nextEffect : 'none',
+			closeBtn : false,
+			helpers : {
+				title : { type : 'inside' },
+				buttons	: {},
+				overlay : {
+					css : {
+						'background' : 'rgba(58, 42, 45, 0.9'
+					}
+				}
+			}
+		});
 	},
 
 	refreshLoader : function() {
@@ -122,7 +148,7 @@ var ColumnContainer = {
 	},
 
 	start : function() {
-		ColumnContainer.load(ColumnContainer.loadLink, true, ColumnContainer.checkNoMore);
+		ColumnContainer.load(ColumnContainer.loadLink, true, ColumnContainer.finishLoad);
 
 		// create an event to detect whether the window has done resizing
 		$(window).resize(function() {
