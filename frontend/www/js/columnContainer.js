@@ -12,19 +12,6 @@ var ColumnContainer = {
 	// initialize the load page variable
 	page : 0,
 
-	setImageCategory : function(category) {
-		this.category = category;
-		ColumnContainer.setLoadLink();
-	},
-
-	setLoadLink : function() {
-		if (this.category == "") {
-			this.loadLink = "/columnContainer/load/?";
-		} else{
-			this.loadLink = "/columnContainer/load/?category=" + this.category;
-		};
-	},
-
 	setupLoader : function(loader) {
 		// set the loader
 		ColumnContainer.loader = loader;
@@ -34,7 +21,8 @@ var ColumnContainer = {
 				loader.fadeIn();
 				// waypoint reached, load next page
 				ColumnContainer.page++;
-				ColumnContainer.load(ColumnContainer.loadLink+"&page="+ColumnContainer.page, false, ColumnContainer.finishLoad);
+				params = (ColumnContainer.category == "") ? "page="+ColumnContainer.page : "category="+ColumnContainer.category+"&page="+ColumnContainer.page;
+				ColumnContainer.load(ColumnContainer.loadLink, params, false, ColumnContainer.finishLoad);
 			};
 		}, {
 			// trigger when the bottom of the columnContainer come into view
@@ -86,11 +74,13 @@ var ColumnContainer = {
 	},
 	/**
 	 * load pictures
-	 * @param  {string} link    the link which the ajax send request to in order to get data
+	 * @param  {string} url the link which the ajax send request to in order to get data
+	 * @param  {plain object/string} data the data that is sent to the server with the request
 	 * @param  {boolean} newFlag whether this is the first time to load images
+	 * @param  {function} callback the call back function
 	 */
-	load : function(link, newFlag, callback) {
-		$("<div class=\'chunk\' />").load(link, function(){
+	load : function(url, data, newFlag, callback) {
+		$("<div class=\'chunk\' />").load(url, data, function(){
 			$(this).appendTo($(ColumnContainer.selector));
 			// remove the loader
 			ColumnContainer.loader.fadeOut();
@@ -128,7 +118,6 @@ var ColumnContainer = {
 	/**
 	 * arrange all the items in tiles
 	 * @param {string} itemSelector string representation of the item which need arranging
-	 * @return {} [description]
 	 */
 	positionBlocks : function(itemSelector) {
 		$(itemSelector).each(function(){
@@ -149,8 +138,14 @@ var ColumnContainer = {
 		$(ColumnContainer.itemSelector).show("slow");
 	},
 
-	start : function() {
-		ColumnContainer.load(ColumnContainer.loadLink, true, ColumnContainer.finishLoad);
+	start : function(category) {
+		this.category = category;
+
+		if (category == "") {
+			ColumnContainer.load(ColumnContainer.loadLink, "", true, ColumnContainer.finishLoad);
+		} else{
+			ColumnContainer.load(ColumnContainer.loadLink, "category="+category, true, ColumnContainer.finishLoad);
+		};
 
 		// create an event to detect whether the window has done resizing
 		$(window).resize(function() {

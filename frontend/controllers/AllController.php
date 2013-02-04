@@ -21,7 +21,6 @@ class AllController extends Controller
 			// validate category and route
 			if ($this->isValidCategory($category)) {
 				// Helper::print_arr($this->_category);
-				// todo: render corresponding page
 				$this->render('index');
 			} else {
 				// re-direct to the home page
@@ -51,11 +50,13 @@ class AllController extends Controller
 		// create a column container controller to manage this section
 		$columnContainer = new ColumnContainerController('columnContainer');
 		// the category passed is in the int form
+		// if the category is "all", an empty string will be passed
 		$columnContainer->initialize($this->_category);
 	}
 
 	/**
 	 * check whether the passed in category is valid again the database
+	 * and set the category attr to be the code (could be '' or '1', '2', '3')
 	 * @param  string  $category the game category
 	 * @return boolean           whether this category exists in db
 	 */

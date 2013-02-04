@@ -14,8 +14,7 @@ class ColumnContainerController extends Controller
 		// need to pass the $category to javascript
 		Yii::app()->clientScript->registerScript('setCategory', 
 			'$(function() {
-				ColumnContainer.setImageCategory("'.$category.'");
-				ColumnContainer.start();
+				ColumnContainer.start("'.$category.'");
 			})', CClientScript::POS_END);
 		$this->renderPartial('index'); // render the column container, filled later buy actionLoad
 	}
