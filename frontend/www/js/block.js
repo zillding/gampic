@@ -10,6 +10,7 @@ var Block = {
 		this.setupShareButton();
 		this.setupCommentButton();
 	},
+
 	setupLikeButton: function() {
 		$(document).on("click", ".block .likeButton", this.like);
 	},
@@ -19,6 +20,7 @@ var Block = {
 	setupCommentButton: function() {
 		$(document).on("click", ".block .commentButton", this.comment);
 	}	,
+
 	like : function() {
 		button = $(this);
 		// 'this' refer to the button object
@@ -39,49 +41,41 @@ var Block = {
 			};
 		});
 	},
+
+	comment : function() {
+		button = $(this);
+		image_id = button.attr("data-id");
+		comment = button.parentsUntil('.chunk').find('form textarea').val(); // get the comment
+		requestData = "image_id="+image_id+"&comment="+comment;
+		$.post("/block/comment", requestData, function(data) {
+			if (data) {
+				// comment successfully, update the view
+				console.log(data);
+				// define comment
+				commentSection = '\
+						<div class="comment">\
+							<a class="ImgLink">\
+								<img src="">\
+							</a>\
+							<p class="NoImage">\
+								<a class="userName"></a> ' + data.comment + '\
+							</p>\
+						</div>';
+
+				// append the comment after all other comments
+				button.parentsUntil('.chunk').find('.otherComments').append(commentSection);
+			};
+		}, "json");
+	},
+
 	share : function() {
 		console.log("share");
-	},
-	comment : function() {
-		console.log("comment");
 	}
 
 }
 
 /*
 $(document).ready(function() {
-	// set up the like button
-	$('.likeButton').live('click', function() {
-		if (loggedIn==true) {
-			$image_id = $(this).parent().parent().find('.PinImageImg').attr('alt');
-			$requestData = 'image_id=' + $image_id + '&like=' ;
-			$likeCount = parseInt($(this).parent().parent().find('.likeCount').html());
-			$(this).toggleClass('likeButtonDown');
-			if ($(this).html() == 'like') {
-				// change the content of the button to unlike
-				$(this).html('unlike');
-				// send content to server
-				$.post(ROOT_URL + 'all/like', $requestData + '1', function() {
-					//alert('You like it!');
-					});
-				// update the like count
-				$(this).parent().parent().find('.likeCount').html($likeCount + 1);
-			}
-			else {
-				// change the content of the button to like
-				$(this).html('like');
-				// send content to server
-				$.post(ROOT_URL + 'all/like', $requestData + '-1', function() {
-					//alert('You unlike it!');
-					});
-				// update the like count
-				$(this).parent().parent().find('.likeCount').html($likeCount - 1);
-
-			}
-		} else {
-			alert("Please log in first :)");
-		}
-	});
 
 	// set up the comment button
 	$('.commentButton').live('click', function() {
