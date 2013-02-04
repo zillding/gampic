@@ -56,7 +56,17 @@ class ColumnContainerController extends Controller
 		// Helper::print_arr('hello');
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/plugins/waypoints/jquery.waypoints.min.js',CClientScript::POS_END);
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/columnContainer.js',CClientScript::POS_END);
-		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/block.js',CClientScript::POS_END);
+		if (Yii::app()->user->isGuest) {
+			Yii::app()->clientScript->registerScript('setupBlock',
+				'$(function() {
+					$(document).on("click", ".block .btn", function() {
+						alert("Please log in first!");
+					});
+				});', CClientScript::POS_END);
+		} else {
+			Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/block.js',CClientScript::POS_END);
+		}
+		
 		// for image display
 		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/plugins/fancybox/jquery.fancybox.css');
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/plugins/fancybox/jquery.fancybox.pack.js',CClientScript::POS_END);

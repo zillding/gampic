@@ -2,10 +2,10 @@
 
 class BlockController extends Controller
 {
+	// for debug only
+	// generate a block
 	public function actionIndex()
 	{
-		// for debug only
-		// generate a block
 		$imageId=1;
 		$model = new Block();
 		if ($model->create($imageId)) {
@@ -27,7 +27,6 @@ class BlockController extends Controller
 		$model = new Block();
 		if ($model->create($imageId)) {
 			return $this->renderPartial('index',array('model'=>$model),true);
-			// $this->renderPartial('index',array('model'=>$model));
 		} else {
 			die('error creating block with image id='.$imageId);
 		}
