@@ -61,15 +61,17 @@ class BlockController extends Controller
 	public function actionComment()
 	{
 		if (!Yii::app()->user->isGuest) {
-			// pass the user gravatar to js
-			// Yii::app()->clientScript->registerScript('passGravatar', 'userGravatar='.Yii::app()->getGlobalState('userGravatar'), CClientScript::POS_END);
 			// implement the comment function
 			$id = Yii::app()->getRequest()->getPost("image_id");
 			$id = isset($id) ? $id : "";
 			if (TypeValidator::isInt($id)) {
 				$model = new Block;
 				if($model->comment($id)) {
-					$arr = array('image_id'=>$id, 'comment'=>$model->latestComment);
+					$arr = array(
+						'user_name'=>User::model()->findByPk(Image::model()->findByPk($id)->user_id)->user_name,
+						'user_gravatar'=>Yii::app()->getGlobalState('userGravatar'),
+						'comment'=>$model->latestComment
+						);
 					echo json_encode($arr);
 				}
 			}

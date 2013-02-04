@@ -62,7 +62,7 @@ var ColumnContainer = {
 				},
 				overlay : {
 					css : {
-						'background' : 'rgba(58, 42, 45, 0.9'
+						'background' : 'rgba(58, 42, 45, 0.9)'
 					}
 				}
 			}

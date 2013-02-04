@@ -43,28 +43,28 @@ var Block = {
 	},
 
 	comment : function() {
-		button = $(this);
-		image_id = button.attr("data-id");
-		comment = button.parentsUntil('.chunk').find('form textarea').val(); // get the comment
+		image_id = $(this).attr("data-id");
+		block = $(this).parentsUntil('.chunk');
+		comment = block.find('form textarea').val(); // get the comment
 		requestData = "image_id="+image_id+"&comment="+comment;
 		$.post("/block/comment", requestData, function(data) {
 			if (data) {
 				// comment successfully, update the view
-				console.log(data);
 				// define comment
 				commentSection = '\
 						<div class="comment">\
-							<a class="ImgLink">\
-								<img src="">\
+							<a class="imgLink">\
+								<img src="' + data.user_gravatar + '">\
 							</a>\
 							<p class="NoImage">\
-								<a class="userName"></a> ' + data.comment + '\
+								<a class="userName">' + data.user_name + '</a> ' + data.comment + '\
 							</p>\
 						</div>';
 
 				// append the comment after all other comments
-				button.parentsUntil('.chunk').find('.otherComments').append(commentSection);
+				block.find('.otherComments').append(commentSection);
 			};
+			ColumnContainer.setupBlocks();
 		}, "json");
 	},
 

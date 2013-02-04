@@ -11,8 +11,9 @@ class ColumnContainerController extends Controller
 		// load some images
 		$model=new ColumnContainer($category);
 		$this->addClientScripts();
+		// pass the gravatar
 		// need to pass the $category to javascript
-		Yii::app()->clientScript->registerScript('setCategory', 
+		Yii::app()->clientScript->registerScript('startColumnContainer', 
 			'$(function() {
 				ColumnContainer.start("'.$category.'");
 			})', CClientScript::POS_END);
