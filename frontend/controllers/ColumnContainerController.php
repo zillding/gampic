@@ -60,6 +60,8 @@ class ColumnContainerController extends Controller
 		// for image display
 		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/plugins/fancybox/jquery.fancybox.css');
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/plugins/fancybox/jquery.fancybox.pack.js',CClientScript::POS_END);
+		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/plugins/fancybox/helpers/jquery.fancybox-buttons.css');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/plugins/fancybox/helpers/jquery.fancybox-buttons.js',CClientScript::POS_END);
 	}
 
 	// Uncomment the following methods and override them if needed

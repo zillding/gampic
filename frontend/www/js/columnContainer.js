@@ -69,7 +69,9 @@ var ColumnContainer = {
 			closeBtn : false,
 			helpers : {
 				title : { type : 'inside' },
-				buttons	: {},
+				buttons	: {
+					position: 'top'
+				},
 				overlay : {
 					css : {
 						'background' : 'rgba(58, 42, 45, 0.9'
