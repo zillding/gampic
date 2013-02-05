@@ -91,6 +91,26 @@ return CMap::mergeArray(
 				'urlSuffix' => '/',
 				'rules' => $params['url.rules']
 			),
+			// @see http://www.yiiframework.com/doc/guide/1.1/en/topics.logging
+			'log' => array(
+				'class' => 'CLogRouter',
+				'routes' => array(
+					array(
+						'class' => 'CFileLogRoute',
+						'levels' => 'info, error, warning',
+					),
+					array(
+						'class' => 'CEmailLogRoute',
+						'levels' => 'error, warning',
+						'emails' => 'zilld@hotmail.com',
+					),
+					array(
+						'class' => 'CWebLogRoute',
+						'levels' => 'info, error, warning',
+						'categories' => 'system.web.test',
+					),
+				),
+			),
 			/* make sure you have your cache set correctly before uncommenting */
 			/* 'cache' => $params['cache.core'], */
 			/* 'contentCache' => $params['cache.content'] */
