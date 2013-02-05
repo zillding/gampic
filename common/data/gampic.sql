@@ -30,7 +30,7 @@ CREATE TABLE `tbl_comment` (
   `comment_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `comment_content` varchar(255) NOT NULL,
   `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`comment_id`, `image_id`),
+  PRIMARY KEY (`comment_id`,`image_id`),
   KEY `user_id` (`user_id`),
   KEY `image_id` (`image_id`),
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`),
@@ -120,7 +120,7 @@ CREATE TABLE `tbl_lookup` (
   `type` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `position` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +129,7 @@ CREATE TABLE `tbl_lookup` (
 
 LOCK TABLES `tbl_lookup` WRITE;
 /*!40000 ALTER TABLE `tbl_lookup` DISABLE KEYS */;
-INSERT INTO `tbl_lookup` VALUES (1,'Warcraft',1,'ImageCategory',1),(2,'Starcraft',2,'ImageCategory',2),(3,'Diablo',3,'ImageCategory',3);
+INSERT INTO `tbl_lookup` VALUES (1,'Warcraft',1,'ImageCategory',1),(2,'Starcraft',2,'ImageCategory',2),(3,'Diablo',3,'ImageCategory',3),(4,'Other',4,'ImageCategory',4);
 /*!40000 ALTER TABLE `tbl_lookup` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,4 +196,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-02-02 14:58:31
+-- Dump completed on 2013-02-05 19:40:06
