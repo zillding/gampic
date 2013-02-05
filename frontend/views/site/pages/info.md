@@ -53,3 +53,5 @@ Yii url doesnot recognize the trailing slash
 should use lazy instantiation
 
 use Yii::app()->getGlobalState() to get global variable
+
+in yii, the common config override the frontend config

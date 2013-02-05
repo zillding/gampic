@@ -42,8 +42,6 @@ class Block
 		}
 
 		$this->getDbData($imageId);
-		// Helper::print_arr($data);
-
 
 		return true;
 
