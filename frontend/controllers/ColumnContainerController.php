@@ -57,7 +57,6 @@ class ColumnContainerController extends Controller
 		// Helper::print_arr('hello');
 		regJsFile('jquery.waypoints.min', bu('plugins/waypoints'));
 		regJsFile('columnContainer');
-		// Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/columnContainer.js',CClientScript::POS_END);
 		if (user()->isGuest) {
 			cs()->registerScript('setupBlock',
 				'$(function() {

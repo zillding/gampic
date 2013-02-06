@@ -41,8 +41,7 @@ $this->pageTitle=Yii::app()->name . ' - Register';
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Register', 'icon'=>'ok'));?>
-		<!-- todo: add functionality -->
-		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'cancel','type'=>'secondary','label'=>'Cancel', 'icon'=>'remove'));?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset','label'=>'Reset', 'icon'=>'pencil'));?>
 	</div>
 
 <?php $this->endWidget(); ?>

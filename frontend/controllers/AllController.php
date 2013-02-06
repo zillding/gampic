@@ -14,7 +14,7 @@ class AllController extends Controller
 	public function actionShow()
 	{
 		// get the category
-		$category = Yii::app()->getRequest()->getQuery('category');
+		$category = r()->getQuery('category');
 		if (!isset($category)) {
 			$this->render('index');
 		} else {

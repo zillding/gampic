@@ -50,14 +50,14 @@ class BlockController extends Controller
 	{
 		if (!user()->isGuest) {
 			// implement the comment function
-			$id = Yii::app()->getRequest()->getPost("image_id");
+			$id = r()->getPost("image_id");
 			$id = isset($id) ? $id : "";
 			if (TypeValidator::isInt($id)) {
 				$model = new Block;
 				if($model->comment($id)) {
 					$arr = array(
 						'user_name'=>User::model()->findByPk(Image::model()->findByPk($id)->user_id)->user_name,
-						'user_gravatar'=>Yii::app()->getGlobalState('userGravatar'),
+						'user_gravatar'=>app()->getGlobalState('userGravatar'),
 						'comment'=>$model->latestComment
 						);
 					echo je($arr); // 'je' is short for json_encode

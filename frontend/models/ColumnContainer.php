@@ -5,16 +5,17 @@
 
 class ColumnContainer
 {
-	private $_loadImagesNumber = 15;
+	private $_loadImagesNumber;
 	private $_category;
 
 	/**
 	 * initiate the conlumn contailer
 	 * add necessary client scripts
 	 */
-	public function __construct($category)
+	public function __construct($category, $loadNumber=15)
 	{
 		$this->_category = $category;
+		$this->_loadImagesNumber = $loadNumber;
 	}
 
 	/**
