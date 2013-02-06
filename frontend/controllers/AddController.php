@@ -38,7 +38,7 @@
 			$uploadModel->attributes=$_POST['UploadForm'];
 			// validate user input and redirect to the previous page if valid
 			if($uploadModel->validate() && $uploadModel->upload()) {
-				Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You have successfully uploaded to database.');
+				user()->setFlash('success', '<strong>Well done!</strong> You have successfully uploaded to database.');
 				$this->redirect('/add/');
 			}
 		}
@@ -74,42 +74,21 @@
 			$addModel->attributes=$_POST['AddForm'];
 			// validate user input and redirect to the previous page if valid
 			if($addModel->validate() && $addModel->add()) {
-				Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You have successfully added to database.');
+				user()->setFlash('success', '<strong>Well done!</strong> You have successfully added to database.');
 				$this->redirect('/add/');
 			} else {
-				Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> There seems to be some problem. '.$addModel->getErrorMessage());
+				user()->setFlash('error', '<strong>Oh snap!</strong> There seems to be some problem. '.$addModel->getErrorMessage());
 			}
 		}
 
 		// display the add form
-		Yii::app()->clientScript->registerScript('displayAddTab',
+		cs()->registerScript('displayAddTab',
 			'$("li#addTab").ready(function() {
 				$("li#uploadTab").removeClass("active");
 				$("li#addTab").addClass("active");
 			});',
 			CClientScript::POS_END);
 		$this->render('index',array('uploadModel'=>$uploadModel, 'addModel'=>$addModel));
-	}
-
-	public function filters()
-	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'accessControl',
-			// array(
-			// 	'class'=>'path.to.FilterClass',
-			// 	'propertyName'=>'propertyValue',
-			// ),
-		);
-	}
-
-	public function filterAccessControl($filterChain)
-	{
-		// if user not logged in, don't allow to see this page
-		if (Yii::app()->user->isGuest) {
-			$this->redirect(Yii::app()->user->returnUrl);
-		}
-		$filterChain->run();
 	}
 
 	/**
@@ -124,6 +103,27 @@
 		$image->resizeToWidth(192);
 		$image->save(Yii::app()->params['thumbnailImagePath'].'/'.$file);
 		return $image->getHeight();
+	}
+
+	public function filters()
+	{
+		// return the filter configuration for this controller, e.g.:
+		return array(
+			'accessControl',
+			// array(
+			// 	'class'=>'path.to.FilterClass',
+			// 	'propertyName'=>'propertyValue',
+			// ),
+		);
+	}
+
+	public function accessRules()
+	{
+		return array(
+			array('deny',
+				'users' => array('?'),
+			),
+		);
 	}
 
 	// Uncomment the following methods and override them if needed

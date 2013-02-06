@@ -129,7 +129,7 @@ class Block
 				</div>';
 
 		} else {
-			$commentSection = '<div class="convo clearfix">'.$comment.'</div>';
+			$commentSection = '<div class="convo clearfix">'.$this->otherComments().'</div>';
 		}
 		echo $commentSection;
 	}
