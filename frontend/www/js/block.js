@@ -76,36 +76,6 @@ var Block = {
 
 /*
 $(document).ready(function() {
-
-	// set up the comment button
-	$('.commentButton').live('click', function() {
-		$comment = $(this).parent().find('textarea').val();
-		if ($comment !== "") {
-			$image_id = $(this).parent().parent().parent().parent().find('.PinImageImg').attr('alt');
-			$requestData = 'image_id=' + $image_id + '&comment=' + $comment;
-			//console.log($(this).parent().find('textarea').serialize());
-			$.post(ROOT_URL + 'all/comment', $requestData, function(data) {
-				//alert(data);
-			});
-			// define comment
-			$commentSection = '\
-					<div class="comment">\
-						<a class="ImgLink">\
-							<img src="' + ROOT_URL + 'public/img/avatar.jpg">\
-						</a>\
-						<p class="NoImage">\
-							<a class="userName">' + user_name + '</a> ' + $comment + '\
-						</p>\
-					</div>';
-
-			// append the comment after all other comments
-			$(this).parent().parent().parent().parent().find('.otherComments').append($commentSection);
-			// clear the textarea
-			$(this).parent().find('textarea').val('Add a comment...');
-			setupBlocks();
-		}
-	});
-
 	// set up the share button
 	$('.shareButton').live('click', function() {
 		if (fb_loggedIN != true) {

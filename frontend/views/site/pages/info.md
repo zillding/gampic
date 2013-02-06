@@ -55,3 +55,7 @@ should use lazy instantiation
 use Yii::app()->getGlobalState() to get global variable
 
 in yii, the common config override the frontend config
+
+should add some error handling for different scenarios
+
+there is a global.php file under common/lib, in it defined some shortcut functions

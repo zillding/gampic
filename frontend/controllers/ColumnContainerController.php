@@ -55,8 +55,9 @@ class ColumnContainerController extends Controller
 	private function addClientScripts()
 	{
 		// Helper::print_arr('hello');
-		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/plugins/waypoints/jquery.waypoints.min.js',CClientScript::POS_END);
-		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/columnContainer.js',CClientScript::POS_END);
+		regJsFile('jquery.waypoints.min', bu('plugins/waypoints'));
+		regJsFile('columnContainer');
+		// Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/columnContainer.js',CClientScript::POS_END);
 		if (Yii::app()->user->isGuest) {
 			Yii::app()->clientScript->registerScript('setupBlock',
 				'$(function() {
@@ -65,14 +66,12 @@ class ColumnContainerController extends Controller
 					});
 				});', CClientScript::POS_END);
 		} else {
-			Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/block.js',CClientScript::POS_END);
+			regJsFile('block');
 		}
 		
 		// for image display
-		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/plugins/fancybox/jquery.fancybox.css');
-		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/plugins/fancybox/jquery.fancybox.pack.js',CClientScript::POS_END);
-		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/plugins/fancybox/helpers/jquery.fancybox-buttons.css');
-		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/plugins/fancybox/helpers/jquery.fancybox-buttons.js',CClientScript::POS_END);
+		regCssFile(array('jquery.fancybox','jquery.fancybox-buttons'), bu('plugins/fancybox'));
+		regJsFile(array('jquery.fancybox.pack','jquery.fancybox-buttons'), bu('plugins/fancybox'));
 	}
 
 	// Uncomment the following methods and override them if needed

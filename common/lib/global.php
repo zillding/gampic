@@ -37,8 +37,9 @@ function regCoreFile($files)
 
 /**
  * This is the shortcut to Yii::app()->clientScript->registerScriptFile
+ * default register the script at the end of the body
  */
-function regJsFile($files, $url = 'js', $pos = CClientScript::POS_HEAD)
+function regJsFile($files, $url = 'js', $pos = CClientScript::POS_END)
 {
 	if (!is_array($files))
 		$files = array($files);

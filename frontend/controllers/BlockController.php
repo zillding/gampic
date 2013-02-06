@@ -72,7 +72,7 @@ class BlockController extends Controller
 						'user_gravatar'=>Yii::app()->getGlobalState('userGravatar'),
 						'comment'=>$model->latestComment
 						);
-					echo json_encode($arr);
+					echo je($arr); // 'je' is short for json_encode
 				}
 			}
 		}
