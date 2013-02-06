@@ -50,10 +50,11 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
 					'htmlOptions' => array('data-target' => '#'),
 					'items' => array(
 						array('label' => 'Info', 'url' => array('/site/page', 'view'=>'info')),
-						array('label' => 'Help', 'url' => '#'),
+						array('label' => 'Help', 'url' => array('/site/page', 'view'=>'help')),
 						array('label' => 'Contact', 'url' => array('/site/contact')),
 						'---',
-						array('label' => 'Copyright', 'url' => '#'),
+						array('label' => 'Terms of Service', 'url' => array('/site/page', 'view'=>'terms')),
+						array('label' => 'Copyright', 'url' => array('/site/page', 'view'=>'copyright')),
 					),
 				),
 				array('label' => 'Register', 'url' => array('/register'), 'visible' => Yii::app()->user->isGuest),
