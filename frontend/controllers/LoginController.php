@@ -30,7 +30,7 @@ class LoginController extends Controller
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login()) {
 				Yii::app()->setGlobalState('userGravatar', $model->generateGravatar());
-				$this->redirect(Yii::app()->user->returnUrl);
+				$this->redirect(user()->returnUrl);
 			}
 		}
 		// display the login form

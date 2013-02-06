@@ -13,7 +13,7 @@ class ColumnContainerController extends Controller
 		$this->addClientScripts();
 		// pass the gravatar
 		// need to pass the $category to javascript
-		Yii::app()->clientScript->registerScript('startColumnContainer', 
+		cs()->registerScript('startColumnContainer', 
 			'$(function() {
 				ColumnContainer.start("'.$category.'");
 			})', CClientScript::POS_END);
@@ -26,9 +26,9 @@ class ColumnContainerController extends Controller
 	 */
 	public function actionLoad()
 	{
-		$category = Yii::app()->getRequest()->getQuery("category"); // the category var here is the int representation
+		$category = r()->getQuery("category"); // the category var here is the int representation
 		$category = isset($category) ? $category : "";
-		$page = Yii::app()->getRequest()->getQuery("page");
+		$page = r()->getQuery("page");
 		$page = isset($page) ? $page : 0;
 		if (TypeValidator::isInt($page)) {
 			// need to pass in a page param
@@ -58,8 +58,8 @@ class ColumnContainerController extends Controller
 		regJsFile('jquery.waypoints.min', bu('plugins/waypoints'));
 		regJsFile('columnContainer');
 		// Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/columnContainer.js',CClientScript::POS_END);
-		if (Yii::app()->user->isGuest) {
-			Yii::app()->clientScript->registerScript('setupBlock',
+		if (user()->isGuest) {
+			cs()->registerScript('setupBlock',
 				'$(function() {
 					$(document).on("click", ".block .btn", function() {
 						alert("Please log in first!");

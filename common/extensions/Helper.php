@@ -15,13 +15,6 @@ class Helper
 		die();
 	}
 
-	public static function log($value)
-	{
-		Yii::app()->clientScript->registerScript('log', 
-			'$(function() {
-				console.log('.$value.');
-			})', CClientScript::POS_END);
-	}
 }
 
 ?>

@@ -130,7 +130,7 @@ function mh($text)
 {
 	static $parser;
 	if ($parser === null)
-		$parser = new MarkdownParser;
+		$parser = new CMarkdownParser;
 	return $parser->safeTransform($text);
 }
 

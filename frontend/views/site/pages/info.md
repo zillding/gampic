@@ -59,3 +59,5 @@ in yii, the common config override the frontend config
 should add some error handling for different scenarios
 
 there is a global.php file under common/lib, in it defined some shortcut functions
+
+use sublime snippet to help coding

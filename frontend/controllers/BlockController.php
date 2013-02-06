@@ -2,19 +2,6 @@
 
 class BlockController extends Controller
 {
-	// for debug only
-	// generate a block
-	public function actionIndex()
-	{
-		$imageId=1;
-		$model = new Block();
-		if ($model->create($imageId)) {
-			// return $this->renderPartial('index',array('model'=>$model),true);
-			$this->render('index',array('model'=>$model));
-		} else {
-			die('error');
-		}
-	}
 
 	/**
 	 * create a block based on the passed in array data
@@ -28,6 +15,7 @@ class BlockController extends Controller
 		if ($model->create($imageId)) {
 			return $this->renderPartial('index',array('model'=>$model),true);
 		} else {
+			// todo: add error handling
 			die('error creating block with image id='.$imageId);
 		}
 	}
@@ -39,15 +27,15 @@ class BlockController extends Controller
 	 */
 	public function actionLike()
 	{
-		if (!Yii::app()->user->isGuest) {
+		if (!user()->isGuest) {
 			// implement the like function
-			$id = Yii::app()->getRequest()->getQuery("image_id");
+			$id = r()->getQuery("image_id");
 			$id = isset($id) ? $id : "";
 			if (TypeValidator::isInt($id)) {
 				$model = new Block;
 				if($model->like($id)) {
 					$arr = array('image_id'=>$id, 'liked'=>$model->liked);
-					echo json_encode($arr);
+					echo je($arr);
 				}
 			}
 		}
@@ -60,7 +48,7 @@ class BlockController extends Controller
 	 */
 	public function actionComment()
 	{
-		if (!Yii::app()->user->isGuest) {
+		if (!user()->isGuest) {
 			// implement the comment function
 			$id = Yii::app()->getRequest()->getPost("image_id");
 			$id = isset($id) ? $id : "";

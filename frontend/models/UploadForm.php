@@ -54,7 +54,7 @@ class UploadForm extends CFormModel
 		// $image->attributes=$this->attributes;
 		$image->attributes=$this->attributes;
 		// add the user id attribute to the image
-		$image->user_id=Yii::app()->user->id;
+		$image->user_id=user()->id;
 		// get the uploaded file
 		$image->file=CUploadedFile::getInstance($this, 'image');
 		// get the extension of the uploaded file
@@ -65,7 +65,7 @@ class UploadForm extends CFormModel
 		// Helper::print_arr(array_keys(Lookup::items('ImageCategory'))); // for debug only
 		if ($image->save()) {
 			$image_id=$image->primaryKey;
-			$image->file->saveAs(Yii::app()->params['originalImagePath'].'/'.$image_id.'.'.$extension);
+			$image->file->saveAs(param('originalImagePath').'/'.$image_id.'.'.$extension);
 			// create thumbnail of the image
 			// update the image thumbnail height in the database
 			$image->image_thumb_height= AddController::createThumbnail($image_id.'.'.$extension);

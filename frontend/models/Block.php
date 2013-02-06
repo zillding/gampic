@@ -59,9 +59,9 @@ class Block
 		$this->extension = $image[$this->_dataKeyMap['extension']];
 		$this->thumbHeight = $image[$this->_dataKeyMap['thumbHeight']];
 		$this->likes = Like::model()->count('image_id=:image_id', array(':image_id'=>$imageId));
-		if (!Yii::app()->user->isGuest) {
+		if (!user()->isGuest) {
 			$this->liked = Like::model()->count('user_id=:user_id AND image_id=:image_id', 
-				array(':user_id'=>Yii::app()->user->id, ':image_id'=>$imageId));
+				array(':user_id'=>user()->id, ':image_id'=>$imageId));
 		}
 		$this->comments = Comment::model()->findAll('image_id=:image_id', array(':image_id'=>$imageId));
 	}
@@ -71,7 +71,7 @@ class Block
 	 */
 	public function displayLikeButton()
 	{
-		if (Yii::app()->user->isGuest or !$this->liked) {
+		if (user()->isGuest or !$this->liked) {
 			echo '<button class="btn btn-small topButtons likeButton" data-id="'.$this->imageId.'"><i class="icon-thumbs-up"></i> Like</button>';
 		} else {
 			echo '<button class="btn btn-small topButtons likeButton likeButtonDown" data-id="'.$this->imageId.'"><i class="icon-thumbs-down"></i> Unlike</button>';
@@ -117,7 +117,7 @@ class Block
 			$comment .= '</div><div class="commentMore">more comments</div>';
 		}
 
-		if (!Yii::app()->user->isGuest) {
+		if (!user()->isGuest) {
 			$commentSection = '
 				<div class="convo clearfix">' .
 					$comment.'
@@ -148,9 +148,9 @@ class Block
 		// like an image
 		if (Image::model()->exists('image_id='.$imageId)) {
 			// the image exists, like/unlike the image
-			if (Like::model()->exists('user_id='.Yii::app()->user->id.' AND image_id='.$imageId)) {
+			if (Like::model()->exists('user_id='.user()->id.' AND image_id='.$imageId)) {
 				// already liked it, unlike it
-				if (Like::model()->deleteByPk(array(array('user_id'=>Yii::app()->user->id, 'image_id'=>$imageId)))) {
+				if (Like::model()->deleteByPk(array(array('user_id'=>user()->id, 'image_id'=>$imageId)))) {
 					$this->liked = 0;
 					return true;
 				}
@@ -158,7 +158,7 @@ class Block
 				// like this image
 				$like = new Like;
 				$like->image_id = $imageId;
-				$like->user_id = Yii::app()->user->id;
+				$like->user_id = user()->id;
 				if ($like->save()) {
 					$this->liked = 1;
 					return true;
@@ -183,7 +183,7 @@ class Block
 				$comment = new Comment;
 				$comment->comment_content = $content;
 				$comment->image_id = $imageId;
-				$comment->user_id = Yii::app()->user->id;
+				$comment->user_id = user()->id;
 				$comment->comment_id = Comment::model()->count('image_id='.$imageId);
 				$comment->comment_time=new CDbExpression('NOW()');
 				if ($comment->save()) {

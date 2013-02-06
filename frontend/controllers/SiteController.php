@@ -39,9 +39,9 @@ class SiteController extends Controller
 	 */
 	public function actionError()
 	{
-		if($error=Yii::app()->errorHandler->error)
+		if($error=app()->errorHandler->error)
 		{
-			if(Yii::app()->request->isAjaxRequest)
+			if(r()->isAjaxRequest)
 				echo $error['message'];
 			else
 				$this->render('error', $error);
@@ -66,8 +66,8 @@ class SiteController extends Controller
 					"MIME-Version: 1.0\r\n".
 					"Content-type: text/plain; charset=UTF-8";
 
-				mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);
-				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
+				mail(param('adminEmail'),$subject,$model->body,$headers);
+				user()->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
 				$this->refresh();
 			}
 		}
@@ -79,8 +79,8 @@ class SiteController extends Controller
 	 */
 	public function actionLogout()
 	{
-		Yii::app()->user->logout();
-		$this->redirect(Yii::app()->homeUrl);
+		user()->logout();
+		$this->redirect(app()->homeUrl);
 	}
 
 	// load disqus plugin
@@ -107,6 +107,6 @@ class SiteController extends Controller
 	// add the disqus count comment support
 	public static function addDisqusSupport()
 	{
-		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/plugins/disqus/disqus.js',CClientScript::POS_END);
+		regJsFile('disqus',bu('plugins/disqus'));
 	}
 }

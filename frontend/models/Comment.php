@@ -47,7 +47,7 @@ class Comment extends CActiveRecord
 			array('comment_content', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('comment_id, comment_time, comment_content, user_id, image_id', 'safe', 'on'=>'search'),
+			array('comment_content, user_id, image_id', 'safe', 'on'=>'search'),
 		);
 	}
 

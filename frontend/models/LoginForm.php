@@ -85,7 +85,7 @@ class LoginForm extends CFormModel
 		if($this->_identity->errorCode===UserIdentity::ERROR_NONE)
 		{
 			$duration=$this->rememberMe ? 3600*24*30 : 0; // 30 days
-			Yii::app()->user->login($this->_identity,$duration);
+			user()->login($this->_identity,$duration);
 			return true;
 		}
 		else
@@ -94,8 +94,8 @@ class LoginForm extends CFormModel
 
 	public function generateGravatar()
 	{
-		if (!Yii::app()->user->isGuest) {
-			$user=User::model()->find('user_id=:user_id', array('user_id'=>Yii::app()->user->id));
+		if (!user()->isGuest) {
+			$user=User::model()->find('user_id=:user_id', array('user_id'=>user()->id));
 			$userEmailHash = md5(strtolower(trim($user->user_email)));
 			return 'http://www.gravatar.com/avatar/'.$userEmailHash.'?s=30';
 		}

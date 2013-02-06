@@ -71,7 +71,7 @@ class AddForm extends CFormModel
 		// $image->attributes=$this->attributes;
 		$image->attributes=$this->attributes;
 		// add the user id attribute to the image
-		$image->user_id=Yii::app()->user->id;
+		$image->user_id=user()->id;
 		// get the Added file
 		$image->file=@file_get_contents($this->attributes['image_url']);
 		if (is_resource(@imagecreatefromstring($image->file))) {
@@ -84,7 +84,7 @@ class AddForm extends CFormModel
 			if ($image->save()) {
 				$image_id=$image->primaryKey;
 				// save the original file
-				if (file_put_contents(Yii::app()->params['originalImagePath'].'/'.$image_id.'.'.$extension, $image->file)) {
+				if (file_put_contents(param('originalImagePath').'/'.$image_id.'.'.$extension, $image->file)) {
 					// create thumbnail of the image
 					$image->image_thumb_height= AddController::createThumbnail($image_id.'.'.$extension);
 					// update the image thumbnail height in the database
