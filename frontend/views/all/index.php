@@ -1,9 +1,9 @@
 <?php
 /* @var $this AllController */
 
-$this->pageTitle = Yii::app()->name; // set the title of the page
+$this->pageTitle = app()->name; // set the title of the page
 
-if (Yii::app()->user->isGuest) {
+if (user()->isGuest) {
 	$this->addBanner();
 }
 

@@ -36,9 +36,9 @@ class AllController extends Controller
 	public function addBanner()
 	{
 		// add necessary js to let the banner scroll
-		Yii::app()->clientScript->registerScript('banner', '$(function() {$(".banner").simplyScroll();})', CClientScript::POS_END);
-		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/plugins/simplyscroll/simplyscroll.css');
-		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/plugins/simplyscroll/jquery.simplyscroll.min.js', CClientScript::POS_END);
+		cs()->registerScript('banner', '$(function() {$(".banner").simplyScroll();})', CClientScript::POS_END);
+		regCssFile('simplyscroll', bu('plugins/simplyscroll'));
+		regJsFile('jquery.simplyscroll.min', bu('plugins/simplyscroll'));
 		$this->renderPartial('_banner');
 	}
 

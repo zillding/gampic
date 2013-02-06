@@ -4,6 +4,8 @@
 /* @var $addModel AddForm */
 /* @var $form CActiveForm */
 $this->pageTitle=Yii::app()->name . ' - Add';
+
+$fileHint = '<span class="label label-important">Important</span> File format must be "png", "jpg", "jpeg" or "gif" and size must be less than 2MB.'
 ?>
 
 <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
@@ -31,9 +33,11 @@ $this->pageTitle=Yii::app()->name . ' - Add';
 
 			<fieldset>
 				<legend>Add a Gampic</legend>
+				<p class="note">Fields with <span class="required">*</span> are required.</p><br>
+
 				<?php echo $form->errorSummary($addModel); ?>
 
-				<?php echo $form->textFieldRow($addModel,'image_url', array('class'=>'span5', 'placeholder'=>'http://')); ?>
+				<?php echo $form->textFieldRow($addModel,'image_url', array('class'=>'span5', 'placeholder'=>'http://', 'hint'=>$fileHint)); ?>
 				<?php echo $form->textFieldRow($addModel,'image_title', array('class'=>'span5')); ?>
 				<?php echo $form->dropDownListRow($addModel,'image_category',
 					CMap::mergeArray(array('choose a category...'),
@@ -65,9 +69,11 @@ $this->pageTitle=Yii::app()->name . ' - Add';
 
 			<fieldset>
 				<legend>Upload a Gampic</legend>
+				<p class="note">Fields with <span class="required">*</span> are required.</p><br>
+
 				<?php echo $form->errorSummary($uploadModel); ?>
 
-				<?php echo $form->fileFieldRow($uploadModel,'image', array('class'=>'span5')); // todo: css need adjusting ?>
+				<?php echo $form->fileFieldRow($uploadModel,'image', array('class'=>'span5', 'hint'=>$fileHint)); // todo: css need adjusting ?>
 				<?php echo $form->textFieldRow($uploadModel,'image_title', array('class'=>'span5')); ?>
 				<?php echo $form->dropDownListRow($uploadModel,'image_category',
 					CMap::mergeArray(array('choose a category...'),
@@ -85,7 +91,4 @@ $this->pageTitle=Yii::app()->name . ' - Add';
 	</div><!-- end of tab-content --> 
 </div><!-- end of tab -->
 
-<p>Image format: "jpg", "jpeg", "png" or "gif"</p>
-<p>Image size must be less than 2MB</p>
-<p class="note">Fields with <span class="required">*</span> are required.</p>
 
