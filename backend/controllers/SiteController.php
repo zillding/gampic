@@ -61,7 +61,7 @@ class SiteController extends Controller
 
 	/**
 	 * Renders contact page
-	 * todo: does nothing but rendering, proper functionality to be created
+	 * does nothing but rendering, proper functionality to be created
 	 */
 	public function actionContact()
 	{
@@ -90,7 +90,7 @@ class SiteController extends Controller
 
 	/**
 	 * Action to render the error
-	 * todo: design proper error page
+	 * design proper error page
 	 */
 	public function actionError()
 	{

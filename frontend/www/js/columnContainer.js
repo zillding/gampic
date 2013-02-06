@@ -48,7 +48,7 @@ var ColumnContainer = {
 	},
 
 	setupFancyBox : function() {
-		items = $(ColumnContainer.selector + " .chunk:last " + ColumnContainer.itemSelector + " .fancybox");
+		items = $(ColumnContainer.selector + " " + ColumnContainer.itemSelector + " .fancybox");
 		items.fancybox({
 			openEffect : 'elastic',
 			closeEffect : 'elastic',

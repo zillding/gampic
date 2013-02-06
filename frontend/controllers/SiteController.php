@@ -43,8 +43,13 @@ class SiteController extends Controller
 		{
 			if(r()->isAjaxRequest)
 				echo $error['message'];
-			else
-				$this->render('error', $error);
+			else {
+				if ($error['code'] == 404) {
+					$this->renderPartial('pages/404');
+				} else {
+					$this->render('error', $error);
+				}
+			}
 		}
 	}
 

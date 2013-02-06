@@ -15,8 +15,7 @@ class BlockController extends Controller
 		if ($model->create($imageId)) {
 			return $this->renderPartial('index',array('model'=>$model),true);
 		} else {
-			// todo: add error handling
-			die('error creating block with image id='.$imageId);
+			throw new CHttpException(503, 'error creating block with image id='.$imageId1);
 		}
 	}
 

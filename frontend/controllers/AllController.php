@@ -23,8 +23,7 @@ class AllController extends Controller
 				// Helper::print_arr($this->_category);
 				$this->render('index');
 			} else {
-				// re-direct to the home page
-				$this->redirect('/');
+				throw new CHttpException(400, 'bad request. unidentified category: '.$category);
 			}
 			
 		}

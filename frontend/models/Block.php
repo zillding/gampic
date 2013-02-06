@@ -136,8 +136,8 @@ class Block
 
 	/**
 	 * like an image
-	 * @param  int $imageId the image id
-	 * @return boolean          whether the like is successful
+	 * @param int $imageId the image id
+	 * @return boolean whether the like is successful
 	 */
 	public function like($imageId)
 	{
@@ -167,7 +167,7 @@ class Block
 	/**
 	 * comment an image
 	 * @param  int $image_id the id of the image
-	 * @return boolean           whether the comment is successful
+	 * @return boolean whether the comment is successful
 	 */
 	public function comment($imageId)
 	{

@@ -43,8 +43,7 @@ class ColumnContainerController extends Controller
 				echo $this->renderPartial('_noMore', array(), true);
 			}
 		} else {
-			Yii::log("unidentified param page: ".$page, "error", "system.web.CController");
-			echo "unidentified param page: " . $page; // todo: need to be refined
+			throw new CHttpException(400, 'bad request. unidentified param page: '.$page);
 		}
 		
 	}

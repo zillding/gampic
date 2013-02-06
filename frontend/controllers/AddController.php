@@ -97,11 +97,11 @@
 	 * @return int the thumbnail height of the image
 	 */
 	public static function createThumbnail($file) {
-		require Yii::app()->basePath.'/extensions/SimpleImage.php';
+		require app()->basePath.'/extensions/SimpleImage.php';
 		$image=new SimpleImage();
-		$image->load(Yii::app()->params['originalImagePath'].'/'.$file);
+		$image->load(param('originalImagePath').'/'.$file);
 		$image->resizeToWidth(192);
-		$image->save(Yii::app()->params['thumbnailImagePath'].'/'.$file);
+		$image->save(param('thumbnailImagePath').'/'.$file);
 		return $image->getHeight();
 	}
 
