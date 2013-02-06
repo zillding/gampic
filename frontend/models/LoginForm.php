@@ -92,12 +92,4 @@ class LoginForm extends CFormModel
 			return false;
 	}
 
-	public function generateGravatar()
-	{
-		if (!user()->isGuest) {
-			$user=User::model()->find('user_id=:user_id', array('user_id'=>user()->id));
-			$userEmailHash = md5(strtolower(trim($user->user_email)));
-			return 'http://www.gravatar.com/avatar/'.$userEmailHash.'?s=30';
-		}
-	}
 }

@@ -57,7 +57,7 @@ class BlockController extends Controller
 				if($model->comment($id)) {
 					$arr = array(
 						'user_name'=>User::model()->findByPk(Image::model()->findByPk($id)->user_id)->user_name,
-						'user_gravatar'=>app()->getGlobalState('userGravatar'),
+						'user_avatar'=>user()->avatar,
 						'comment'=>$model->latestComment
 						);
 					echo je($arr); // 'je' is short for json_encode

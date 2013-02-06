@@ -79,51 +79,47 @@ class Block
 	}
 
 	/**
+	 * generate the markup for the other comments section
+	 * @return string the html markup for this section
+	 */
+	private function otherComments()
+	{
+		$comment = '<div class="otherComments">';
+
+		$end = count($this->comments) <= $this->_maxNoOfComments ? count($this->comments) : $this->_maxNoOfComments;
+		for ($i=0; $i<$end; $i++) {
+			$user = User::model()->findByPk($this->comments[$i]['user_id']);
+			// $userName = User::model()->findByPk($this->comments[$i]['user_id'])->user_name;
+			$comment .= '
+				<div class="comment">
+					<a class="imgLink">
+						<img src="'.UserIdentity::generateGravatar($user->user_id).'">
+					</a>
+					<p class="NoImage">
+						<a class="userName">'.$user->user_name.'</a> '.
+						$this->comments[$i]->comment_content.'
+					</p>
+				</div>';
+		}
+
+		$comment .= count($this->comments) <= $this->_maxNoOfComments ? '</div>' : '</div><div class="commentMore">more comments</div>';
+
+		return $comment;
+
+	}
+
+	/**
 	 * displayCommentSection print the comment section including other comments and the comment form
 	 */
 	public function displayCommentSection()
 	{
-		$comment = '<div class="otherComments">';
-
-		if (count($this->comments) <= $this->_maxNoOfComments) {
-			for ($i=0; $i<count($this->comments); $i++) {
-				$userName = User::model()->findByPk($this->comments[$i]['user_id'])->user_name;
-				$comment .= '
-					<div class="comment">
-						<a class="imgLink">
-							<img src="'.Yii::app()->getGlobalState('userGravatar').'">
-						</a>
-						<p class="NoImage">
-							<a class="userName">'.$userName.'</a> '.
-							$this->comments[$i]->comment_content.'
-						</p>
-					</div>';
-			}
-			$comment .= '</div>';
-		} else {
-			for ($i=0; $i<$this->_maxNoOfComments; $i++) {
-				$userName = User::model()->findByPk($this->comments[$i]['user_id'])->user_name;
-				$comment .= '
-					<div class="comment">
-						<a class="imgLink">
-							<img src="'.Yii::app()->getGlobalState('userGravatar').'">
-						</a>
-						<p class="NoImage">
-							<a class="userName">'.$userName.'</a> '.
-							$this->comments[$i]->comment_content.'
-						</p>
-					</div>';
-			}
-			$comment .= '</div><div class="commentMore">more comments</div>';
-		}
-
 		if (!user()->isGuest) {
 			$commentSection = '
 				<div class="convo clearfix">' .
-					$comment.'
+					$this->otherComments().'
 					<div class="comment writeComment">
 						<a class="imgLink" href="">
-							<img alt="Profile picture of you" src="'.Yii::app()->getGlobalState('userGravatar').'">
+							<img alt="Profile picture of you" src="'.user()->avatar.'">
 						</a>
 						<form method="POST" action="">
 							<textarea placeholder="Add a comment..." maxlength="1000"></textarea>
@@ -178,7 +174,7 @@ class Block
 		// comment on an image
 		if (Image::model()->exists('image_id='.$imageId)) {
 			// the image exists, comment the image
-			$content = Yii::app()->getRequest()->getPost('comment');
+			$content = r()->getPost('comment');
 			if ($content) {
 				$comment = new Comment;
 				$comment->comment_content = $content;

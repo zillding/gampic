@@ -54,7 +54,7 @@ var Block = {
 				commentSection = '\
 						<div class="comment">\
 							<a class="imgLink">\
-								<img src="' + data.user_gravatar + '">\
+								<img src="' + data.user_avatar + '">\
 							</a>\
 							<p class="NoImage">\
 								<a class="userName">' + data.user_name + '</a> ' + data.comment + '\
