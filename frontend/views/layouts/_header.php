@@ -43,7 +43,7 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
 				array(
 					'label' => 'Add +',
 					'url' => array('/add'),
-					'visible' => !Yii::app()->user->isGuest,
+					'visible' => !user()->isGuest,
 				),
 				array(
 					'label' => 'About', 
@@ -57,10 +57,10 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
 						array('label' => 'Copyright', 'url' => array('/site/page', 'view'=>'copyright')),
 					),
 				),
-				array('label' => 'Register', 'url' => array('/register'), 'visible' => Yii::app()->user->isGuest),
-				array('label' => 'Login', 'url' => array('/login'), 'visible' => Yii::app()->user->isGuest),
-				array('label' => 'Logged in as '.Yii::app()->user->name.'('.Yii::app()->user->id.')',
-					'visible' => !Yii::app()->user->isGuest,
+				array('label' => 'Register', 'url' => array('/register'), 'visible' => user()->isGuest),
+				array('label' => 'Login', 'url' => array('/login'), 'visible' => user()->isGuest),
+				array('label' => 'Logged in as '.user()->name.'('.user()->id.')',
+					'visible' => !user()->isGuest,
 					'items' => array(
 						array('label' => 'Invite Friends', 'url' => '#'),
 						'---',
@@ -68,7 +68,7 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
 						array('label' => 'Likes', 'url' => '#'),
 						'---',
 						array('label' => 'Settings', 'url' => '#'),
-						array('label' => 'Logout', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
+						array('label' => 'Logout', 'url' => array('/site/logout'), 'visible' => !user()->isGuest),
 					)
 				),
 			),
