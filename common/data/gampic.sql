@@ -134,6 +134,37 @@ INSERT INTO `tbl_lookup` VALUES (1,'Warcraft',1,'ImageCategory',1),(2,'Starcraft
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tbl_social`
+--
+
+DROP TABLE IF EXISTS `tbl_social`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_social` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `login_provider` varchar(50) NOT NULL,
+  `provider_identifier` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `login_provider_2` (`login_provider`,`provider_identifier`),
+  KEY `login_provider` (`login_provider`),
+  KEY `provider_identifier` (`provider_identifier`),
+  KEY `user_id` (`user_id`),
+  KEY `id` (`id`),
+  CONSTRAINT `social_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_social`
+--
+
+LOCK TABLES `tbl_social` WRITE;
+/*!40000 ALTER TABLE `tbl_social` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_social` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tbl_tag`
 --
 
@@ -166,8 +197,6 @@ DROP TABLE IF EXISTS `tbl_user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tbl_user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_provider` enum('gampic','facebook','twitter') NOT NULL DEFAULT 'gampic',
-  `user_authid` int(11) NOT NULL,
   `user_name` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Gamer',
   `user_email` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `user_password` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -183,7 +212,7 @@ CREATE TABLE `tbl_user` (
 
 LOCK TABLES `tbl_user` WRITE;
 /*!40000 ALTER TABLE `tbl_user` DISABLE KEYS */;
-INSERT INTO `tbl_user` VALUES (1,'gampic',1,'zill','zilld@hotmail.com','6bfa73731232546c59147acaa715bc4857393882','50f75b42cebab','2013-01-16 18:00:34');
+INSERT INTO `tbl_user` VALUES (1,'zill','zilld@hotmail.com','6bfa73731232546c59147acaa715bc4857393882','50f75b42cebab','2013-01-16 18:00:34');
 /*!40000 ALTER TABLE `tbl_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -196,4 +225,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-02-05 19:50:02
+-- Dump completed on 2013-02-07 23:32:04
