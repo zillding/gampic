@@ -56,15 +56,17 @@ class ColumnContainerController extends Controller
 		// Helper::print_arr('hello');
 		regJsFile('jquery.waypoints.min', bu('plugins/waypoints'));
 		regJsFile('columnContainer');
+		regJsFile('block');
 		if (user()->isGuest) {
 			cs()->registerScript('setupBlock',
 				'$(function() {
-					$(document).on("click", ".block .btn", function() {
-						alert("Please log in first!");
-					});
+					Block.setupGuest();
 				});', CClientScript::POS_END);
 		} else {
-			regJsFile('block');
+			cs()->registerScript('setupBlock',
+				'$(function() {
+					Block.setupAll();
+				});', CClientScript::POS_END);
 		}
 		
 		// for image display

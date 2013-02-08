@@ -1,11 +1,15 @@
-// main function called at the page load
-$(function() {
-	Block.setupButtons();
-})
-
 // create the block class
 var Block = {
-	setupButtons: function() {
+	// for guest only
+	setupGuest : function() {
+		$(document).on("click", ".block .commentMore button", this.showMoreComments)
+			.on("click", ".block .btn .btn-small", function() {
+				alert("Please log in first!");
+			});
+	},
+
+	// for authenticated user
+	setupAll: function() {
 		$(document).on("click", ".block .likeButton", this.like)
 			.on("click", ".block .shareButton", this.share)
 			.on("click", ".block .commentButton", this.comment)

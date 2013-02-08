@@ -10,19 +10,16 @@
 <?php $this->renderPartial('//layouts/_htmlHead'); ?>
 
 <body>
-<div class="container" id="page">
 
-	<?php $this->renderPartial('//layouts/_header') ?>
+<?php $this->renderPartial('//layouts/_header') ?>
 
-	<div class="container" style="margin-top:60px">
-		<?php 
-			echo $content; 
-		?>
-	</div>
-
-	<?php $this->renderPartial('//layouts/_footer'); ?>
-
+<div class="container" style="margin-top:60px">
+	<?php 
+		echo $content; 
+	?>
 </div>
+
+<?php $this->renderPartial('//layouts/_footer'); ?>
 
 <a class="scrollToTop"></a>
 
