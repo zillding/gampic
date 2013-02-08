@@ -64,14 +64,14 @@ class Block
 	}
 
 	/**
-	 * used to display comments on the front page
+	 * used to display more comments on the front page
 	 * @return array array of comments related infomation
 	 */
 	public function showComments()
 	{
 		$comments = array();
 		// info needed: user_name, user_avatar, comment
-		foreach ($this->comments as $comment) {
+		foreach (array_slice($this->comments, $this->_maxNoOfComments) as $comment) {
 			$user = User::model()->findByPk($comment->user_id);
 			$userName = $user->user_name;
 			$userAvatar = UserIdentity::generateGravatar($user->user_id);
@@ -117,7 +117,7 @@ class Block
 				</div>';
 		}
 
-		$comment .= count($this->comments) <= $this->_maxNoOfComments ? '</div>' : '<div class="commentMore">more comments</div></div>';
+		$comment .= count($this->comments) <= $this->_maxNoOfComments ? '</div>' : '<div class="commentMore"><button class="btn btn-link btn-mini" data-id="'.$this->imageId.'" style="font-weight:bold;">more comments</button></div></div>';
 
 		return $comment;
 

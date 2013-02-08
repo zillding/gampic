@@ -44,6 +44,7 @@ CREATE TABLE `tbl_comment` (
 
 LOCK TABLES `tbl_comment` WRITE;
 /*!40000 ALTER TABLE `tbl_comment` DISABLE KEYS */;
+INSERT INTO `tbl_comment` VALUES (0,34,'2013-02-08 11:52:06','comment 1',1),(1,34,'2013-02-08 11:55:00','comment 2',1),(2,34,'2013-02-08 11:55:06','comment 3',1),(3,34,'2013-02-08 11:55:11','comment 4',1),(4,34,'2013-02-08 11:55:16','comment 5',1);
 /*!40000 ALTER TABLE `tbl_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,4 +226,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-02-07 23:32:04
+-- Dump completed on 2013-02-08 19:55:48
