@@ -55,7 +55,30 @@ class Block
 			$this->liked = Like::model()->count('user_id=:user_id AND image_id=:image_id', 
 				array(':user_id'=>user()->id, ':image_id'=>$imageId));
 		}
-		$this->comments = Comment::model()->findAll('image_id=:image_id', array(':image_id'=>$imageId));
+		// need to sort the comments in the descending order of time
+		$criteria = new CDbCriteria(array(
+			'condition' => 'image_id='.$imageId,
+			'order' => 'comment_time ASC'
+		));
+		$this->comments = Comment::model()->findAll($criteria);
+	}
+
+	/**
+	 * used to display comments on the front page
+	 * @return array array of comments related infomation
+	 */
+	public function showComments()
+	{
+		$comments = array();
+		// info needed: user_name, user_avatar, comment
+		foreach ($this->comments as $comment) {
+			$user = User::model()->findByPk($comment->user_id);
+			$userName = $user->user_name;
+			$userAvatar = UserIdentity::generateGravatar($user->user_id);
+			$commentContent = $comment->comment_content;
+			$comments[] = array('user_name'=>$userName,'user_avatar'=>$userAvatar,'comment'=>$commentContent);
+		}
+		return $comments;
 	}
 
 	/**

@@ -11,7 +11,7 @@ class BlockController extends Controller
 	public function createBlock($imageId)
 	{
 		// generate a block
-		if ($model=new Block($imageId)) {
+		if ($model = new Block($imageId)) {
 			return $this->renderPartial('index',array('model'=>$model),true);
 		} else {
 			throw new CHttpException(503, 'error creating block with image id='.$imageId1);
@@ -30,7 +30,7 @@ class BlockController extends Controller
 			$id = r()->getQuery("image_id");
 			$id = isset($id) ? $id : "";
 			if (TypeValidator::isInt($id)) {
-				if ($model=new Block($id)) {
+				if ($model = new Block($id)) {
 					if($model->like($id)) {
 						$arr = array('image_id'=>$id, 'liked'=>$model->liked);
 						echo je($arr);
@@ -52,7 +52,7 @@ class BlockController extends Controller
 			$id = r()->getPost("image_id");
 			$id = isset($id) ? $id : "";
 			if (TypeValidator::isInt($id)) {
-				if ($model=new Block($id)) {
+				if ($model = new Block($id)) {
 					if($model->comment($id)) {
 						$arr = array(
 							'user_name'=>User::model()->findByPk(Image::model()->findByPk($id)->user_id)->user_name,
@@ -74,6 +74,14 @@ class BlockController extends Controller
 	public function actionShowComments()
 	{
 		// show more comments
+		$id = r()->getQuery("image_id");
+		$id = isset($id) ? $id : "";
+		if (TypeValidator::isInt($id)) {
+			if ($model = new Block($id)) {
+				// return comments in json format
+				echo je($model->showComments());
+			}
+		}
 	}
 
 	public function filters()
