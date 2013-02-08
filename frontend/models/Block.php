@@ -24,27 +24,19 @@ class Block
 	private $_maxNoOfComments = 3; // set the max no of comments displayed
 
 	/**
-	 * construct a block
-	 */
-	function __construct()
-	{
-	}
-
-	/**
 	 * create create a new block based on passed in image id
 	 * @param int the image id
 	 * @return boolean whether successfully created the block
 	 */
-	public function create($imageId='')
+	function __construct($imageId)
 	{
 		if ($imageId=='') {
 			return false;
+		} else {
+			$this->imageId = $imageId;
+			$this->getDbData($imageId);
+			return true;
 		}
-
-		$this->getDbData($imageId);
-
-		return true;
-
 	}
 
 	/**
@@ -102,7 +94,7 @@ class Block
 				</div>';
 		}
 
-		$comment .= count($this->comments) <= $this->_maxNoOfComments ? '</div>' : '</div><div class="commentMore">more comments</div>';
+		$comment .= count($this->comments) <= $this->_maxNoOfComments ? '</div>' : '<div class="commentMore">more comments</div></div>';
 
 		return $comment;
 
@@ -136,24 +128,23 @@ class Block
 
 	/**
 	 * like an image
-	 * @param int $imageId the image id
 	 * @return boolean whether the like is successful
 	 */
-	public function like($imageId)
+	public function like()
 	{
 		// like an image
-		if (Image::model()->exists('image_id='.$imageId)) {
+		if (Image::model()->exists('image_id='.$this->imageId)) {
 			// the image exists, like/unlike the image
-			if (Like::model()->exists('user_id='.user()->id.' AND image_id='.$imageId)) {
+			if (Like::model()->exists('user_id='.user()->id.' AND image_id='.$this->imageId)) {
 				// already liked it, unlike it
-				if (Like::model()->deleteByPk(array(array('user_id'=>user()->id, 'image_id'=>$imageId)))) {
+				if (Like::model()->deleteByPk(array(array('user_id'=>user()->id, 'image_id'=>$this->imageId)))) {
 					$this->liked = 0;
 					return true;
 				}
 			} else {
 				// like this image
 				$like = new Like;
-				$like->image_id = $imageId;
+				$like->image_id = $this->imageId;
 				$like->user_id = user()->id;
 				if ($like->save()) {
 					$this->liked = 1;
@@ -166,21 +157,20 @@ class Block
 
 	/**
 	 * comment an image
-	 * @param  int $image_id the id of the image
 	 * @return boolean whether the comment is successful
 	 */
-	public function comment($imageId)
+	public function comment()
 	{
 		// comment on an image
-		if (Image::model()->exists('image_id='.$imageId)) {
+		if (Image::model()->exists('image_id='.$this->imageId)) {
 			// the image exists, comment the image
 			$content = r()->getPost('comment');
 			if ($content) {
 				$comment = new Comment;
 				$comment->comment_content = $content;
-				$comment->image_id = $imageId;
+				$comment->image_id = $this->imageId;
 				$comment->user_id = user()->id;
-				$comment->comment_id = Comment::model()->count('image_id='.$imageId);
+				$comment->comment_id = Comment::model()->count('image_id='.$this->imageId);
 				$comment->comment_time=new CDbExpression('NOW()');
 				if ($comment->save()) {
 					$this->latestComment = $content;

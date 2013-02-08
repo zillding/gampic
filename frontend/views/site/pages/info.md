@@ -63,3 +63,5 @@ there is a global.php file under common/lib, in it defined some shortcut functio
 use sublime snippet to help coding
 
 need to redesign the user part database in order to integrate the social functionality
+
+nav bar responsive css got bug

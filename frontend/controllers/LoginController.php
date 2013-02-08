@@ -4,6 +4,7 @@ class LoginController extends Controller
 {
 	public function actionIndex()
 	{
+		regCssFile('zocial');
 		$model=new LoginForm;
 		$this->render('index',array('model'=>$model));
 	}
