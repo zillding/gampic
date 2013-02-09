@@ -53,6 +53,7 @@ class ColumnContainerController extends Controller
 	 */
 	private function addClientScripts()
 	{
+		regLessFile('columnContainer');
 		// Helper::print_arr('hello');
 		regJsFile('jquery.waypoints.min', bu('plugins/waypoints'));
 		regJsFile('columnContainer');

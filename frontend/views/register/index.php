@@ -29,12 +29,15 @@ $this->pageTitle=Yii::app()->name . ' - Register';
 	<div class='control-group'>
 	<?php echo $form->textFieldRow($model, 'user_name', array('class'=>'span3'));?>
 	</div>
+
 	<div class='control-group'>
 	<?php echo $form->textFieldRow($model, 'user_email', array('class'=>'span3'));?>
 	</div>
+
 	<div class='control-group'>
 	<?php echo $form->passwordFieldRow($model, 'user_password', array('class'=>'span3'));?>
 	</div>
+	
 	<div class='control-group'>
 	<?php echo $form->passwordFieldRow($model, 'confirm_user_password', array('class'=>'span3'));?>
 	</div>

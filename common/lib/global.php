@@ -11,6 +11,20 @@
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 
 /**
+ * This is the shortcut to register a .less file
+ */
+function regLessFile($files, $url = 'css', $addBaseUrl = true)
+{
+	if (!is_array($files))
+		$files = array($files);
+	foreach ($files as $file)
+	{
+		$file = ($addBaseUrl) ? bu($url) . '/' . $file . '.less' : $url . '/' . $file . '.less';
+		cs()->registerLinkTag('stylesheet/less', 'text/css', $file);
+	}
+}
+
+/**
  * This is the shortcut to Yii::app()->clientScript->registerCssFile
  */
 function regCssFile($files, $url = 'css', $addBaseUrl = true)

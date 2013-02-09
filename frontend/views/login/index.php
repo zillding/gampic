@@ -10,48 +10,52 @@ $this->pageTitle=app()->name . ' - Login';
 ?>
 
 
-<div class="container-fluid well">
+<div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span6">
-			<h1>Gampic</h1>
-			<div class="form">
-				<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-					'id'=>'login-form',
-					'action' => $this->createUrl('login'),
-					'enableClientValidation'=>true,
-					// 'htmlOptions'=>array('class'=>'well'),
-					'clientOptions'=>array(
-						'validateOnSubmit'=>true,
-					),
-				)); ?>
 
-				<p class="note">Fields with <span class="required">*</span> are required.</p>
+			<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+				'id'=>'login-form',
+				'action' => $this->createUrl('login'),
+				'enableClientValidation'=>true,
+				'htmlOptions'=>array('class'=>'well'),
+				'clientOptions'=>array(
+					'validateOnSubmit'=>true,
+				),
+			)); ?>
 
-				<?php echo $form->errorSummary($model); ?>
-				
-				<?php echo $form->textFieldRow($model, 'user_name');?>
-				<?php echo $form->passwordFieldRow($model, 'user_password');?>
-				<?php echo $form->checkBoxRow($model, 'rememberMe');?>
+			<legend>Gampic</legend>
 
-				<div class="form-actions">
-					<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Login', 'icon'=>'ok'));?>
-				</div>
-				<?php $this->endWidget(); ?>
-			</div><!-- form -->
+			<?php echo $form->errorSummary($model); ?>
+			
+			<div class='control-group'>
+			<?php echo $form->textFieldRow($model, 'user_name', array('labelOptions'=>array('label'=>false),
+																		'placeholder'=>'Username',
+																		'class'=>'input-large'));?>
+			</div>
+
+			<div class='control-group'>
+			<?php echo $form->passwordFieldRow($model, 'user_password', array('labelOptions'=>array('label'=>false),
+																		'placeholder'=>'Password',
+																		'class'=>'input-large'));?>
+			</div>
+
+			<div class='control-group'>
+			<?php echo $form->checkBoxRow($model, 'rememberMe');?>
+			</div>
+
+			<div class="form-actions">
+				<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Login', 'icon'=>'ok'));?>
+			</div>
+			<?php $this->endWidget(); ?>
 				
 		</div>
 
 		<div class="span6">
 
-			<h3>Or You can login with</h3>
-
-			<div class="well well-small">
-				<a href="" class="zocial twitter">Login with Twitter</a>
-			</div>
+			<a href="" class="zocial twitter">Login with Twitter</a>
 			<br>
-			<div class="well well-small">
-				<a href="" class="zocial facebook">Login with Facebook</a>
-			</div>
+			<a href="" class="zocial facebook">Login with Facebook</a>
 			
 		</div>
 	</div>

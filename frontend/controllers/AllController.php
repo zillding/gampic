@@ -35,6 +35,7 @@ class AllController extends Controller
 	public function addBanner()
 	{
 		// add necessary js to let the banner scroll
+		regLessFile('banner');
 		cs()->registerScript('banner', '$(function() {$(".banner").simplyScroll();})', CClientScript::POS_END);
 		regCssFile('simplyscroll', bu('plugins/simplyscroll'));
 		regJsFile('jquery.simplyscroll.min', bu('plugins/simplyscroll'));

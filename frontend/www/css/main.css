@@ -298,3 +298,24 @@ body .navbar .brand {
         page-break-after: avoid;
     }
 }
+
+/* ==========================================================================
+    self defined css apply to the whole site
+   ========================================================================== */
+
+
+/* scroll to top button */
+.scrollToTop {
+    display: none;
+    background-image: url("../images/icon_top.png");
+    position: fixed;
+    bottom: 50px;
+    height: 40px;
+    right: 50px;
+    width: 40px;
+    z-index: 4;
+    opacity: 0.6;
+    &:hover {
+        opacity: 0.9;
+    }
+}

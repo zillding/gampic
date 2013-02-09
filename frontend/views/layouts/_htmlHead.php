@@ -16,7 +16,6 @@
 
 	<link rel="stylesheet" href="<?php echo r()->baseUrl; ?>/css/normalize.css">
 	<link rel="stylesheet" href="<?php echo r()->baseUrl; ?>/css/main.css">
-	<link rel="stylesheet/less" type="text/css" href="<?php echo r()->baseUrl; ?>/css/styles.less">
 	<script src="<?php echo r()->baseUrl; ?>/js/modernizr-2.6.2.js"></script>
 
 	<title><?php echo h($this->pageTitle); /* using shortcut for CHtml::encode */ ?></title>
