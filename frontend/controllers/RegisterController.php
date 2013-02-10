@@ -7,6 +7,8 @@ class RegisterController extends Controller
 	 */
 	public function actionIndex()
 	{
+		regCssFile('zocial');
+		regLessFile('form');
 		$model=new RegisterForm('register');
 		$this->render('index',array('model'=>$model));
 	}

@@ -14,17 +14,17 @@ $this->pageTitle=app()->name . ' - Login';
 	<div class="row-fluid">
 		<div class="span6">
 
-			<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-				'id'=>'login-form',
-				'action' => $this->createUrl('login'),
-				'enableClientValidation'=>true,
-				'htmlOptions'=>array('class'=>'well'),
-				'clientOptions'=>array(
-					'validateOnSubmit'=>true,
-				),
-			)); ?>
+		<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+			'id'=>'login-form',
+			'action' => $this->createUrl('login'),
+			'enableClientValidation'=>true,
+			'htmlOptions'=>array('class'=>'well'),
+			'clientOptions'=>array(
+				'validateOnSubmit'=>true,
+			),
+		)); ?>
 
-			<legend>Gampic</legend>
+			<legend>Gampic - Login</legend>
 
 			<?php echo $form->errorSummary($model); ?>
 			
@@ -47,11 +47,13 @@ $this->pageTitle=app()->name . ' - Login';
 			<div class="form-actions">
 				<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Login', 'icon'=>'ok'));?>
 			</div>
-			<?php $this->endWidget(); ?>
+
+		<?php $this->endWidget(); ?>
 				
 		</div>
 
 		<div class="span6">
+			<p class="lead text-info"><span class="label label-info">Info</span> or you can</p>
 
 			<a href="" class="zocial twitter">Login with Twitter</a>
 			<br>
