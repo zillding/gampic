@@ -9,10 +9,15 @@ class Helper
 {
 	
 	// print a array in the html format
-	public static function print_arr($array)
+	public static function ddie($array)
 	{
 		print "<pre>".dump($array)."</pre>";
 		die();
+	}
+
+	public static function pprint($array)
+	{
+		print "<pre>".dump($array)."</pre>";
 	}
 
 }

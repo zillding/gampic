@@ -55,7 +55,7 @@ $this->pageTitle=app()->name . ' - Login';
 		<div class="span6">
 			<p class="lead text-info"><span class="label label-info">Info</span> or you can</p>
 
-			<a href="" class="zocial twitter">Login with Twitter</a>
+			<a href="/twitter" class="zocial twitter">Login with Twitter</a>
 			<br>
 			<a href="" class="zocial facebook">Login with Facebook</a>
 			

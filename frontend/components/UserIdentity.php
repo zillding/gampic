@@ -27,7 +27,6 @@ class UserIdentity extends CUserIdentity
 		else {
 			$this->_id = $user->user_id;
 			$this->username = $user->user_name;
-			$this->setState('avatar', UserIdentity::generateGravatar($this->_id)); // store the current user avatar in thte user state
 			$this->errorCode = self::ERROR_NONE;
 		}
 		return $this->errorCode == self::ERROR_NONE;
@@ -38,10 +37,11 @@ class UserIdentity extends CUserIdentity
 		return $this->_id;
 	}
 
-	// generate the user gravatar
-	public static function generateGravatar($userId)
+	// generate the user gravatar, this is the default avatar
+	// depend on the email
+	public static function generateGravatar($email)
 	{
-		$userEmailHash = md5(strtolower(trim(User::model()->findByPk($userId)->user_email)));
+		$userEmailHash = md5(strtolower(trim($email)));
 		return 'http://www.gravatar.com/avatar/'.$userEmailHash.'?s=30';
 	}
 }

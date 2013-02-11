@@ -12,6 +12,7 @@
  * @property string $user_password
  * @property string $salt
  * @property string $user_reg_date
+ * @property string $user_avatar
  *
  * The followings are the available model relations:
  * @property Comment[] $comments

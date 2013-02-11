@@ -74,7 +74,7 @@ class Block
 		foreach (array_slice($this->comments, $this->_maxNoOfComments) as $comment) {
 			$user = User::model()->findByPk($comment->user_id);
 			$userName = $user->user_name;
-			$userAvatar = UserIdentity::generateGravatar($user->user_id);
+			$userAvatar = $user->user_avatar;
 			$commentContent = $comment->comment_content;
 			$comments[] = array('user_name'=>$userName,'user_avatar'=>$userAvatar,'comment'=>$commentContent);
 		}
@@ -108,7 +108,7 @@ class Block
 			$comment .= '
 				<div class="comment">
 					<a class="imgLink">
-						<img src="'.UserIdentity::generateGravatar($user->user_id).'">
+						<img src="'.$user->user_avatar.'">
 					</a>
 					<p class="NoImage">
 						<a class="userName">'.$user->user_name.'</a> '.
@@ -134,7 +134,7 @@ class Block
 					$this->otherComments().'
 					<div class="comment writeComment">
 						<a class="imgLink" href="">
-							<img alt="Profile picture of you" src="'.user()->avatar.'">
+							<img alt="Profile picture of you" src="'.User::model()->findByPk(user()->id)->user_avatar.'">
 						</a>
 						<form method="POST" action="">
 							<textarea placeholder="Add a comment..." maxlength="1000"></textarea>
