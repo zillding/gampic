@@ -42,10 +42,11 @@ class TwitterController extends Controller
 				// access token obtained need to verify
 				// need to ask user to create a local user
 				if ($model->verifyAccessToken()) {
-					Yii::log(je($_SESSION), 'info', 'system.web.test');
-					// Helper::pprint($_SESSION);
-					Helper::pprint($model->userdata);
+					// Yii::log(je($_SESSION), 'info', 'system.web.test');
+					// Yii::log(je($model->userdata), 'info', 'system.web.test');
 					$this->render('index', array('model'=>new RegisterForm));
+					Helper::pprint($_SESSION);
+					Helper::pprint($model->userdata);
 				} else {
 					print 'access verification failed!';
 					Yii::log('cannot verify twitter access token', 'error', 'system.web.CController');

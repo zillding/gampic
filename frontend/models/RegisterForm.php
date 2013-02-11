@@ -65,7 +65,7 @@ class RegisterForm extends CFormModel
 		// secure the password
 		$user->generateHashPassword();
 		$user->user_reg_time=new CDbExpression('NOW()');
-		$user->user_avatar=UserIdentity::generateGravatar($user->user_email);
+		$user->user_avatar=UserIdentity::generateGravatar($user->user_email); // todo: may be changed after integrate with twitter and fb
 		// register the user (no need to check whether the user has registered
 		// since alr checked before)
 		if ($user->save()) {

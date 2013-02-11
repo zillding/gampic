@@ -33,7 +33,7 @@ class RegisterController extends Controller
 			$model->attributes=$_POST['RegisterForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->register())
-				$this->redirect(Yii::app()->user->returnUrl);
+				$this->redirect(user()->returnUrl);
 		}
 		// display the register form
 		$this->render('index',array('model'=>$model));

@@ -135,34 +135,35 @@ INSERT INTO `tbl_lookup` VALUES (1,'Warcraft',1,'ImageCategory',1),(2,'Starcraft
 UNLOCK TABLES;
 
 --
--- Table structure for table `tbl_social`
+-- Table structure for table `tbl_user_twitter`
 --
 
-DROP TABLE IF EXISTS `tbl_social`;
+DROP TABLE IF EXISTS `tbl_user_twitter`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tbl_social` (
+CREATE TABLE `tbl_user_twitter` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `login_provider` varchar(50) NOT NULL,
-  `provider_identifier` varchar(100) NOT NULL,
+  `oauth_uid` int(11) NOT NULL,
+  `oauth_token` varchar(50) NOT NULL,
+  `oauth_secret` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `login_provider_2` (`login_provider`,`provider_identifier`),
-  KEY `login_provider` (`login_provider`),
-  KEY `provider_identifier` (`provider_identifier`),
+  UNIQUE KEY `oauth_token_2` (`oauth_token`,`oauth_secret`),
+  KEY `oauth_uid` (`oauth_uid`),
+  KEY `oauth_token` (`oauth_token`),
+  KEY `oauth_secret` (`oauth_secret`),
   KEY `user_id` (`user_id`),
-  KEY `id` (`id`),
-  CONSTRAINT `social_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`)
+  CONSTRAINT `twitter_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbl_social`
+-- Dumping data for table `tbl_user_twitter`
 --
 
-LOCK TABLES `tbl_social` WRITE;
-/*!40000 ALTER TABLE `tbl_social` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbl_social` ENABLE KEYS */;
+LOCK TABLES `tbl_user_twitter` WRITE;
+/*!40000 ALTER TABLE `tbl_user_twitter` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_user_twitter` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
