@@ -5,8 +5,6 @@
  *
  * The followings are the available columns in table 'tbl_user':
  * @property integer $user_id
- * @property string $user_provider
- * @property integer $user_authid
  * @property string $user_name
  * @property string $user_email
  * @property string $user_password

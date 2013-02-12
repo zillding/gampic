@@ -8,7 +8,6 @@ Class Twitter
 	private $_consumerSecret = 'uKKfMYwiECQx2B9sAMV8gWR60N9v0LDh0G6B4DV7s4';
 
 	public $tmhOAuth;
-	public $userdata;
 
 	public function __construct()
 	{
@@ -59,10 +58,8 @@ Class Twitter
 		$code = $this->tmhOAuth->request("POST", $this->tmhOAuth->url("oauth/access_token", ""), $params);
 		if($code == 200) {
 			unset($_SESSION['oauth']);
-			// get the access token and store it in a cookie
+			// get the access token 
 			$_SESSION["access_token"] = $this->tmhOAuth->extract_params($this->tmhOAuth->response["response"]);
-			// setcookie("access_token", $response["oauth_token"], time()+3600*24*30);
-			// setcookie("access_token_secret", $response["oauth_token_secret"], time()+3600*24*30);
 			// state is now 2
 			$_SESSION["authstate"] = 2;
 			// redirect user to clear leftover GET variables
@@ -84,9 +81,40 @@ Class Twitter
 		$code = $this->tmhOAuth->request("GET", $this->tmhOAuth->url("1/account/verify_credentials"));
 		if ($code == 200) {
 			// store the user data returned from the API
-			$this->userdata = json_decode($this->tmhOAuth->response["response"]);
+			$_SESSION["twitter_userdata"] = json_decode($this->tmhOAuth->response["response"]);
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * verify the user based on the oauth id against the db
+	 * @param integer $twitterId the twitter uid
+	 * @return boolean whether success or not
+	 */
+	public function verifyUser($twitterId)
+	{
+		return TwitterUser::model()->exists('twitter_id='.$twitterId);
+	}
+
+	/**
+	 * log in local user based on the twitter id
+	 * @param int $twitterId the user twitter id returned by twitter api
+	 * @return boolean whether the login is successful
+	 */
+	public function loginLocalUser($twitterId)
+	{
+		$localUser = TwitterUser::model()->findByPk($twitterId)->localUser;
+
+		$identity=new TwitterUserIdentity($localUser->user_name, $twitterId);
+		$identity->authenticate();
+
+		if($identity->errorCode===TwitterUserIdentity::ERROR_NONE)
+		{
+			user()->login($identity,0);
+			return true;
+		}
+		else
+			return false;
 	}
 }

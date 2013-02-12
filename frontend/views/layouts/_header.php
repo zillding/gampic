@@ -36,6 +36,28 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
 
 		'<form class="navbar-search pull-left" style="" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
 
+		// right most
+		array(
+			'class' => 'bootstrap.widgets.TbMenu',
+			'htmlOptions' => array('class' => 'pull-right'),
+			'items' => array(
+				array('label' => user()->name.'('.user()->id.')',
+					'visible' => !user()->isGuest,
+					'items' => array(
+						array('label' => 'Invite Friends', 'url' => '#'),
+						'---',
+						array('label' => 'Uploaded', 'url' => '#'),
+						array('label' => 'Likes', 'url' => '#'),
+						'---',
+						array('label' => 'Settings', 'url' => '#'),
+						array('label' => 'Logout', 'url' => array('/site/logout'), 'visible' => !user()->isGuest),
+					)
+				),
+			),
+		),
+
+		user()->isGuest ? '' : img(User::model()->findByPk(user()->id)->user_avatar, user()->name, 30, 30, array('style'=>'margin-top: 5px;', 'class'=>'pull-right')),
+
 		array(
 			'class' => 'bootstrap.widgets.TbMenu',
 			'htmlOptions' => array('class' => 'pull-right'),
@@ -59,19 +81,7 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
 				),
 				array('label' => 'Register', 'url' => array('/register'), 'visible' => user()->isGuest),
 				array('label' => 'Login', 'url' => array('/login'), 'visible' => user()->isGuest),
-				array('label' => 'Logged in as '.user()->name.'('.user()->id.')',
-					'visible' => !user()->isGuest,
-					'items' => array(
-						array('label' => 'Invite Friends', 'url' => '#'),
-						'---',
-						array('label' => 'Uploaded', 'url' => '#'),
-						array('label' => 'Likes', 'url' => '#'),
-						'---',
-						array('label' => 'Settings', 'url' => '#'),
-						array('label' => 'Logout', 'url' => array('/site/logout'), 'visible' => !user()->isGuest),
-					)
-				),
-			),
+			)
 		),
 	),
 ));

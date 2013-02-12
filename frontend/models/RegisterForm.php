@@ -60,15 +60,30 @@ class RegisterForm extends CFormModel
 	public function register()
 	{
 		// create a new user based on the data collected by the register form
-		$user=new User('register');
+		$user = new User('register');
 		$user->attributes=$this->attributes;
 		// secure the password
 		$user->generateHashPassword();
-		$user->user_reg_time=new CDbExpression('NOW()');
+		$user->user_reg_time = new CDbExpression('NOW()');
 		$user->user_avatar=UserIdentity::generateGravatar($user->user_email); // todo: may be changed after integrate with twitter and fb
+		// if (!isset($_SESSION)) {
+		// 	session_start();
+		// }
+		// Helper::ddie($_SESSION['twitter_userdata']->id);
+
 		// register the user (no need to check whether the user has registered
 		// since alr checked before)
 		if ($user->save()) {
+
+			// check user whether used twitter to register/login
+			if (!isset($_SESSION)) {
+				session_start();
+			}
+			if (isset($_SESSION['access_token'])) {
+				// the user used twitter login
+				$this->registerTwitterUser($user);
+			}
+
 			$model=new LoginForm;
 			$model->user_name=$user->user_name;
 			$model->user_password=$this->user_password;
@@ -77,6 +92,28 @@ class RegisterForm extends CFormModel
 			// print_r($user->getErrors()); // for debugging
 			print 'could not register at this time';
 			return false;
+		}
+	}
+
+	/**
+	 * register the twitter user
+	 * @param $user the user instance
+	 */
+	private function registerTwitterUser($user)
+	{
+		$twitterUser = new TwitterUser;
+		$twitterUser->user_id = $user->primaryKey;
+		$twitterUser->twitter_id = $_SESSION['access_token']['user_id'];
+		$twitterUser->oauth_token = $_SESSION['access_token']['oauth_token'];
+		$twitterUser->oauth_secret = $_SESSION['access_token']['oauth_token_secret'];
+
+		if ($twitterUser->save()) {
+			// update the user profile pic
+			$user->user_avatar = $_SESSION['twitter_userdata']->profile_image_url;
+			if ($user->save()) {
+				// shoudl unset part only
+				unset($_SESSION['twitter_userdata']);
+			}
 		}
 	}
 }

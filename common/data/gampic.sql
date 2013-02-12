@@ -142,14 +142,13 @@ DROP TABLE IF EXISTS `tbl_user_twitter`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tbl_user_twitter` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `twitter_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `oauth_uid` int(11) NOT NULL,
   `oauth_token` varchar(50) NOT NULL,
   `oauth_secret` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`twitter_id`),
   UNIQUE KEY `oauth_token_2` (`oauth_token`,`oauth_secret`),
-  KEY `oauth_uid` (`oauth_uid`),
+  KEY `twitter_id` (`twitter_id`),
   KEY `oauth_token` (`oauth_token`),
   KEY `oauth_secret` (`oauth_secret`),
   KEY `user_id` (`user_id`),

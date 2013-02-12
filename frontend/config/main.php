@@ -70,7 +70,8 @@ return CMap::mergeArray(
 		// ),
 		'components' => array(
 			'user'=>array(
-				'loginUrl'=>array('login'),
+				'allowAutoLogin' => true,
+				'loginUrl' => array('login'),
 			),
 			'errorHandler' => array(
 				// @see http://www.yiiframework.com/doc/api/1.1/CErrorHandler#errorAction-detail

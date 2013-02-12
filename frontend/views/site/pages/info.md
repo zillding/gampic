@@ -62,6 +62,8 @@ there is a global.php file under common/lib, in it defined some shortcut functio
 
 use sublime snippet to help coding
 
-need to redesign the user part database in order to integrate the social functionality
+need to fix the access rule for login with twitter
 
-nav bar responsive css got bug
+should use relation query
+
+use cookie to store social info in order to login

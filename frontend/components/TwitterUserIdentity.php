@@ -1,11 +1,11 @@
 <?php
 
 /**
- * UserIdentity represents the data needed to identity a user.
+ * TwitterUserIdentity represents the data needed to identity a twitter user.
  * It contains the authentication method that checks if the provided
  * data can identity the user.
  */
-class UserIdentity extends CUserIdentity
+class TwitterUserIdentity extends CUserIdentity
 {
 	private $_id; // this is the user id stored in the tbl_user
 	
@@ -20,8 +20,6 @@ class UserIdentity extends CUserIdentity
 		$user = User::model()->find('LOWER(user_name)=?', array($username));
 		if ($user === null)
 			$this->errorCode = self::ERROR_USERNAME_INVALID;
-		else if (!$user->validatePassword($this->password))
-			$this->errorCode = self::ERROR_PASSWORD_INVALID;
 		else {
 			$this->_id = $user->user_id;
 			$this->username = $user->user_name;
@@ -35,11 +33,4 @@ class UserIdentity extends CUserIdentity
 		return $this->_id;
 	}
 
-	// generate the user gravatar, this is the default avatar
-	// depend on the email
-	public static function generateGravatar($email)
-	{
-		$userEmailHash = md5(strtolower(trim($email)));
-		return 'http://www.gravatar.com/avatar/'.$userEmailHash.'?s=30';
-	}
 }

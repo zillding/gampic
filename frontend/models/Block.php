@@ -72,7 +72,7 @@ class Block
 		$comments = array();
 		// info needed: user_name, user_avatar, comment
 		foreach (array_slice($this->comments, $this->_maxNoOfComments) as $comment) {
-			$user = User::model()->findByPk($comment->user_id);
+			$user = $comment->author;
 			$userName = $user->user_name;
 			$userAvatar = $user->user_avatar;
 			$commentContent = $comment->comment_content;
@@ -103,8 +103,7 @@ class Block
 
 		$end = count($this->comments) <= $this->_maxNoOfComments ? count($this->comments) : $this->_maxNoOfComments;
 		for ($i=0; $i<$end; $i++) {
-			$user = User::model()->findByPk($this->comments[$i]['user_id']);
-			// $userName = User::model()->findByPk($this->comments[$i]['user_id'])->user_name;
+			$user = $this->comments[$i]->author;
 			$comment .= '
 				<div class="comment">
 					<a class="imgLink">

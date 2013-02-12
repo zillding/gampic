@@ -50,6 +50,24 @@ var ColumnContainer = {
 	setupFancyBox : function() {
 		items = $(ColumnContainer.selector + " " + ColumnContainer.itemSelector + " .fancybox");
 		items.fancybox({
+			beforeShow: function () {
+				title = this.title;
+				if (this.title) {
+					console.log(this.href);
+					// New line
+					this.title += '<br /><div class="social" style="margin-top:5px;">';
+					
+					// Add tweet button
+					this.title += '<a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-text="Check out an awesome image at Gampic! ' + title + '" data-url="http://gampic.com' + this.href + '">Tweet</a>';
+					
+					// Add FaceBook like button
+					this.title += '<iframe src="//www.facebook.com/plugins/like.php?href=' + this.href + '&amp;layout=button_count&amp;show_faces=true&amp;width=500&amp;action=like&amp;font&amp;colorscheme=light&amp;height=23" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:23px; margin-left:20px;" allowTransparency="true"></iframe></div>';
+				}
+			},
+			afterShow: function() {
+				// Render tweet button
+				twttr.widgets.load();
+			},
 			openEffect : 'elastic',
 			closeEffect : 'elastic',
 			prevEffect : 'none',

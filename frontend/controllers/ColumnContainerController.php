@@ -16,6 +16,7 @@ class ColumnContainerController extends Controller
 			'$(function() {
 				ColumnContainer.start("'.$category.'");
 			})', CClientScript::POS_END);
+
 		$this->renderPartial('index'); // render the column container, filled later buy actionLoad
 	}
 
@@ -72,6 +73,8 @@ class ColumnContainerController extends Controller
 		// for image display
 		regCssFile(array('jquery.fancybox','jquery.fancybox-buttons'), bu('plugins/fancybox'));
 		regJsFile(array('jquery.fancybox.pack','jquery.fancybox-buttons'), bu('plugins/fancybox'));
+		// twitter button
+		regJsFile('twitter', bu('plugins/twitter'));
 	}
 
 	// Uncomment the following methods and override them if needed

@@ -5,9 +5,14 @@
 {
 	public function actionIndex()
 	{
+		if (!isset($_SESSION)) {
+			session_start();
+		}
+		Helper::pprint($_SESSION);
+
 		if (!user()->isGuest) {
-			Helper::pprint(UserIdentity::generateGravatar(user()->id));
 			Helper::pprint(user());
+			// Helper::pprint($_SESSION);
 		}
 	}
 

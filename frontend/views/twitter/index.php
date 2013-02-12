@@ -9,7 +9,7 @@ $this->pageTitle = app()->name;
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'register-form',
-	'action' => $this->createUrl('register'),
+	'action' => $this->createUrl('register/register'),
 	'enableAjaxValidation'=>true,
 	'htmlOptions'=>array('class'=>'well'),
 )); ?>
