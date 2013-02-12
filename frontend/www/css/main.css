@@ -315,7 +315,8 @@ body .navbar .brand {
     width: 40px;
     z-index: 4;
     opacity: 0.6;
-    &:hover {
-        opacity: 0.9;
-    }
+}
+
+.scrollToTop:hover {
+    opacity: 0.9;
 }
