@@ -58,7 +58,7 @@ DROP TABLE IF EXISTS `tbl_image`;
 CREATE TABLE `tbl_image` (
   `image_id` int(11) NOT NULL AUTO_INCREMENT,
   `image_title` varchar(127) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `image_extension` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `image_extension` varchar(7) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `image_category` int(8) NOT NULL,
   `image_thumb_height` int(11) NOT NULL DEFAULT '0',
   `image_likes` int(11) NOT NULL DEFAULT '0',
@@ -144,8 +144,8 @@ DROP TABLE IF EXISTS `tbl_user_twitter`;
 CREATE TABLE `tbl_user_twitter` (
   `twitter_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `oauth_token` varchar(50) NOT NULL,
-  `oauth_secret` varchar(100) NOT NULL,
+  `oauth_token` varchar(127) NOT NULL,
+  `oauth_secret` varchar(127) NOT NULL,
   PRIMARY KEY (`twitter_id`),
   UNIQUE KEY `oauth_token_2` (`oauth_token`,`oauth_secret`),
   KEY `twitter_id` (`twitter_id`),
@@ -203,7 +203,7 @@ CREATE TABLE `tbl_user` (
   `user_password` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `salt` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `user_reg_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `user_avatar` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `user_avatar` varchar(127) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
