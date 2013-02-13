@@ -135,37 +135,6 @@ INSERT INTO `tbl_lookup` VALUES (1,'Warcraft',1,'ImageCategory',1),(2,'Starcraft
 UNLOCK TABLES;
 
 --
--- Table structure for table `tbl_user_twitter`
---
-
-DROP TABLE IF EXISTS `tbl_user_twitter`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tbl_user_twitter` (
-  `twitter_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `oauth_token` varchar(127) NOT NULL,
-  `oauth_secret` varchar(127) NOT NULL,
-  PRIMARY KEY (`twitter_id`),
-  UNIQUE KEY `oauth_token_2` (`oauth_token`,`oauth_secret`),
-  KEY `twitter_id` (`twitter_id`),
-  KEY `oauth_token` (`oauth_token`),
-  KEY `oauth_secret` (`oauth_secret`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `twitter_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tbl_user_twitter`
---
-
-LOCK TABLES `tbl_user_twitter` WRITE;
-/*!40000 ALTER TABLE `tbl_user_twitter` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbl_user_twitter` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `tbl_tag`
 --
 
@@ -198,10 +167,8 @@ DROP TABLE IF EXISTS `tbl_user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tbl_user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `active` int(2) NOT NULL DEFAULT '1',
   `user_name` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Gamer',
-  `user_email` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `user_password` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `salt` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `user_reg_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_avatar` varchar(127) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`user_id`)
@@ -214,8 +181,91 @@ CREATE TABLE `tbl_user` (
 
 LOCK TABLES `tbl_user` WRITE;
 /*!40000 ALTER TABLE `tbl_user` DISABLE KEYS */;
-INSERT INTO `tbl_user` VALUES (1,'zill','zilld@hotmail.com','6bfa73731232546c59147acaa715bc4857393882','50f75b42cebab','2013-01-16 18:00:34','http://www.gravatar.com/avatar/b24cbc7aa65df505f98c08dc3786e27a?s=30');
+INSERT INTO `tbl_user` VALUES (1,1,'zill','2013-01-16 18:00:34','http://www.gravatar.com/avatar/b24cbc7aa65df505f98c08dc3786e27a?s=30');
 /*!40000 ALTER TABLE `tbl_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_user_email`
+--
+
+DROP TABLE IF EXISTS `tbl_user_email`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_user_email` (
+  `user_id` int(11) NOT NULL,
+  `user_email` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`user_id`),
+  CONSTRAINT `email_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_user_email`
+--
+
+LOCK TABLES `tbl_user_email` WRITE;
+/*!40000 ALTER TABLE `tbl_user_email` DISABLE KEYS */;
+INSERT INTO `tbl_user_email` VALUES (1,'zilld@hotmail.com');
+/*!40000 ALTER TABLE `tbl_user_email` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_user_gampic`
+--
+
+DROP TABLE IF EXISTS `tbl_user_gampic`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_user_gampic` (
+  `user_id` int(11) NOT NULL,
+  `user_password` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `salt` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`user_id`),
+  CONSTRAINT `gampic_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_user_gampic`
+--
+
+LOCK TABLES `tbl_user_gampic` WRITE;
+/*!40000 ALTER TABLE `tbl_user_gampic` DISABLE KEYS */;
+INSERT INTO `tbl_user_gampic` VALUES (1,'6bfa73731232546c59147acaa715bc4857393882','50f75b42cebab');
+/*!40000 ALTER TABLE `tbl_user_gampic` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_user_twitter`
+--
+
+DROP TABLE IF EXISTS `tbl_user_twitter`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_user_twitter` (
+  `active` int(2) NOT NULL DEFAULT '1',
+  `twitter_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `oauth_token` varchar(127) NOT NULL,
+  `oauth_secret` varchar(127) NOT NULL,
+  PRIMARY KEY (`twitter_id`),
+  UNIQUE KEY `oauth_token_2` (`oauth_token`,`oauth_secret`),
+  KEY `twitter_id` (`twitter_id`),
+  KEY `oauth_token` (`oauth_token`),
+  KEY `oauth_secret` (`oauth_secret`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `twitter_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_user_twitter`
+--
+
+LOCK TABLES `tbl_user_twitter` WRITE;
+/*!40000 ALTER TABLE `tbl_user_twitter` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_user_twitter` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -227,4 +277,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-02-11 16:11:47
+-- Dump completed on 2013-02-13 15:05:12

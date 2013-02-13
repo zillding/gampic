@@ -103,11 +103,11 @@ return CMap::mergeArray(
 						'class' => 'CFileLogRoute',
 						'levels' => 'info, error, warning',
 					),
-					array(
-						'class' => 'CEmailLogRoute',
-						'levels' => 'error, warning',
-						'emails' => 'zilld@hotmail.com',
-					),
+					// array(
+					// 	'class' => 'CEmailLogRoute',
+					// 	'levels' => 'error, warning',
+					// 	'emails' => 'jxzjdzy@yahoo.com.cn',
+					// ),
 					array(
 						'class' => 'CWebLogRoute',
 						'levels' => 'info, error, warning',
