@@ -3,7 +3,7 @@ var Block = {
 	// for guest only
 	setupGuest : function() {
 		$(document).on("click", ".block .commentMore button", this.showMoreComments)
-			.on("click", ".block .btn .btn-small", function() {
+			.on("click", ".block .btn-small", function() {
 				alert("Please log in first!");
 			});
 	},
@@ -23,7 +23,7 @@ var Block = {
 		$.getJSON("/block/like/?image_id="+image_id, function(data) {
 			if (data) {
 				$button.toggleClass('likeButtonDown'); // change the css style of the $button
-				likeCount = $button.parentsUntil('.chunk').find('.likeCount'); // get the like count element
+				likeCount = $button.closest('.block').find('.likeCount'); // get the like count element
 				if (data.liked == 1) {
 					// this image has successfully been liked
 					$button.html('<i class="icon-thumbs-down"></i> Unlike');
