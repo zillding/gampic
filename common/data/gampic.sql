@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS `gampic`;
 CREATE DATABASE  IF NOT EXISTS `gampic` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `gampic`;
 -- MySQL dump 10.13  Distrib 5.5.24, for osx10.5 (i386)

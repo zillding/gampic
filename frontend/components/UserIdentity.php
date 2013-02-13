@@ -17,14 +17,14 @@ class UserIdentity extends CUserIdentity
 	{
 		$username = strtolower($this->username);
 		// create a user object based on the content in the database
-		$user = User::model()->find('LOWER(user_name)=?', array($username));
-		if ($user === null)
+		$userGampic = User::model()->find('LOWER(user_name)=?', array($username))->userGampic;
+		if ($userGampic === null)
 			$this->errorCode = self::ERROR_USERNAME_INVALID;
-		else if (!$user->validatePassword($this->password))
+		else if (!$userGampic->validatePassword($this->password))
 			$this->errorCode = self::ERROR_PASSWORD_INVALID;
 		else {
-			$this->_id = $user->user_id;
-			$this->username = $user->user_name;
+			$this->_id = $userGampic->user_id;
+			// $this->username = $user->user_name;
 			$this->errorCode = self::ERROR_NONE;
 		}
 		return $this->errorCode == self::ERROR_NONE;

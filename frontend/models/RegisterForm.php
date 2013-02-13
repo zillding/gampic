@@ -60,37 +60,53 @@ class RegisterForm extends CFormModel
 	public function register()
 	{
 		// create a new user based on the data collected by the register form
+		// create the 'main user first'
 		$user = new User('register');
-		$user->attributes=$this->attributes;
-		// secure the password
-		$user->generateHashPassword();
+		$user->active = 1; // set the default active
+		$user->user_name = $this->user_name;
 		$user->user_reg_time = new CDbExpression('NOW()');
-		$user->user_avatar=UserIdentity::generateGravatar($user->user_email); // todo: may be changed after integrate with twitter and fb
-		// if (!isset($_SESSION)) {
-		// 	session_start();
-		// }
-		// Helper::ddie($_SESSION['twitter_userdata']->id);
-
-		// register the user (no need to check whether the user has registered
+		$user->user_avatar = 'http://www.gravatar.com/avatar/?s=30'; // set a defaut avatar first
+		// register the user in the gampic table (no need to check whether the user has registered
 		// since alr checked before)
 		if ($user->save()) {
+			$userId = $user->primaryKey;
+			// set the record for user gampic
+			$userGampic = new UserGampic('register');
+			$userGampic->user_id = $userId;
+			$userGampic->user_password = $this->user_password;
+			// secure the password
+			$userGampic->generateHashPassword();
+			// set the record for user email
+			$userEmail = new UserEmail;
+			$userEmail->user_id = $userId;
+			$userEmail->user_email = $this->user_email;
 
-			// check user whether used twitter to register/login
-			if (!isset($_SESSION)) {
-				session_start();
-			}
-			if (isset($_SESSION['access_token'])) {
-				// the user used twitter login
-				$this->registerTwitterUser($user);
-			}
+			if ($userGampic->save() && $userEmail->save()) {
+				// update the user avatar
+				$user->user_avatar=UserIdentity::generateGravatar($userEmail->user_email); 
+				$user->save();
 
-			$model=new LoginForm;
-			$model->user_name=$user->user_name;
-			$model->user_password=$this->user_password;
-			return $model->login();
+				// check user whether used twitter to register/login
+				// todo: need to move to somewhere else
+				if (!isset($_SESSION)) {
+					session_start();
+				}
+				if (isset($_SESSION['access_token'])) {
+					// the user used twitter login
+					$this->registerTwitterUser($user);
+				}
+				// automatically log the user in
+				$model=new LoginForm;
+				$model->user_name=$user->user_name;
+				$model->user_password=$this->user_password;
+				return $model->login();
+
+			} else {
+				Yii::log('cannot register local user and email at this time', 'error', 'system.web.CFormModel');
+				return false;
+			}
 		} else {
-			// print_r($user->getErrors()); // for debugging
-			print 'could not register at this time';
+			Yii::log('cannot register at this time', 'error', 'system.web.CFormModel');
 			return false;
 		}
 	}

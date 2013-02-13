@@ -94,7 +94,7 @@ Class Twitter
 	 */
 	public function verifyUser($twitterId)
 	{
-		return TwitterUser::model()->exists('twitter_id='.$twitterId);
+		return UserTwitter::model()->exists('twitter_id='.$twitterId);
 	}
 
 	/**
@@ -104,7 +104,7 @@ Class Twitter
 	 */
 	public function loginLocalUser($twitterId)
 	{
-		$localUser = TwitterUser::model()->findByPk($twitterId)->localUser;
+		$localUser = UserTwitter::model()->findByPk($twitterId)->user;
 
 		$identity=new TwitterUserIdentity($localUser->user_name, $twitterId);
 		$identity->authenticate();

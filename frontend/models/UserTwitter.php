@@ -13,7 +13,7 @@
  * The followings are the available model relations:
  * @property User[] $user
  */
-class TwitterUser extends CActiveRecord
+class UserTwitter extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -54,7 +54,7 @@ class TwitterUser extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'localUser' => array(self::BELONGS_TO, 'User', 'user_id'),
+			'user' => array(self::HAS_ONE, 'User', 'user_id'),
 		);
 	}
 
