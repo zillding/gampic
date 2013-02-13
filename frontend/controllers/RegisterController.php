@@ -2,13 +2,17 @@
 
 class RegisterController extends Controller
 {
+	public function init()
+	{
+		regCssFile('zocial');
+		regLessFile('form');
+		parent::init();
+	}
 	/**
 	 * Displays the register page
 	 */
 	public function actionIndex()
 	{
-		regCssFile('zocial');
-		regLessFile('form');
 		$model=new RegisterForm('register');
 		$this->render('index',array('model'=>$model));
 	}
@@ -24,7 +28,7 @@ class RegisterController extends Controller
 		if(isset($_POST['ajax']) && $_POST['ajax']==='register-form')
 		{
 			echo CActiveForm::validate($model);
-			Yii::app()->end();
+			app()->end();
 		} 
 
 		// collect user input data

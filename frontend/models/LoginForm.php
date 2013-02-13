@@ -65,7 +65,7 @@ class LoginForm extends CFormModel
 	{
 		if(!$this->hasErrors())
 		{
-			if (!User::model()->exists('LOWER(user_name)=?', array($this->user_name))) {
+			if (!User::model()->exists('user_name=?', array($this->user_name))) {
 				$this->addError('user_name', 'Cannot find this user');
 			}
 		}

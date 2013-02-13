@@ -15,16 +15,14 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
-		$username = strtolower($this->username);
 		// create a user object based on the content in the database
-		$userGampic = User::model()->find('LOWER(user_name)=?', array($username))->userGampic;
+		$userGampic = User::model()->find('user_name=?', array($this->username))->userGampic;
 		if ($userGampic === null)
 			$this->errorCode = self::ERROR_USERNAME_INVALID;
 		else if (!$userGampic->validatePassword($this->password))
 			$this->errorCode = self::ERROR_PASSWORD_INVALID;
 		else {
 			$this->_id = $userGampic->user_id;
-			// $this->username = $user->user_name;
 			$this->errorCode = self::ERROR_NONE;
 		}
 		return $this->errorCode == self::ERROR_NONE;

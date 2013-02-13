@@ -16,6 +16,7 @@ $this->pageTitle=Yii::app()->name . ' - Register';
 		<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 			'id'=>'register-form',
 			'action' => $this->createUrl('register'),
+			'enableClientValidation'=>true,
 			'enableAjaxValidation'=>true,
 			'htmlOptions'=>array('class'=>'well'),
 		)); ?>

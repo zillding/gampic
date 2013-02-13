@@ -68,6 +68,4 @@ should use relation query
 
 use cookie to store social info in order to login
 
-should reconsider the database design for the users since need to add in social surpport
-
-add in active field for user account
+should use case sensitive for username

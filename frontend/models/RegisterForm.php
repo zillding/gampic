@@ -1,5 +1,4 @@
 <?php
-
 /**
  * RegisterForm class.
  * RegisterForm is the data structure for keeping
@@ -26,17 +25,16 @@ class RegisterForm extends CFormModel
 			// array('user_provider', 'length', 'max'=>8),
 			array('user_name', 'length', 'max'=>25, 'min'=>2),
 			// user name need to be checked
-			array('user_name', 'unique', 'attributeName'=>'user_name', 'className'=>'User'),
+			array('user_name', 'unique', 'attributeName'=>'user_name', 'className'=>'User', 'caseSensitive'=>true),
 			array('user_email', 'email'),
 			array('user_email', 'length', 'max'=>50),
 			// restrict the user-input password
 			array('user_password', 'length', 'max'=>32, 'min'=>3),
 			// confirm the user password
 			array('confirm_user_password', 'compare', 'compareAttribute'=>'user_password', 'on'=>'register'),
-			// array('confirm_user_password', 'confirmed'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('user_provider, user_name, user_email, user_reg_time', 'safe', 'on'=>'search'),
+			array('user_name, user_email, user_reg_time', 'safe', 'on'=>'search'),
 		);
 	}
 

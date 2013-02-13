@@ -62,8 +62,9 @@ class TwitterController extends Controller
 						}
 						
 					} else {
-						// ask the user to register a local user
+						// ask the user to select a user name
 						$this->render('index', array('model'=>new RegisterForm));
+						Helper::pprint($_SESSION);
 					}
 				} else {
 					print 'access verification failed!';

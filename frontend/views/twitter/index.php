@@ -8,7 +8,7 @@ $this->pageTitle = app()->name;
 ?>
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-	'id'=>'register-form',
+	'id' => 'register-form',
 	'action' => $this->createUrl('register/register'),
 	'enableAjaxValidation'=>true,
 	'htmlOptions'=>array('class'=>'well'),
@@ -22,7 +22,7 @@ $this->pageTitle = app()->name;
 
 	<div class='control-group'>
 	<?php echo $form->textFieldRow($model, 'user_name', array('labelOptions'=>array('label'=>false),
-																'placeholder'=>'Username',
+																'placeholder'=>'Give yourself a cool name!',
 																'class'=>'input-large',
 																'hint'=>'Give yourself a cool name!'));?>
 	</div>
