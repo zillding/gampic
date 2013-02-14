@@ -54,7 +54,7 @@ class UserTwitter extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
+			'user' => array(self::HAS_ONE, 'User', 'user_id'), // must have one
 		);
 	}
 

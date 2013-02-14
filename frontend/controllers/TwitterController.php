@@ -41,7 +41,6 @@ class TwitterController extends Controller
 
 			} elseif ($_SESSION['authstate'] == 2) {
 				// access token obtained need to verify
-				// need to ask user to create a local user
 				if ($model->verifyAccessToken()) {
 					$twitterId = $_SESSION['access_token']['user_id'];
 					if ($model->verifyUser($twitterId)) {

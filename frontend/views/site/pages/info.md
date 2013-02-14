@@ -66,6 +66,6 @@ need to fix the access rule for login with twitter
 
 should use relation query
 
-use cookie to store social info in order to login
+use cookie to store social info in order to login (cookie will store user profile info on the local machine which will cause security issue)
 
-should use case sensitive for username
+should i assume each user has only one twitter account? i think should make this assumption

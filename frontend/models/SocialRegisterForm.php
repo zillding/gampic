@@ -70,16 +70,15 @@ class SocialRegisterForm extends CFormModel
 				if ($user->save()) {
 					// shoudl unset part only
 					unset($_SESSION['twitter_userdata']);
+					// log in the user
+					return Twitter::login($twitterUser->twitter_id);
 				}
 			}
 
-			// automatically log the user in
-			return Twitter::login($twitterUser->twitter_id);
-
-		} else {
-			Yii::log('cannot register at this time', 'error', 'system.web.CFormModel');
-			return false;
 		}
+		
+		Yii::log('cannot register at this time', 'error', 'system.web.CFormModel');
+		return false;
 	}
 
 }

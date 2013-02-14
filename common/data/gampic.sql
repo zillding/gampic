@@ -29,14 +29,14 @@ CREATE TABLE `tbl_comment` (
   `comment_id` int(11) NOT NULL,
   `image_id` int(11) NOT NULL,
   `comment_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `comment_content` varchar(255) NOT NULL,
+  `comment_content` varchar(255) COLLATE utf8_bin NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`comment_id`,`image_id`),
   KEY `user_id` (`user_id`),
   KEY `image_id` (`image_id`),
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`),
   CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`image_id`) REFERENCES `tbl_image` (`image_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,8 +58,8 @@ DROP TABLE IF EXISTS `tbl_image`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tbl_image` (
   `image_id` int(11) NOT NULL AUTO_INCREMENT,
-  `image_title` varchar(127) NOT NULL,
-  `image_extension` varchar(7) NOT NULL,
+  `image_title` varchar(127) COLLATE utf8_bin NOT NULL,
+  `image_extension` varchar(7) COLLATE utf8_bin NOT NULL,
   `image_category` int(8) NOT NULL,
   `image_thumb_height` int(11) NOT NULL DEFAULT '0',
   `image_likes` int(11) NOT NULL DEFAULT '0',
@@ -68,7 +68,7 @@ CREATE TABLE `tbl_image` (
   PRIMARY KEY (`image_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `image_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,9 +117,9 @@ DROP TABLE IF EXISTS `tbl_lookup`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tbl_lookup` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) NOT NULL,
+  `name` varchar(128) COLLATE utf8_bin NOT NULL,
   `code` int(11) NOT NULL,
-  `type` varchar(128) NOT NULL,
+  `type` varchar(128) COLLATE utf8_bin NOT NULL,
   `position` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -144,7 +144,7 @@ DROP TABLE IF EXISTS `tbl_tag`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tbl_tag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) NOT NULL,
+  `name` varchar(128) COLLATE utf8_bin NOT NULL,
   `frequency` int(11) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -169,9 +169,9 @@ DROP TABLE IF EXISTS `tbl_user`;
 CREATE TABLE `tbl_user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `active` int(2) NOT NULL DEFAULT '1',
-  `user_name` varchar(25) NOT NULL DEFAULT 'Gamer',
+  `user_name` varchar(25) COLLATE utf8_bin NOT NULL DEFAULT 'Gamer',
   `user_reg_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `user_avatar` varchar(127) NOT NULL,
+  `user_avatar` varchar(127) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -195,7 +195,7 @@ DROP TABLE IF EXISTS `tbl_user_email`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tbl_user_email` (
   `user_id` int(11) NOT NULL,
-  `user_email` varchar(50) NOT NULL,
+  `user_email` varchar(50) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `email_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -220,8 +220,8 @@ DROP TABLE IF EXISTS `tbl_user_gampic`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tbl_user_gampic` (
   `user_id` int(11) NOT NULL,
-  `user_password` varchar(40) NOT NULL,
-  `salt` varchar(20) NOT NULL,
+  `user_password` varchar(40) COLLATE utf8_bin NOT NULL,
+  `salt` varchar(20) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `gampic_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -245,17 +245,12 @@ DROP TABLE IF EXISTS `tbl_user_twitter`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tbl_user_twitter` (
-  `twitter_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `active` int(2) NOT NULL DEFAULT '1',
-  `oauth_token` varchar(127) NOT NULL,
-  `oauth_secret` varchar(127) NOT NULL,
-  PRIMARY KEY (`twitter_id`),
-  UNIQUE KEY `oauth_token_2` (`oauth_token`,`oauth_secret`),
-  KEY `twitter_id` (`twitter_id`),
-  KEY `oauth_token` (`oauth_token`),
-  KEY `oauth_secret` (`oauth_secret`),
-  KEY `user_id` (`user_id`),
+  `twitter_id` int(11) NOT NULL,
+  `oauth_token` varchar(127) COLLATE utf8_bin NOT NULL,
+  `oauth_secret` varchar(127) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`user_id`),
   CONSTRAINT `twitter_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -278,4 +273,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-02-13 15:05:12
+-- Dump completed on 2013-02-14 20:18:21

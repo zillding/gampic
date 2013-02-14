@@ -104,7 +104,7 @@ Class Twitter
 	 */
 	public static function login($twitterId)
 	{
-		$user = UserTwitter::model()->findByPk($twitterId)->user;
+		$user = UserTwitter::model()->find('twitter_id=?', array($twitterId))->user;
 
 		$identity=new TwitterUserIdentity($user->user_name, $twitterId);
 		$identity->authenticate();

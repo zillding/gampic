@@ -60,9 +60,9 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'userGampic' => array(self::HAS_ONE, 'UserGampic', 'user_id'),
-			'userEmail' => array(self::HAS_ONE, 'UserEmail', 'user_id'),
-			'userTwitter' => array(self::HAS_ONE, 'UserTwitter', 'user_id'),
+			'userGampic' => array(self::HAS_ONE, 'UserGampic', 'user_id'), // optional, at most one
+			'userEmail' => array(self::HAS_ONE, 'UserEmail', 'user_id'), // optional, at most one
+			'userTwitter' => array(self::HAS_ONE, 'UserTwitter', 'user_id'), // optional, at most one
 			'comments' => array(self::HAS_MANY, 'Comment', 'user_id'),
 			'images' => array(self::HAS_MANY, 'Image', 'user_id'),
 			'tblImages' => array(self::MANY_MANY, 'Image', 'tbl_like(user_id, image_id)'),
