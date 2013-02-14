@@ -2,13 +2,6 @@
 
 class TwitterController extends Controller
 {
-	// private $_consumerKey = 'l0v2ziRQal9GRz2d4ETA';
-	// private $_consumerSecret = 'uKKfMYwiECQx2B9sAMV8gWR60N9v0LDh0G6B4DV7s4';
-
-	// public function init()
-	// {
-	// 	Yii::import('ext.tmhOAuth.*');
-	// }
 
 	public function actionIndex()
 	{
@@ -52,9 +45,10 @@ class TwitterController extends Controller
 				if ($model->verifyAccessToken()) {
 					$twitterId = $_SESSION['access_token']['user_id'];
 					if ($model->verifyUser($twitterId)) {
+						// the user exists in the db
 						unset($_SESSION['twitter_userdata']);
 						// the user alr exists log the user in
-						if ($model->loginLocalUser($twitterId)) {
+						if (Twitter::login($twitterId)) {
 							$this->redirect('/');
 						} else {
 							// error
@@ -62,9 +56,11 @@ class TwitterController extends Controller
 						}
 						
 					} else {
+						// first time sign in with twitter
+						user()->setFlash('success', '<strong>Well done!</strong> You successfully connected to Twitter as <strong>'.$_SESSION['access_token']['screen_name'].'</strong>');
 						// ask the user to select a user name
-						$this->render('index', array('model'=>new RegisterForm));
-						Helper::pprint($_SESSION);
+						$this->render('//register/social', array('model'=>new SocialRegisterForm));
+						// Helper::pprint($_SESSION);
 					}
 				} else {
 					print 'access verification failed!';
@@ -87,6 +83,41 @@ class TwitterController extends Controller
 			}
 
 		}
+	}
+
+	/**
+	 * register the twitter user
+	 */
+	public function actionRegister()
+	{
+		$model=new SocialRegisterForm;
+
+		// if it is ajax validation request
+		if(isset($_POST['ajax']) && $_POST['ajax']==='register-form')
+		{
+			echo CActiveForm::validate($model);
+			app()->end();
+		} 
+
+		// collect user input data
+		if(isset($_POST['SocialRegisterForm']))
+		{
+			$model->attributes=$_POST['SocialRegisterForm'];
+			// validate user input and redirect to the previous page if valid
+			if($model->validate() && $model->registerTwitter())
+				$this->redirect(user()->returnUrl);
+		}
+		// display the register form
+		$this->render('//register/social',array('model'=>$model));
+	}
+
+	/**
+	 * set the register form action
+	 * @return string the url to which the form submit
+	 */
+	public function formAction()
+	{
+		return url('twitter/register');
 	}
 		
 	public function actionShow()

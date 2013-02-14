@@ -84,15 +84,6 @@ class RegisterForm extends CFormModel
 				$user->user_avatar=UserIdentity::generateGravatar($userEmail->user_email); 
 				$user->save();
 
-				// check user whether used twitter to register/login
-				// todo: need to move to somewhere else
-				if (!isset($_SESSION)) {
-					session_start();
-				}
-				if (isset($_SESSION['access_token'])) {
-					// the user used twitter login
-					$this->registerTwitterUser($user);
-				}
 				// automatically log the user in
 				$model=new LoginForm;
 				$model->user_name=$user->user_name;
@@ -106,28 +97,6 @@ class RegisterForm extends CFormModel
 		} else {
 			Yii::log('cannot register at this time', 'error', 'system.web.CFormModel');
 			return false;
-		}
-	}
-
-	/**
-	 * register the twitter user
-	 * @param $user the user instance
-	 */
-	private function registerTwitterUser($user)
-	{
-		$twitterUser = new TwitterUser;
-		$twitterUser->user_id = $user->primaryKey;
-		$twitterUser->twitter_id = $_SESSION['access_token']['user_id'];
-		$twitterUser->oauth_token = $_SESSION['access_token']['oauth_token'];
-		$twitterUser->oauth_secret = $_SESSION['access_token']['oauth_token_secret'];
-
-		if ($twitterUser->save()) {
-			// update the user profile pic
-			$user->user_avatar = $_SESSION['twitter_userdata']->profile_image_url;
-			if ($user->save()) {
-				// shoudl unset part only
-				unset($_SESSION['twitter_userdata']);
-			}
 		}
 	}
 }

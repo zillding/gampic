@@ -54,7 +54,7 @@ class UserTwitter extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'user' => array(self::HAS_ONE, 'User', 'user_id'),
+			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
 
@@ -65,19 +65,16 @@ class UserTwitter extends CActiveRecord
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
+	}
 
-		// $criteria=new CDbCriteria;
-
-		// $criteria->compare('user_provider',$this->user_provider,true);
-		// $criteria->compare('user_name',$this->user_name,true);
-		// $criteria->compare('user_email',$this->user_email,true);
-		// $criteria->compare('user_reg_date',$this->user_reg_date,true);
-
-		// return new CActiveDataProvider($this, array(
-		// 	'criteria'=>$criteria,
-		// ));
+	/**
+	 * validate the twitter id
+	 * @param string $twitterId
+	 * @return boolean
+	 */
+	public function validateTwitterId($twitterId)
+	{
+		return $this->twitter_id === $twitterId;
 	}
 
 }

@@ -1,22 +1,31 @@
 <?php
-/* @var $this TwitterController */
-/* @var $model RegisterForm */
+/* @var $this TwitterController or other social controller */
+/* @var $model RegisterUsernameForm */
 /* @var $form CActiveForm */
 
 $this->pageTitle = app()->name;
 
 ?>
 
+<?php $this->widget('bootstrap.widgets.TbAlert', array(
+	'block'=>true, // display a larger alert block?
+	'fade'=>true, // use transitions?
+	'closeText'=>'×', // close link text - if set to false, no close link is displayed
+	'alerts'=>array( // configurations per alert type
+		'success'=>array('block'=>true, 'fade'=>true, 'closeText'=>'×'), // success, info, warning, error or danger
+	),
+)); ?>
+
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id' => 'register-form',
-	'action' => $this->createUrl('register/register'),
+	'action' => $this->formAction(),
 	'enableAjaxValidation'=>true,
 	'htmlOptions'=>array('class'=>'well'),
 )); ?>
 
 	<legend>Just One More Step to Create Your Accout</legend>
 
-	<p class="text-info"><span class="label label-success">Success</span> Connected to Twitter as <strong><?php echo $_SESSION['access_token']['screen_name']; ?></strong></p><br>
+	<!-- <p class="text-info"><span class="label label-success">Success</span> Connected to Twitter as <strong><?php echo $_SESSION['access_token']['screen_name']; ?></strong></p><br> -->
 
 	<?php echo $form->errorSummary($model); ?>
 

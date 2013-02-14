@@ -102,11 +102,11 @@ Class Twitter
 	 * @param int $twitterId the user twitter id returned by twitter api
 	 * @return boolean whether the login is successful
 	 */
-	public function loginLocalUser($twitterId)
+	public static function login($twitterId)
 	{
-		$localUser = UserTwitter::model()->findByPk($twitterId)->user;
+		$user = UserTwitter::model()->findByPk($twitterId)->user;
 
-		$identity=new TwitterUserIdentity($localUser->user_name, $twitterId);
+		$identity=new TwitterUserIdentity($user->user_name, $twitterId);
 		$identity->authenticate();
 
 		if($identity->errorCode===TwitterUserIdentity::ERROR_NONE)

@@ -245,9 +245,9 @@ DROP TABLE IF EXISTS `tbl_user_twitter`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tbl_user_twitter` (
-  `active` int(2) NOT NULL DEFAULT '1',
   `twitter_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `active` int(2) NOT NULL DEFAULT '1',
   `oauth_token` varchar(127) NOT NULL,
   `oauth_secret` varchar(127) NOT NULL,
   PRIMARY KEY (`twitter_id`),
