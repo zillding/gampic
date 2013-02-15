@@ -19,9 +19,6 @@ $this->pageTitle=app()->name . ' - Login';
 			'action' => $this->createUrl('login'),
 			'enableClientValidation'=>true,
 			'htmlOptions'=>array('class'=>'well'),
-			'clientOptions'=>array(
-				'validateOnSubmit'=>true,
-			),
 		)); ?>
 
 			<legend>Gampic - Login</legend>
@@ -57,7 +54,7 @@ $this->pageTitle=app()->name . ' - Login';
 
 			<a href="/twitter" class="zocial twitter">Login with Twitter</a>
 			<br>
-			<a href="" class="zocial facebook">Login with Facebook</a>
+			<a href="/facebook" class="zocial facebook">Login with Facebook</a>
 			
 		</div>
 	</div>

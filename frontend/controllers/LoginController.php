@@ -6,6 +6,7 @@ class LoginController extends Controller
 	{
 		regCssFile('zocial');
 		regLessFile('form');
+		regJsFile('form');
 		parent::init();
 	}
 

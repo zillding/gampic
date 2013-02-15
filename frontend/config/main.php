@@ -59,15 +59,15 @@ return CMap::mergeArray(
 			'application.models.*'
 		),
 		// @see http://www.yiiframework.com/doc/api/1.1/CModule#setModules-detail
-		// 'modules' => array(
-		// 	'gii' => array(
-		// 		'class' => 'system.gii.GiiModule',
-		// 		'password' => 'gampic',
-		// 		'generatorPaths' => array(
-		// 			'bootstrap.gii'
-		// 		)
-		// 	)
-		// ),
+		'modules' => array(
+			'gii' => array(
+				'class' => 'system.gii.GiiModule',
+				'password' => 'gampic',
+				'generatorPaths' => array(
+					'bootstrap.gii'
+				)
+			)
+		),
 		'components' => array(
 			'user'=>array(
 				'allowAutoLogin' => true,

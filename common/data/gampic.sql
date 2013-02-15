@@ -1,4 +1,3 @@
-DROP DATABASE IF EXISTS `gampic`;
 CREATE DATABASE  IF NOT EXISTS `gampic` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `gampic`;
 -- MySQL dump 10.13  Distrib 5.5.24, for osx10.5 (i386)
@@ -212,6 +211,32 @@ INSERT INTO `tbl_user_email` VALUES (1,'zilld@hotmail.com');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tbl_user_facebook`
+--
+
+DROP TABLE IF EXISTS `tbl_user_facebook`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_user_facebook` (
+  `user_id` int(11) NOT NULL,
+  `active` int(2) NOT NULL DEFAULT '1',
+  `facebook_id` int(30) NOT NULL,
+  `access_token` varchar(127) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`user_id`),
+  CONSTRAINT `facebook_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_user_facebook`
+--
+
+LOCK TABLES `tbl_user_facebook` WRITE;
+/*!40000 ALTER TABLE `tbl_user_facebook` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_user_facebook` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tbl_user_gampic`
 --
 
@@ -247,7 +272,7 @@ DROP TABLE IF EXISTS `tbl_user_twitter`;
 CREATE TABLE `tbl_user_twitter` (
   `user_id` int(11) NOT NULL,
   `active` int(2) NOT NULL DEFAULT '1',
-  `twitter_id` int(11) NOT NULL,
+  `twitter_id` int(30) NOT NULL,
   `oauth_token` varchar(127) COLLATE utf8_bin NOT NULL,
   `oauth_secret` varchar(127) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`user_id`),
@@ -273,4 +298,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-02-14 20:18:21
+-- Dump completed on 2013-02-15 23:19:37

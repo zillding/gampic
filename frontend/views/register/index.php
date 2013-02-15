@@ -62,7 +62,7 @@ $this->pageTitle=Yii::app()->name . ' - Register';
 			
 			<a href="/twitter" class="zocial twitter">Register with Twitter</a>
 			<br>
-			<a href="" class="zocial facebook">Register with Facebook</a>
+			<a href="/facebook" class="zocial facebook">Register with Facebook</a>
 
 		</div>
 	</div>

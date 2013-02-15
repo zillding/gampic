@@ -68,4 +68,4 @@ should use relation query
 
 use cookie to store social info in order to login (cookie will store user profile info on the local machine which will cause security issue)
 
-should i assume each user has only one twitter account? i think should make this assumption
+the column container model should be refined
