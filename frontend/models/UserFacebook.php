@@ -1,30 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "tbl_user".
+ * This is the model class for table "tbl_user_facebook".
  *
- * The followings are the available columns in table 'tbl_user':
+ * The followings are the available columns in table 'tbl_user_facebook':
  * @property integer $user_id
  * @property integer $active
- * @property string $user_name
- * @property string $user_reg_time
- * @property string $user_avatar
+ * @property integer $facebook_id
+ * @property string $access_token
  *
  * The followings are the available model relations:
- * @property Comment[] $comments
- * @property Image[] $images
- * @property Image[] $tblImages
- * @property UserEmail $userEmail
- * @property UserFacebook $userFacebook
- * @property UserGampic $userGampic
- * @property UserTwitter $userTwitter
+ * @property User $user
  */
-class User extends CActiveRecord
+class UserFacebook extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return User the static model class
+	 * @return UserFacebook the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -36,7 +29,7 @@ class User extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'tbl_user';
+		return 'tbl_user_facebook';
 	}
 
 	/**
@@ -47,13 +40,12 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_reg_time, user_avatar', 'required'),
-			array('active', 'numerical', 'integerOnly'=>true),
-			array('user_name', 'length', 'max'=>25),
-			array('user_avatar', 'length', 'max'=>127),
+			array('user_id, facebook_id, access_token', 'required'),
+			array('user_id, active, facebook_id', 'numerical', 'integerOnly'=>true),
+			array('access_token', 'length', 'max'=>127),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('user_id, active, user_name, user_reg_time, user_avatar', 'safe', 'on'=>'search'),
+			array('user_id, active, facebook_id, access_token', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,13 +57,7 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'comments' => array(self::HAS_MANY, 'Comment', 'user_id'),
-			'images' => array(self::HAS_MANY, 'Image', 'user_id'),
-			'tblImages' => array(self::MANY_MANY, 'Image', 'tbl_like(user_id, image_id)'),
-			'userEmail' => array(self::HAS_ONE, 'UserEmail', 'user_id'),
-			'userFacebook' => array(self::HAS_ONE, 'UserFacebook', 'user_id'),
-			'userGampic' => array(self::HAS_ONE, 'UserGampic', 'user_id'),
-			'userTwitter' => array(self::HAS_ONE, 'UserTwitter', 'user_id'),
+			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
 
@@ -83,9 +69,8 @@ class User extends CActiveRecord
 		return array(
 			'user_id' => 'User',
 			'active' => 'Active',
-			'user_name' => 'User Name',
-			'user_reg_time' => 'User Reg Time',
-			'user_avatar' => 'User Avatar',
+			'facebook_id' => 'Facebook',
+			'access_token' => 'Access Token',
 		);
 	}
 
@@ -102,9 +87,8 @@ class User extends CActiveRecord
 
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('active',$this->active);
-		$criteria->compare('user_name',$this->user_name,true);
-		$criteria->compare('user_reg_time',$this->user_reg_time,true);
-		$criteria->compare('user_avatar',$this->user_avatar,true);
+		$criteria->compare('facebook_id',$this->facebook_id);
+		$criteria->compare('access_token',$this->access_token,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
