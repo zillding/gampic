@@ -118,27 +118,6 @@ class TwitterController extends Controller
 	{
 		return url('twitter/register');
 	}
-		
-	public function actionShow()
-	{
-		if (!isset($_SESSION)) {
-			session_start();
-		}
-		// session_start();
-		Helper::pprint($_SESSION);
-	}
-
-	public function actionEnd()
-	{
-		if (!isset($_SESSION)) {
-			session_start();
-		}
-		// session_start();
-		// Helper::ddie($_SESSION['oauth']);
-		session_destroy();
-		print 'session cleared';
-		// header('Location: '.app()->homeUrl.'register');
-	}
 
 	public function filters()
 	{

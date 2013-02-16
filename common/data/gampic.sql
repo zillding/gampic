@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS `gampic`;
 CREATE DATABASE  IF NOT EXISTS `gampic` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `gampic`;
 -- MySQL dump 10.13  Distrib 5.5.24, for osx10.5 (i386)
@@ -220,7 +221,7 @@ DROP TABLE IF EXISTS `tbl_user_facebook`;
 CREATE TABLE `tbl_user_facebook` (
   `user_id` int(11) NOT NULL,
   `active` int(2) NOT NULL DEFAULT '1',
-  `facebook_id` int(30) NOT NULL,
+  `facebook_id` bigint(30) NOT NULL,
   `access_token` varchar(127) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `facebook_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`)
@@ -272,7 +273,7 @@ DROP TABLE IF EXISTS `tbl_user_twitter`;
 CREATE TABLE `tbl_user_twitter` (
   `user_id` int(11) NOT NULL,
   `active` int(2) NOT NULL DEFAULT '1',
-  `twitter_id` int(30) NOT NULL,
+  `twitter_id` bigint(30) NOT NULL,
   `oauth_token` varchar(127) COLLATE utf8_bin NOT NULL,
   `oauth_secret` varchar(127) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`user_id`),

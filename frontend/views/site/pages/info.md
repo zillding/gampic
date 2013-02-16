@@ -70,4 +70,4 @@ use cookie to store social info in order to login (cookie will store user profil
 
 the column container model should be refined
 
-facebook model
+mysql bigint type

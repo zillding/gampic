@@ -4,61 +4,90 @@ class FacebookController extends Controller
 {
 	public function actionIndex()
 	{
-		// Yii::import('ext.facebook-php-sdk.*');
-		// $facebook = new Facebook(array(
-		// 	'appId' => '443841368996612',
-		// 	'secret' => 'c564e63b5acabc29ec2360f3f97eb452',
-		// ));
+		$model = new FB;
 
-		// // get user ID
-		// $user = $facebook->getUser();
+		if ($model->isGuest) {
+			// the user hasn't logged in facebook yet
+			$model->FBlogin();
+		} else {
+			// Helper::ddie($_SESSION);
+			$facebookId = $model->getFacebookId();
+			$facebookName = $model->getFacebookName();
+			// the user has alr logged in facebook and authorized the app
+			// need to check whether the user has alr registered in the local
+			// db by verifying the fb id
+			if ($model->verifyUser($facebookId)) {
+				// user has registered before
+				// login the user
+				if ($model->login($facebookId)) {
+					$this->redirect('/');
+				} else {
+					// error
+					Yii::log('cannot login local user now', 'error', 'system.web.CController');
+				}
+			} else {
+				// first time sign in with fb
+				// first time sign in with facebook
+				user()->setFlash('success', '<strong>Well done!</strong> You successfully connected to <strong>Facebook</strong> as <strong>'.$facebookName.'</strong>');
+				// ask the user to select a user name
+				$this->render('//register/social', array('model'=>new SocialRegisterForm));
+			}
+			
+		}
+	}
 
-		// if ($user) {
-		// 	try {
-		// 		// proceed knowing you have a logged in user who's authenticated.
-		// 		$user_profile = $facebook->api('/me');
-		// 		// Helper::ddie($user_profile);
-		// 	} catch (FacebookApiException $e) {
-		// 		Yii::log($e, 'error', 'system.web.CController');
-		// 		$user = null;
-		// 	}
-		// }	
+	/**
+	 * register the facebook user
+	 */
+	public function actionRegister()
+	{
+		$model=new SocialRegisterForm;
 
-		// if ($user) {
-		// 	$logoutUrl = $facebook->getLogoutUrl();
-		// 	// Helper::ddie('logout: '.$logoutUrl);
-		// } else {
-		// 	$loginUrl = $facebook->getLoginUrl();
-		// 	// header('Location: '.$loginUrl);
-		// }
+		// if it is ajax validation request
+		if(isset($_POST['ajax']) && $_POST['ajax']==='register-form')
+		{
+			echo CActiveForm::validate($model);
+			app()->end();
+		} 
 
-		$this->render('index');
+		// collect user input data
+		if(isset($_POST['SocialRegisterForm']))
+		{
+			$model->attributes=$_POST['SocialRegisterForm'];
+			// validate user input and redirect to the previous page if valid
+			if($model->validate() && $model->registerFacebook())
+				$this->redirect(user()->returnUrl);
+		}
+		// display the register form
+		$this->render('//register/social',array('model'=>$model));
+	}
+
+	/**
+	 * set the register form action
+	 * @return string the url to which the form submit
+	 */
+	public function formAction()
+	{
+		return url('facebook/register');
 	}
 
 	// Uncomment the following methods and override them if needed
-	/*
 	public function filters()
 	{
 		// return the filter configuration for this controller, e.g.:
 		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
+			'accessControl',
+		);
+	}
+
+	public function accessRules()
+	{
+		return array(
+			array('deny',
+				'actions' => array('index'),
+				'users' => array('@'),
 			),
 		);
 	}
 
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-	*/
 }

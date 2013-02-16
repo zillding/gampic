@@ -4,6 +4,7 @@
 /* @var $form CActiveForm */
 
 $this->pageTitle = app()->name;
+regJsFile('form');
 
 ?>
 
@@ -24,8 +25,6 @@ $this->pageTitle = app()->name;
 )); ?>
 
 	<legend>Just One More Step to Create Your Accout</legend>
-
-	<!-- <p class="text-info"><span class="label label-success">Success</span> Connected to Twitter as <strong><?php echo $_SESSION['access_token']['screen_name']; ?></strong></p><br> -->
 
 	<?php echo $form->errorSummary($model); ?>
 

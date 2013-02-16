@@ -94,4 +94,12 @@ class UserFacebook extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	/**
+	 * validate the user based on the facebook id
+	 */
+	public function validateFacebookId($facebookId)
+	{
+		return $this->facebook_id == $facebookId;
+	}
 }
