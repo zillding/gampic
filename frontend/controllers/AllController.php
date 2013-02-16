@@ -2,7 +2,8 @@
 
 class AllController extends Controller
 {
-	private $_category='';
+	private $_loadLink = '/all/load';
+	private $_category = '';
 
 	public function actionIndex()
 	{
@@ -20,12 +21,39 @@ class AllController extends Controller
 		} else {
 			// validate category and route
 			if ($this->isValidCategory($category)) {
-				// Helper::print_arr($this->_category);
 				$this->render('index');
 			} else {
 				throw new CHttpException(400, 'bad request. unidentified category: '.$category);
 			}
 			
+		}
+	}
+
+	/**
+	 * load more images
+	 */
+	public function actionLoad()
+	{
+		// the category var here is the code representation
+		// which should be an integer
+		$category = r()->getPost("category"); 
+		$category = isset($category) ? $category : "";
+		$page = r()->getPost("page");
+		$page = isset($page) ? $page : 0;
+		if (TypeValidator::isInt($page)) {
+			// need to pass in a page param
+			// url: columnContainer/load/?page=2
+			// load some images
+			$model = new All($category);
+			if ($model->hasMore($page)) {
+				// there are un-displayed images
+				echo $model->load($page);
+			} else {
+				// no more images to display
+				echo $this->renderPartial('//columnContainer/_noMore', array(), true);
+			}
+		} else {
+			throw new CHttpException(400, 'bad request. unidentified param page: '.$page);
 		}
 	}
 
@@ -49,9 +77,7 @@ class AllController extends Controller
 	{
 		// create a column container controller to manage this section
 		$columnContainer = new ColumnContainerController('columnContainer');
-		// the category passed is in the int form
-		// if the category is "all", an empty string will be passed
-		$columnContainer->initialize($this->_category);
+		$columnContainer->initialize($this->_loadLink, array('category'=>$this->_category));
 	}
 
 	/**
@@ -71,7 +97,7 @@ class AllController extends Controller
 			'condition' => 'type=:type',
 			'params' => array(':type'=>'ImageCategory'))
 			) as $record) {
-			if (preg_match('/^'.$record['name'].'$/i', $category)) {
+			if (preg_match('/^'.$record->name.'$/i', $category)) {
 				// set the category to the corresponding code instead of name
 				$this->_category = $record['code'];
 				return true;

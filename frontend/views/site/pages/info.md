@@ -66,8 +66,8 @@ need to fix the access rule for login with twitter
 
 should use relation query
 
-use cookie to store social info in order to login (cookie will store user profile info on the local machine which will cause security issue)
-
 the column container model should be refined
 
 mysql bigint type
+
+refine the column container and all controller & model

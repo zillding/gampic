@@ -1,8 +1,9 @@
 // define the columnContainer class
 // note: for this class, everything has to be global, that why use this pattern
 var ColumnContainer = {
-	category : "", // the image category
-	loadLink : "/columnContainer/load",
+	loadLink : "",
+	params : {},
+
 	selector : "#columnContainer",  // define the container
 	itemSelector : ".block", // define the items need to be arranged
 	noMoreSelector: "#noMore",
@@ -20,8 +21,7 @@ var ColumnContainer = {
 				// display the loader
 				loader.fadeIn();
 				// waypoint reached, load next page
-				ColumnContainer.page++;
-				params = (ColumnContainer.category == "") ? "page="+ColumnContainer.page : "category="+ColumnContainer.category+"&page="+ColumnContainer.page;
+				params = $.extend(ColumnContainer.params, {page:++ColumnContainer.page});
 				ColumnContainer.load(ColumnContainer.loadLink, params, false, ColumnContainer.finishLoad);
 			};
 		}, {
@@ -53,7 +53,6 @@ var ColumnContainer = {
 			beforeShow: function () {
 				title = this.title;
 				if (this.title) {
-					console.log(this.href);
 					// New line
 					this.title += '<br /><div class="social" style="margin-top:5px;">';
 
@@ -90,12 +89,12 @@ var ColumnContainer = {
 	/**
 	 * load pictures
 	 * @param  {string} url the link which the ajax send request to in order to get data
-	 * @param  {plain object/string} data the data that is sent to the server with the request
+	 * @param  {plain object/string} params the params that is sent to the server with the request
 	 * @param  {boolean} newFlag whether this is the first time to load images
 	 * @param  {function} callback the call back function
 	 */
-	load : function(url, data, newFlag, callback) {
-		$("<div class=\'chunk\' />").load(url, data, function(){
+	load : function(url, params, newFlag, callback) {
+		$("<div class=\'chunk\' />").load(url, params, function(){
 			$(this).appendTo($(ColumnContainer.selector));
 			// remove the loader
 			ColumnContainer.loader.fadeOut();
@@ -118,7 +117,6 @@ var ColumnContainer = {
 		var itemSelector = (typeof itemSelector === "undefined") ? ColumnContainer.itemSelector : itemSelector;
 		ColumnContainer.blocks = []; // reset the array
 		ColumnContainer.colWidth = $(ColumnContainer.itemSelector).outerWidth(); // get the column width
-		//console.log('now starting to set up blocks!!');
 		var windowWidth = $(ColumnContainer.selector).width(); // get the page width
 		var colCount = Math.floor((windowWidth+15)/(ColumnContainer.colWidth+ColumnContainer.margin)); // calculate the number of columns
 		ColumnContainer.spaceLeft = (windowWidth - ((ColumnContainer.colWidth*colCount)+(ColumnContainer.margin*(colCount-1)))) / 2;
@@ -153,14 +151,11 @@ var ColumnContainer = {
 		$(ColumnContainer.itemSelector).show("slow");
 	},
 
-	start : function(category) {
-		this.category = category;
+	start : function(loadLink, params) {
+		this.loadLink = loadLink;
+		this.params = params;
 
-		if (category == "") {
-			ColumnContainer.load(ColumnContainer.loadLink, "", true, ColumnContainer.finishLoad);
-		} else{
-			ColumnContainer.load(ColumnContainer.loadLink, "category="+category, true, ColumnContainer.finishLoad);
-		};
+		ColumnContainer.load(loadLink, params, true, ColumnContainer.finishLoad);
 
 		// create an event to detect whether the window has done resizing
 		$(window).resize(function() {

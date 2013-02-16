@@ -1,21 +1,19 @@
 <?php
 /**
- * column container model
+ * all model
  */
 
-class ColumnContainer
+class All
 {
-	private $_loadImagesNumber;
+	// the category code which is the integer
 	private $_category;
 
 	/**
 	 * initiate the conlumn contailer
-	 * add necessary client scripts
 	 */
-	public function __construct($category, $loadNumber=15)
+	public function __construct($category)
 	{
 		$this->_category = $category;
-		$this->_loadImagesNumber = $loadNumber;
 	}
 
 	/**
@@ -27,7 +25,7 @@ class ColumnContainer
 	{
 		// have to take the condition into consideration
 		$condition = empty($this->_category) ? "" : 'image_category='.$this->_category;
-		return (Image::model()->count($condition) - $page * $this->_loadImagesNumber) > 0;
+		return (Image::model()->count($condition) - $page * ColumnContainerController::LOAD_IMAGE_NUMBER) > 0;
 	}
 
 	/**
@@ -46,8 +44,8 @@ class ColumnContainer
 		$criteria = new CDbCriteria(array(
 			'condition' => $condition,
 			'order' => 'image_upload_time DESC',
-			'limit' => $this->_loadImagesNumber,
-			'offset' => $page * $this->_loadImagesNumber
+			'limit' => ColumnContainerController::LOAD_IMAGE_NUMBER,
+			'offset' => $page * ColumnContainerController::LOAD_IMAGE_NUMBER
 		));
 		$result = $model->findAll($criteria);
 		foreach ($result as $record) {

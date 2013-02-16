@@ -56,7 +56,7 @@ class TwitterController extends Controller
 						
 					} else {
 						// first time sign in with twitter
-						user()->setFlash('success', '<strong>Well done!</strong> You successfully connected to Twitter as <strong>'.$_SESSION['access_token']['screen_name'].'</strong>');
+						user()->setFlash('success', '<strong>Well done!</strong> You successfully connected to <strong>Twitter</strong> as <strong>'.$_SESSION['access_token']['screen_name'].'</strong>');
 						// ask the user to select a user name
 						$this->render('//register/social', array('model'=>new SocialRegisterForm));
 						// Helper::pprint($_SESSION);

@@ -2,50 +2,24 @@
 
 class ColumnContainerController extends Controller
 {
+	const LOAD_IMAGE_NUMBER = 15;
 
 	/**
 	 * initialize the column container
+	 * @param  string $loadLink the load link which the js will call
+	 * @param  array $params the params the js will call with the link
 	 */
-	public function initialize($category)
+	public function initialize($loadLink, $params)
 	{
 		// load some images
-		$model=new ColumnContainer($category);
 		$this->addClientScripts();
 		// need to pass the $category to javascript
 		cs()->registerScript('startColumnContainer', 
 			'$(function() {
-				ColumnContainer.start("'.$category.'");
+				ColumnContainer.start("'.$loadLink.'", '.je($params).');
 			})', CClientScript::POS_END);
 
 		$this->renderPartial('index'); // render the column container, filled later buy actionLoad
-	}
-
-	/**
-	 * load the column container
-	 * print the html of the loaded structure
-	 */
-	public function actionLoad()
-	{
-		$category = r()->getQuery("category"); // the category var here is the int representation
-		$category = isset($category) ? $category : "";
-		$page = r()->getQuery("page");
-		$page = isset($page) ? $page : 0;
-		if (TypeValidator::isInt($page)) {
-			// need to pass in a page param
-			// url: columnContainer/load/?page=2
-			// load some images
-			$model = new ColumnContainer($category);
-			if ($model->hasMore($page)) {
-				// there are un-displayed images
-				echo $model->load($page);
-			} else {
-				// no more images to display
-				echo $this->renderPartial('_noMore', array(), true);
-			}
-		} else {
-			throw new CHttpException(400, 'bad request. unidentified param page: '.$page);
-		}
-		
 	}
 
 	/**
