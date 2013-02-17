@@ -93,9 +93,8 @@ Class FB
 		$user = UserFacebook::model()->find('facebook_id=?', array($facebookId))->user;
 
 		$identity=new FacebookUserIdentity($user->user_name, $facebookId);
-		$identity->authenticate();
 
-		if($identity->errorCode===FacebookUserIdentity::ERROR_NONE)
+		if($identity->authenticate())
 		{
 			user()->login($identity,0);
 			return true;

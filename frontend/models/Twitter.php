@@ -107,9 +107,8 @@ Class Twitter
 		$user = UserTwitter::model()->find('twitter_id=?', array($twitterId))->user;
 
 		$identity=new TwitterUserIdentity($user->user_name, $twitterId);
-		$identity->authenticate();
 
-		if($identity->errorCode===TwitterUserIdentity::ERROR_NONE)
+		if($identity->authenticate())
 		{
 			user()->login($identity,0);
 			return true;
