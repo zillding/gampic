@@ -42,3 +42,8 @@ regJsFile('form');
 
 <?php $this->endWidget(); ?>
 
+<script type="text/javascript">
+	$(function() {
+		$("#register-form input[type=text]")[0].focus();
+	})
+</script>

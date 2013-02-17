@@ -54,10 +54,11 @@ class BlockController extends Controller
 			if (TypeValidator::isInt($id)) {
 				if ($model = new Block($id)) {
 					if($model->comment($id)) {
+						$user = Image::model()->findByPk($id)->user;
 						$arr = array(
-							'user_name'=>User::model()->findByPk(Image::model()->findByPk($id)->user_id)->user_name,
-							'user_avatar'=>user()->avatar,
-							'comment'=>$model->latestComment
+							'user_name' => $user->user_name,
+							'user_avatar' => $user->user_avatar,
+							'comment' => $model->latestComment
 							);
 						echo je($arr); // 'je' is short for json_encode
 					}
