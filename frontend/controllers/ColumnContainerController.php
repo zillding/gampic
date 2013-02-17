@@ -49,6 +49,8 @@ class ColumnContainerController extends Controller
 		regJsFile(array('jquery.fancybox.pack','jquery.fancybox-buttons'), bu('plugins/fancybox'));
 		// twitter button
 		regJsFile('twitter', bu('plugins/twitter'));
+		// facebook like button
+		regJsFile('facebook', bu('plugins/facebook'), CClientScript::POS_BEGIN);
 	}
 
 	// Uncomment the following methods and override them if needed

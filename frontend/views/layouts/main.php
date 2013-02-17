@@ -11,6 +11,8 @@
 
 <body>
 
+<?php $this->renderPartial('//layouts/_facebook') ?>
+
 <?php $this->renderPartial('//layouts/_header') ?>
 
 <div class="container" style="margin-top:60px">

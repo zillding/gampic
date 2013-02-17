@@ -30,11 +30,8 @@
 		if (!isset($_SESSION)) {
 			session_start();
 		}
-		// session_start();
-		// Helper::ddie($_SESSION['oauth']);
 		session_destroy();
 		print 'session cleared';
-		// header('Location: '.app()->homeUrl.'register');
 	}
 
 }

@@ -53,6 +53,7 @@ var ColumnContainer = {
 			beforeShow: function () {
 				title = this.title;
 				if (this.title) {
+					console.log(this.href);
 					// New line
 					this.title += '<br /><div class="social" style="margin-top:5px;">';
 
@@ -60,7 +61,7 @@ var ColumnContainer = {
 					this.title += '<a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-text="Check out an awesome image at Gampic! ' + title + '" data-url="http://gampic.com' + this.href + '">Tweet</a>';
 
 					// Add FaceBook like button
-					this.title += '<iframe src="//www.facebook.com/plugins/like.php?href=' + this.href + '&amp;layout=button_count&amp;show_faces=true&amp;width=500&amp;action=like&amp;font&amp;colorscheme=light&amp;height=23" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:23px; margin-left:20px;" allowTransparency="true"></iframe></div>';
+					this.title += '<div class="fb-like" data-href="http://gampic.com' + this.href + '" data-send="false" data-layout="button_count" data-width="500" data-show-faces="true"></div><script>$(function() {FB.XFBML.parse();})</script>';
 				}
 			},
 			afterShow: function() {
