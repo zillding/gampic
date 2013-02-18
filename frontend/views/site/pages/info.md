@@ -70,4 +70,4 @@ the column container model should be refined
 
 mysql bigint type
 
-should use IUserIdentity for checking user identity for facebook and twitter login
+use 'fixed' positioning

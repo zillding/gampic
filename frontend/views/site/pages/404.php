@@ -1,3 +1,7 @@
+<?php
+/* @var $this SiteController */
+/* @var $errorMessage the error message */
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -143,8 +147,9 @@
         <div class="container">
             <h1>Not found <span>:(</span></h1>
             <p>Sorry, but the page you were trying to view does not exist.</p>
-            <p>It looks like this was the result of either:</p>
+            <p>Possible reason:</p>
             <ul>
+                <li><?php echo $errorMessage; ?></li>
                 <li>a mistyped address</li>
                 <li>an out-of-date link</li>
             </ul>

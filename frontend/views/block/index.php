@@ -10,7 +10,7 @@
 
 <div class="block">
 	<div class="topButtonArea">
-		<button class="btn btn-small topButtons shareButton" data-id="<?php echo $model->imageId; ?>"><i class="icon-share"></i> Share</button>
+		<!-- <button class="btn btn-small topButtons shareButton" data-id="<?php echo $model->imageId; ?>"><i class="icon-share"></i> Share</button> -->
 		<?php $model->displayLikeButton(); ?>
 	</div>
 	<div class="blockHolder" style="height: <?php echo $model->thumbHeight; ?>px">

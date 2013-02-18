@@ -152,6 +152,11 @@ var ColumnContainer = {
 		$(ColumnContainer.itemSelector).show("slow");
 	},
 
+	/**
+	 * the entry function for a column container
+	 * @param  {string} loadLink the link later the loader will keep calling
+	 * @param  {object} params   the json object represent the params sent with the request
+	 */
 	start : function(loadLink, params) {
 		this.loadLink = loadLink;
 		this.params = params;

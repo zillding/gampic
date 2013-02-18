@@ -45,7 +45,7 @@ class SiteController extends Controller
 				echo $error['message'];
 			else {
 				if ($error['code'] == 404) {
-					$this->renderPartial('pages/404');
+					$this->renderPartial('pages/404', array('errorMessage'=>$error['message']));
 				} else {
 					$this->render('error', $error);
 				}

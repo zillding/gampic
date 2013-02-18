@@ -46,10 +46,9 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
 					'items' => array(
 						array('label' => 'Invite Friends', 'url' => '#'),
 						'---',
-						array('label' => 'Uploaded', 'url' => '#'),
-						array('label' => 'Likes', 'url' => '#'),
+						array('label' => 'Dashboard', 'url' => array('/dashboard')),
 						'---',
-						array('label' => 'Settings', 'url' => '#'),
+						array('label' => 'Settings', 'url' => '/settings'),
 						array('label' => 'Logout', 'url' => array('/site/logout'), 'visible' => !user()->isGuest),
 					)
 				),
