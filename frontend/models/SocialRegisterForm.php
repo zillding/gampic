@@ -60,7 +60,7 @@ class SocialRegisterForm extends CFormModel
 
 			if ($twitterUser->save()) {
 				// update the user profile pic
-				$user->user_avatar = $_SESSION['twitter_userdata']->profile_image_url;
+				$user->user_avatar = 'https://api.twitter.com/1/users/profile_image?screen_name='.$_SESSION['access_token']['screen_name'].'&size=bigger';
 				if ($user->save()) {
 					// shoudl unset part only
 					// unset($_SESSION['twitter_userdata']);
@@ -96,7 +96,7 @@ class SocialRegisterForm extends CFormModel
 
 			if ($facebookUser->save()) {
 				// update the user profile pic
-				$user->user_avatar = 'http://graph.facebook.com/'.$_SESSION['userProfile']['username'].'/picture';
+				$user->user_avatar = 'http://graph.facebook.com/'.$_SESSION['userProfile']['username'].'/picture?width=100&height=100';
 				if ($user->save()) {
 					return FB::login($facebookUser->facebook_id);
 				}

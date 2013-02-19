@@ -12,6 +12,12 @@
 
 		<div class="span8 userInfo">
 			<h1><?php echo $user->user_name; ?></h1>
+			<?php if ($user->userTwitter) : ?>
+				<a href="<?php echo "https://twitter.com/intent/user?user_id=".$user->userTwitter->twitter_id; ?>" class="zocial twitter icon">Twitter</a>
+			<?php endif; ?>
+			<?php if ($user->userFacebook) : ?>
+				<a href="<?php echo "https://www.facebook.com/profile.php?id=".$user->userFacebook->facebook_id; ?>" class="zocial facebook icon">Facebook</a>
+			<?php endif; ?>
 		</div>
 	</div>
 </div>

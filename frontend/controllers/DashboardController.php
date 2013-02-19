@@ -2,12 +2,13 @@
 
 class DashboardController extends Controller
 {
-	public $user;
+	public $user; // the user cactiverecord in the db table tbl_user
 
 	public function init()
 	{
 		regJsFile('dashboard');
 		regLessFile('dashboard');
+		regCssFile('zocial');
 		if (!user()->isGuest) {
 			$this->user = User::model()->findByPk(user()->id);
 		}

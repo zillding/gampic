@@ -182,7 +182,7 @@ CREATE TABLE `tbl_user` (
 
 LOCK TABLES `tbl_user` WRITE;
 /*!40000 ALTER TABLE `tbl_user` DISABLE KEYS */;
-INSERT INTO `tbl_user` VALUES (1,1,'zill','2013-01-16 18:00:34','http://www.gravatar.com/avatar/b24cbc7aa65df505f98c08dc3786e27a?s=30');
+INSERT INTO `tbl_user` VALUES (1,1,'zill','2013-01-16 18:00:34','http://www.gravatar.com/avatar/b24cbc7aa65df505f98c08dc3786e27a?s=100');
 /*!40000 ALTER TABLE `tbl_user` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -38,6 +38,6 @@ class UserIdentity extends CUserIdentity
 	public static function generateGravatar($email)
 	{
 		$userEmailHash = md5(strtolower(trim($email)));
-		return 'http://www.gravatar.com/avatar/'.$userEmailHash.'?s=30';
+		return 'http://www.gravatar.com/avatar/'.$userEmailHash.'?s=100';
 	}
 }

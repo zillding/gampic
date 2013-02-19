@@ -73,14 +73,13 @@ class Dashboard
 	public function loadLikes($page=0)
 	{
 		$blocks = '';
-		$model = Image::model();
+		$model = Like::model();
 
 		$condition = 'user_id='.$this->_user->user_id;
 		$totalItems = $model->count($condition);
 
 		$criteria = new CDbCriteria(array(
 			'condition' => $condition,
-			'order' => 'image_upload_time DESC',
 			'limit' => ColumnContainerController::LOAD_IMAGE_NUMBER,
 			'offset' => $page * ColumnContainerController::LOAD_IMAGE_NUMBER
 		));
