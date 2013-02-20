@@ -17,8 +17,9 @@ $this->pageTitle=Yii::app()->name . ' - Register';
 			'id'=>'register-form',
 			'action' => $this->createUrl('register'),
 			'enableClientValidation'=>true,
-			'enableAjaxValidation'=>true,
-			'htmlOptions'=>array('class'=>'well'),
+			'clientOptions' => array('validateOnSubmit'=>true),
+			'enableAjaxValidation' => true,
+			'htmlOptions' => array('class'=>'well'),
 		)); ?>
 
 			<legend>Gampic - Register</legend>

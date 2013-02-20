@@ -138,7 +138,7 @@ class DashboardController extends Controller
 
 		if (!user()->isGuest) {
 			if (user()->name == $this->user->user_name) {
-				$editProfileButton = '<a class="btn btn-inverse pull-right editProfile">Edit Profile</a>';
+				$editProfileButton = '<a  href="/settings" class="btn btn-inverse pull-right editProfile">Edit Profile</a>';
 			}
 		}
 

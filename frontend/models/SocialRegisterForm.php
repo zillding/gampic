@@ -96,7 +96,7 @@ class SocialRegisterForm extends CFormModel
 
 			if ($facebookUser->save()) {
 				// update the user profile pic
-				$user->user_avatar = 'http://graph.facebook.com/'.$_SESSION['userProfile']['username'].'/picture?width=100&height=100';
+				$user->user_avatar = 'https://graph.facebook.com/'.$_SESSION['userProfile']['username'].'/picture?width=100&height=100';
 				if ($user->save()) {
 					return FB::login($facebookUser->facebook_id);
 				}

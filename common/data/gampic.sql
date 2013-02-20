@@ -122,7 +122,7 @@ CREATE TABLE `tbl_lookup` (
   `type` varchar(128) COLLATE utf8_bin NOT NULL,
   `position` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,7 +131,7 @@ CREATE TABLE `tbl_lookup` (
 
 LOCK TABLES `tbl_lookup` WRITE;
 /*!40000 ALTER TABLE `tbl_lookup` DISABLE KEYS */;
-INSERT INTO `tbl_lookup` VALUES (1,'Warcraft',1,'ImageCategory',1),(2,'Starcraft',2,'ImageCategory',2),(3,'Diablo',3,'ImageCategory',3),(4,'Other',4,'ImageCategory',4);
+INSERT INTO `tbl_lookup` VALUES (1,'Warcraft',1,'ImageCategory',1),(2,'Starcraft',2,'ImageCategory',2),(3,'Diablo',3,'ImageCategory',3),(4,'Other',4,'ImageCategory',4),(5,'Male',0,'Gender',1),(6,'Female',1,'Gender',2),(7,'Unspecified',2,'Gender',3);
 /*!40000 ALTER TABLE `tbl_lookup` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,7 +173,7 @@ CREATE TABLE `tbl_user` (
   `user_reg_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_avatar` varchar(127) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,7 +182,7 @@ CREATE TABLE `tbl_user` (
 
 LOCK TABLES `tbl_user` WRITE;
 /*!40000 ALTER TABLE `tbl_user` DISABLE KEYS */;
-INSERT INTO `tbl_user` VALUES (1,1,'zill','2013-01-16 18:00:34','http://www.gravatar.com/avatar/b24cbc7aa65df505f98c08dc3786e27a?s=100');
+INSERT INTO `tbl_user` VALUES (1,1,'zill','2013-01-16 18:00:34','http://www.gravatar.com/avatar/b24cbc7aa65df505f98c08dc3786e27a?s=100'),(2,1,'zillding','2013-02-19 14:45:08','https://api.twitter.com/1/users/profile_image?screen_name=ZillDing&size=bigger'),(3,1,'zeyu','2013-02-19 14:46:26','https://graph.facebook.com/zeyu.ding.1/picture?width=100&height=100');
 /*!40000 ALTER TABLE `tbl_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,6 +234,7 @@ CREATE TABLE `tbl_user_facebook` (
 
 LOCK TABLES `tbl_user_facebook` WRITE;
 /*!40000 ALTER TABLE `tbl_user_facebook` DISABLE KEYS */;
+INSERT INTO `tbl_user_facebook` VALUES (3,1,100000136341114,'AAAGTq98iuwQBAHUaqhkMe1ZAMsyYFJcRWYaY4HThRnPmgZBrl1MqlyupWiUpEOndIJjPSXk6m7hV9UaDlspzhATQSrHweNvb4XSjNp2gZDZD');
 /*!40000 ALTER TABLE `tbl_user_facebook` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -287,6 +288,7 @@ CREATE TABLE `tbl_user_twitter` (
 
 LOCK TABLES `tbl_user_twitter` WRITE;
 /*!40000 ALTER TABLE `tbl_user_twitter` DISABLE KEYS */;
+INSERT INTO `tbl_user_twitter` VALUES (2,1,422370197,'422370197-5qHnRHu2Lejxw1dblHuxaAfwnEqajKRgTofcGA0k','h41lyAthMaTidJvEwHCRWCp6dxZcpGTX49bEMuv3jk');
 /*!40000 ALTER TABLE `tbl_user_twitter` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -299,4 +301,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-02-15 23:19:37
+-- Dump completed on 2013-02-20 16:05:33

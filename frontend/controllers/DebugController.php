@@ -5,6 +5,9 @@
 {
 	public function actionIndex()
 	{
+		print_r(array_keys(Lookup::items('ImageCategory')));
+		print_r(array_keys(Lookup::items('Gender')));
+
 		if (!isset($_SESSION)) {
 			session_start();
 		}

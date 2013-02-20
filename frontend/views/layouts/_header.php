@@ -41,7 +41,7 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
 			'class' => 'bootstrap.widgets.TbMenu',
 			'htmlOptions' => array('class' => 'pull-right'),
 			'items' => array(
-				array('label' => user()->name.'('.user()->id.')',
+				array('label' => user()->name,
 					'visible' => !user()->isGuest,
 					'items' => array(
 						array('label' => 'Invite Friends', 'url' => '#'),
