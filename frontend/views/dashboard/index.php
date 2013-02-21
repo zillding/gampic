@@ -4,6 +4,8 @@
 
 ?>
 
+<?php $this->widget('bootstrap.widgets.TbAlert'); ?>
+
 <div class="well well-large profilePanel">
 	<div class="row-fluid">
 		<div class="span4 userAvatar">

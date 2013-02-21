@@ -61,9 +61,12 @@ $this->pageTitle=Yii::app()->name . ' - Register';
 		<div class="span6">
 			<p class="lead text-info"><span class="label label-info">Info</span> or you can</p>
 			
-			<a href="/twitter" class="zocial twitter">Register with Twitter</a>
-			<br>
-			<a href="/facebook" class="zocial facebook">Register with Facebook</a>
+			<div class="zocial-row">
+				<a href="/twitter" class="zocial twitter">Register with Twitter</a>
+			</div>
+			<div class="zocial-row">
+				<a href="/facebook" class="zocial facebook">Register with Facebook</a>
+			</div>
 
 		</div>
 	</div>

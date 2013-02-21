@@ -265,6 +265,33 @@ INSERT INTO `tbl_user_gampic` VALUES (1,'6bfa73731232546c59147acaa715bc485739388
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tbl_user_info`
+--
+
+DROP TABLE IF EXISTS `tbl_user_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_user_info` (
+  `user_id` int(11) NOT NULL,
+  `first_name` varchar(50) COLLATE utf8_bin,
+  `last_name` varchar(50) COLLATE utf8_bin,
+  `gender` int(2),
+  PRIMARY KEY (`user_id`),
+  CONSTRAINT `info_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_user_info`
+--
+
+LOCK TABLES `tbl_user_info` WRITE;
+/*!40000 ALTER TABLE `tbl_user_info` DISABLE KEYS */;
+INSERT INTO `tbl_user_info` VALUES (3,'zeyu','ding',0);
+/*!40000 ALTER TABLE `tbl_user_info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tbl_user_twitter`
 --
 
@@ -301,4 +328,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-02-20 16:05:33
+-- Dump completed on 2013-02-21 16:50:43

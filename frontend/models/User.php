@@ -17,6 +17,7 @@
  * @property UserEmail $userEmail
  * @property UserFacebook $userFacebook
  * @property UserGampic $userGampic
+ * @property UserInfo $userInfo
  * @property UserTwitter $userTwitter
  */
 class User extends CActiveRecord
@@ -71,6 +72,7 @@ class User extends CActiveRecord
 			'userEmail' => array(self::HAS_ONE, 'UserEmail', 'user_id'),
 			'userFacebook' => array(self::HAS_ONE, 'UserFacebook', 'user_id'),
 			'userGampic' => array(self::HAS_ONE, 'UserGampic', 'user_id'),
+			'userInfo' => array(self::HAS_ONE, 'UserInfo', 'user_id'),
 			'userTwitter' => array(self::HAS_ONE, 'UserTwitter', 'user_id'),
 		);
 	}

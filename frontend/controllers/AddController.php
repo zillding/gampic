@@ -8,7 +8,7 @@
 	{
 		$uploadModel = new UploadForm;
 		$addModel = new AddForm;
-		Yii::app()->clientScript->registerScript('displayUploadTab',
+		cs()->registerScript('displayUploadTab',
 			'$(function() {
 				$("li#uploadTab").removeClass("active");
 				$("li#addTab").addClass("active");
