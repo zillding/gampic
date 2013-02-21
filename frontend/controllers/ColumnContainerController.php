@@ -51,6 +51,8 @@ class ColumnContainerController extends Controller
 		regJsFile('twitter', bu('plugins/twitter'));
 		// facebook like button
 		regJsFile('facebook', bu('plugins/facebook'), CClientScript::POS_BEGIN);
+		// google+ plus one button
+		regJsFile('googleplus', bu('plugins/googleplus'));
 	}
 
 	// Uncomment the following methods and override them if needed

@@ -7,19 +7,21 @@ var ColumnContainer = {
 	selector : "#columnContainer",  // define the container
 	itemSelector : ".block", // define the items need to be arranged
 	noMoreSelector: "#noMore",
+	moreSelector: "#more",
 	blocks : [],
 	margin : 15,
 	spaceLeft : 0,
 	// initialize the load page variable
 	page : 0,
 
-	setupLoader : function(loader) {
+	setupLoader : function() {
 		// set the loader
-		ColumnContainer.loader = loader;
 		$(ColumnContainer.selector).waypoint(function(direction) {
 			if (direction === "down") {
+				// disable the waypoint temperarily
+				$.waypoints('disable');
 				// display the loader
-				loader.fadeIn();
+				$(ColumnContainer.moreSelector).fadeIn();
 				// waypoint reached, load next page
 				params = $.extend(ColumnContainer.params, {page:++ColumnContainer.page});
 				ColumnContainer.load(ColumnContainer.loadLink, params, false, ColumnContainer.finishLoad);
@@ -28,6 +30,11 @@ var ColumnContainer = {
 			// trigger when the bottom of the columnContainer come into view
 			offset: "bottom-in-view"
 		});
+	},
+
+	firsttimeFinishLoad : function() {
+		ColumnContainer.setupLoader();
+		ColumnContainer.finishLoad();
 	},
 
 	// this function is a callback function passed to load function
@@ -42,7 +49,9 @@ var ColumnContainer = {
 			setTimeout(function() {
 				$(ColumnContainer.noMoreSelector).fadeOut();
 			}, 1000);
-		};
+		} else {
+			$(ColumnContainer.selector).waypoint('enable');
+		}
 		// use fancybox to display images
 		ColumnContainer.setupFancyBox();
 	},
@@ -58,10 +67,13 @@ var ColumnContainer = {
 					this.title += '<br /><div class="social" style="margin-top:5px;">';
 
 					// Add tweet button
-					this.title += '<a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-text="Check out an awesome image at Gampic! ' + title + '" data-url="http://gampic.com' + this.href + '">Tweet</a>';
+					this.title += '<div class="socialButtonContainer twitterButton"><a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-text="Check out an awesome image at Gampic! ' + title + '" data-url="http://gampic.com' + this.href + '">Tweet</a></div>';
 
 					// Add FaceBook like button
-					this.title += '<div class="fb-like" data-href="http://gampic.com' + this.href + '" data-send="false" data-layout="button_count" data-width="500" data-show-faces="true"></div><script>$(function() {FB.XFBML.parse();})</script>';
+					this.title += '<div class="socialButtonContainer facebookButton"><div class="fb-like" data-href="http://gampic.com' + this.href + '" data-send="false" data-layout="button_count" data-width="500" data-show-faces="true"></div></div><script>$(function() {FB.XFBML.parse();})</script>';
+
+					// google plus one
+					this.title += '<div class="socialButtonContainer googleplusButton"><div class="g-plusone" data-size="tall" href="http://gampic.com' + this.href +'" data-annotation="none"></div></div><script>$(function(){Googleplus.addPlusoneButton();})</script>';
 				}
 			},
 			afterShow: function() {
@@ -98,7 +110,7 @@ var ColumnContainer = {
 		$("<div class=\'chunk\' />").load(url, params, function(){
 			$(this).appendTo($(ColumnContainer.selector));
 			// remove the loader
-			ColumnContainer.loader.fadeOut();
+			$(ColumnContainer.moreSelector).fadeOut();
 			if (newFlag) {
 				// first time load
 				ColumnContainer.setupBlocks();
@@ -126,8 +138,6 @@ var ColumnContainer = {
 			ColumnContainer.blocks.push(ColumnContainer.margin);
 		}
 		ColumnContainer.positionBlocks(itemSelector);
-		// setupCommentTextarea();
-		// $('.block').show("slow");
 	},
 	/**
 	 * arrange all the items in tiles
@@ -149,7 +159,7 @@ var ColumnContainer = {
 				'height': max+'px'
 			});
 		});
-		$(ColumnContainer.itemSelector).show("slow");
+		$(ColumnContainer.itemSelector).show();
 	},
 
 	/**
@@ -160,8 +170,8 @@ var ColumnContainer = {
 	start : function(loadLink, params) {
 		this.loadLink = loadLink;
 		this.params = params;
-
-		ColumnContainer.load(loadLink, params, true, ColumnContainer.finishLoad);
+		// first time load
+		ColumnContainer.load(loadLink, params, true, ColumnContainer.firsttimeFinishLoad);
 
 		// create an event to detect whether the window has done resizing
 		$(window).resize(function() {
@@ -176,7 +186,7 @@ var ColumnContainer = {
 		});
 
 		// set up the loader
-		ColumnContainer.setupLoader($("#more"));
+		// ColumnContainer.setupLoader($(ColumnContainer.moreSelector));
 	}
 }
 // Function to get the Min value in Array
