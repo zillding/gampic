@@ -80,7 +80,7 @@ Class FB
 	 */
 	public function verifyUser($facebookId)
 	{
-		return UserFacebook::model()->exists('facebook_id='.$facebookId);
+		return UserFacebook::model()->exists('facebook_id='.$facebookId.' AND active=1');
 	}
 
 	/**
@@ -90,7 +90,7 @@ Class FB
 	 */
 	public static function login($facebookId)
 	{
-		$user = UserFacebook::model()->find('facebook_id=?', array($facebookId))->user;
+		$user = UserFacebook::model()->find('facebook_id=? AND active=1', array($facebookId))->user;
 
 		$identity=new FacebookUserIdentity($user->user_name, $facebookId);
 

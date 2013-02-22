@@ -173,7 +173,7 @@ CREATE TABLE `tbl_user` (
   `user_reg_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_avatar` varchar(127) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,7 +182,7 @@ CREATE TABLE `tbl_user` (
 
 LOCK TABLES `tbl_user` WRITE;
 /*!40000 ALTER TABLE `tbl_user` DISABLE KEYS */;
-INSERT INTO `tbl_user` VALUES (1,1,'zill','2013-01-16 18:00:34','http://www.gravatar.com/avatar/b24cbc7aa65df505f98c08dc3786e27a?s=100'),(2,1,'zillding','2013-02-19 14:45:08','https://api.twitter.com/1/users/profile_image?screen_name=ZillDing&size=bigger'),(3,1,'zeyu','2013-02-19 14:46:26','https://graph.facebook.com/zeyu.ding.1/picture?width=100&height=100');
+INSERT INTO `tbl_user` VALUES (1,1,'zill','2013-01-16 18:00:34','http://www.gravatar.com/avatar/b24cbc7aa65df505f98c08dc3786e27a?s=100');
 /*!40000 ALTER TABLE `tbl_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,7 +234,6 @@ CREATE TABLE `tbl_user_facebook` (
 
 LOCK TABLES `tbl_user_facebook` WRITE;
 /*!40000 ALTER TABLE `tbl_user_facebook` DISABLE KEYS */;
-INSERT INTO `tbl_user_facebook` VALUES (3,1,100000136341114,'AAAGTq98iuwQBAHUaqhkMe1ZAMsyYFJcRWYaY4HThRnPmgZBrl1MqlyupWiUpEOndIJjPSXk6m7hV9UaDlspzhATQSrHweNvb4XSjNp2gZDZD');
 /*!40000 ALTER TABLE `tbl_user_facebook` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,9 +272,9 @@ DROP TABLE IF EXISTS `tbl_user_info`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tbl_user_info` (
   `user_id` int(11) NOT NULL,
-  `first_name` varchar(50) COLLATE utf8_bin,
-  `last_name` varchar(50) COLLATE utf8_bin,
-  `gender` int(2),
+  `first_name` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `last_name` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `gender` int(2) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `info_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -287,7 +286,6 @@ CREATE TABLE `tbl_user_info` (
 
 LOCK TABLES `tbl_user_info` WRITE;
 /*!40000 ALTER TABLE `tbl_user_info` DISABLE KEYS */;
-INSERT INTO `tbl_user_info` VALUES (3,'zeyu','ding',0);
 /*!40000 ALTER TABLE `tbl_user_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -315,7 +313,6 @@ CREATE TABLE `tbl_user_twitter` (
 
 LOCK TABLES `tbl_user_twitter` WRITE;
 /*!40000 ALTER TABLE `tbl_user_twitter` DISABLE KEYS */;
-INSERT INTO `tbl_user_twitter` VALUES (2,1,422370197,'422370197-5qHnRHu2Lejxw1dblHuxaAfwnEqajKRgTofcGA0k','h41lyAthMaTidJvEwHCRWCp6dxZcpGTX49bEMuv3jk');
 /*!40000 ALTER TABLE `tbl_user_twitter` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -328,4 +325,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-02-21 16:50:43
+-- Dump completed on 2013-02-22 15:39:19

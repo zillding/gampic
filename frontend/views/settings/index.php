@@ -6,6 +6,8 @@
 $this->pageTitle=Yii::app()->name . ' - Profile';
 ?>
 
+<?php $this->widget('bootstrap.widgets.TbAlert'); ?>
+
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id' => 'profile-form',
 	'type' => 'horizontal',
@@ -30,12 +32,6 @@ $this->pageTitle=Yii::app()->name . ' - Profile';
 																'value'=>$model->user_email,
 																'class'=>'input-large'));?>
 
-	<?php echo $form->passwordFieldRow($model, 'user_password', array('placeholder'=>'Password',
-																	'class'=>'input-large'));?>
-
-	<?php echo $form->passwordFieldRow($model, 'confirm_user_password', array('placeholder'=>'Confirm Password',
-																			'class'=>'input-large'));?>
-
 	<h4>Profile Info</h4>
 
 	<?php echo $form->textFieldRow($model, 'user_avatar', array('placeholder'=>'Profile Image',
@@ -59,6 +55,15 @@ $this->pageTitle=Yii::app()->name . ' - Profile';
 
 <?php $this->endWidget(); ?>
 
+<div class="password well">
+	<h4>Password Settings</h4>
+	<?php if ($this->user->userGampic): ?>
+		<a href="/settings/changepassword" class="btn btn-danger changePassword">Change Password</a>
+	<?php else: ?>
+		<a href="/settings/createpassword" class="btn btn-danger createPassword">Create Password</a>
+	<?php endif; ?>
+</div>
+
 <div class="social-connection well">
 	<h4>Social Networks</h4>
 
@@ -71,7 +76,9 @@ $this->pageTitle=Yii::app()->name . ' - Profile';
 				<span class="label label-important">Not Connected</span>
 			<?php endif; ?>
 		</span>
-		<?php echo $this->twitterConnectButton(); ?>
+		<span class="buttonHolder">
+			<?php echo $this->twitterConnectButton(); ?>
+		</span>
 	</div>
 
 	<div class="profile-row connect-with-facebook">
@@ -83,6 +90,8 @@ $this->pageTitle=Yii::app()->name . ' - Profile';
 				<span class="label label-important">Not Connected</span>
 			<?php endif; ?>
 		</span>	
-		<?php echo $this->facebookConnectButton(); ?>
+		<span class="buttonHolder">
+			<?php echo $this->facebookConnectButton(); ?>
+		</span>
 	</div>
 </div>

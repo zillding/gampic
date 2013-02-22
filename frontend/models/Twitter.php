@@ -94,7 +94,7 @@ Class Twitter
 	 */
 	public function verifyUser($twitterId)
 	{
-		return UserTwitter::model()->exists('twitter_id='.$twitterId);
+		return UserTwitter::model()->exists('twitter_id='.$twitterId.' AND active=1');
 	}
 
 	/**
@@ -104,7 +104,7 @@ Class Twitter
 	 */
 	public static function login($twitterId)
 	{
-		$user = UserTwitter::model()->find('twitter_id=?', array($twitterId))->user;
+		$user = UserTwitter::model()->find('twitter_id=? AND active=1', array($twitterId))->user;
 
 		$identity=new TwitterUserIdentity($user->user_name, $twitterId);
 

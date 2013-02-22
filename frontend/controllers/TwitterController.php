@@ -58,8 +58,16 @@ class TwitterController extends Controller
 						// first time sign in with twitter
 						user()->setFlash('success', '<strong>Well done!</strong> You successfully connected to <strong>Twitter</strong> as <strong>'.$_SESSION['access_token']['screen_name'].'</strong>');
 						// ask the user to select a user name
-						$this->render('//register/social', array('model'=>new SocialRegisterForm));
-						// Helper::pprint($_SESSION);
+						if (user()->isGuest) {
+							$this->render('//register/social', array('model'=>new SocialRegisterForm));
+						} else {
+							$formModel = new SocialRegisterForm;
+							$formModel->user_name = user()->name;
+							if ($formModel->connectTwitter()) {
+								$this->redirect('/settings');
+							}
+						}
+						
 					}
 				} else {
 					print 'access verification failed!';
@@ -119,6 +127,7 @@ class TwitterController extends Controller
 		return url('twitter/register');
 	}
 
+	/*
 	public function filters()
 	{
 		// return the filter configuration for this controller, e.g.:
@@ -141,6 +150,7 @@ class TwitterController extends Controller
 			),
 		);
 	}
+	*/
 
 }
 ?>

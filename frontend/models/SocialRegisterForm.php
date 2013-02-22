@@ -76,6 +76,35 @@ class SocialRegisterForm extends CFormModel
 	}
 
 	/**
+	 * connect the authenticated user to twitter (for loged in user only)
+	 */
+	public function connectTwitter()
+	{
+		$user = User::model()->findByPk(user()->id);
+		$twitterUser = $user->userTwitter;
+		if (!$twitterUser) {
+			$twitterUser = new UserTwitter;
+			$twitterUser->user_id = user()->id;
+		}
+		if (!isset($_SESSION)) {
+			session_start();
+		}
+		$twitterUser->active = 1;
+		$twitterUser->twitter_id = $_SESSION['access_token']['user_id'];
+		$twitterUser->oauth_token = $_SESSION['access_token']['oauth_token'];
+		$twitterUser->oauth_secret = $_SESSION['access_token']['oauth_token_secret'];
+		if ($twitterUser->save()) {
+			// update the user profile pic
+			$user->user_avatar = 'https://api.twitter.com/1/users/profile_image?screen_name='.$_SESSION['access_token']['screen_name'].'&size=bigger';
+			if ($user->save()) {
+				return true;
+			}
+		}
+		return false;
+
+	}
+
+	/**
 	 * register the facebook user
 	 * @return boolean whether the registration is successful
 	 */
@@ -107,6 +136,28 @@ class SocialRegisterForm extends CFormModel
 		return false;
 	}
 
+	public function connectFacebook()
+	{
+		$user = User::model()->findByPk(user()->id);
+		$facebookUser = $user->userFacebook;
+		if (!$facebookUser) {
+			$facebookUser = new UserFacebook;
+			$facebookUser->user_id = user()->id;
+		}
+		$facebookUser->active = 1;
+		$facebookUser->facebook_id = (int) $this->getFacebookParam($_SESSION, 'user_id');
+		$facebookUser->access_token = $this->getFacebookParam($_SESSION, 'access_token');
+
+		if ($facebookUser->save()) {
+			// update the user profile pic
+			$user->user_avatar = 'https://graph.facebook.com/'.$_SESSION['userProfile']['username'].'/picture?width=100&height=100';
+			if ($user->save()) {
+				return true;
+			}
+		}
+		
+	}
+
 	/**
 	 * a helper function to create a default local user
 	 * @return object User
@@ -134,7 +185,6 @@ class SocialRegisterForm extends CFormModel
 		$pattern = '/^fb_[0-9]+_'.$param.'$/';
 		foreach ($array as $key => $value) {
 			if (preg_match($pattern, $key)) {
-				Yii::log($value, 'info', 'system.web.test');
 				return $value;
 			}
 		}

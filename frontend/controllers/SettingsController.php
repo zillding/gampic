@@ -2,6 +2,7 @@
 
 class SettingsController extends Controller
 {
+	public $user; // store the user activerecord in tbl_user
 	public $connectToTwitter; // status whether the user connect to twitter
 	public $connectToFacebook; // status whether the user connect to facebook
 
@@ -12,6 +13,7 @@ class SettingsController extends Controller
 		regJsFile('form');
 		regJsFile('settings');
 
+		$this->user = User::model()->findByPk(user()->id);
 		// set the user status
 		$this->connectToTwitter = $this->connectToTwitter();
 		$this->connectToFacebook = $this->connectToFacebook();
@@ -52,6 +54,26 @@ class SettingsController extends Controller
 
 	}
 
+	public function actionDisconnectFacebook()
+	{
+		echo UserFacebook::model()->findByPk(user()->id)->saveAttributes(array('active'=>'0'));
+	}
+
+	public function actionDisconnectTwitter()
+	{
+		echo UserTwitter::model()->findByPk(user()->id)->saveAttributes(array('active'=>'0'));
+	}
+
+	public function actionChangepassword()
+	{
+		# code...
+	}
+
+	public function actionCreatepassword()
+	{
+		# code...
+	}
+
 	/**
 	 * check whether the user connect to twitter
 	 * @return boolean whether the user connect to twitter
@@ -86,7 +108,7 @@ class SettingsController extends Controller
 	public function twitterConnectButton()
 	{
 		if ($this->connectToTwitter) {
-			return "<a class='btn btn-danger' href='/settings/disconnectTwitter'>Disconnect</a>";
+			return $this->renderPartial('_disconnectButton', array('serviceName'=>'Twitter'), true);
 		} else {
 			return '<a href="/twitter" class="zocial twitter">Connect</a>';
 		}
@@ -95,7 +117,7 @@ class SettingsController extends Controller
 	public function facebookConnectButton()
 	{
 		if ($this->connectToFacebook) {
-			return "<a class='btn btn-danger' href='/settings/disconnectFacebook'>Disconnect</a>";
+			return $this->renderPartial('_disconnectButton', array('serviceName'=>'Facebook'), true);
 		} else {
 			return '<a href="/facebook" class="zocial facebook">Connect</a>';
 		}

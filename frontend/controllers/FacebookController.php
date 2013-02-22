@@ -30,7 +30,15 @@ class FacebookController extends Controller
 				// first time sign in with facebook
 				user()->setFlash('success', '<strong>Well done!</strong> You successfully connected to <strong>Facebook</strong> as <strong>'.$facebookName.'</strong>');
 				// ask the user to select a user name
-				$this->render('//register/social', array('model'=>new SocialRegisterForm));
+				if (user()->isGuest) {
+					$this->render('//register/social', array('model'=>new SocialRegisterForm));
+				} else {
+					$formModel = new SocialRegisterForm;
+					$formModel->user_name = user()->name;
+					if ($formModel->connectFacebook()) {
+						$this->redirect('/settings');
+					}
+				}
 			}
 			
 		}
@@ -71,6 +79,7 @@ class FacebookController extends Controller
 		return url('facebook/register');
 	}
 
+	/*
 	// Uncomment the following methods and override them if needed
 	public function filters()
 	{
@@ -89,5 +98,6 @@ class FacebookController extends Controller
 			),
 		);
 	}
+	*/
 
 }
