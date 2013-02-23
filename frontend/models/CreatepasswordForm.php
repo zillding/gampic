@@ -1,10 +1,10 @@
 <?php
 /**
- * ProfileForm class.
- * ProfileForm is the data structure for keeping
- * user profile data. It is used by the 'edit' action of 'SettingsController'.
+ * CreatepasswordForm class.
+ * CreatepasswordForm is the data structure for keeping
+ * user data. It is used by the 'createpasword' action of 'SettingsController'.
  */
-class ProfileForm extends CFormModel
+class CreatepasswordForm extends CFormModel
 {
 	public $user_password;
 	public $confirm_user_password;
@@ -35,44 +35,21 @@ class ProfileForm extends CFormModel
 		);
 	}
 
+	/**
+	 * create user password
+	 * @return boolean wether successfully created the password
+	 */
 	public function create()
 	{
-		# code...
-	}
+		$userId = user()->id;
+		// set the record for user gampic
+		$userGampic = new UserGampic('register');
+		$userGampic->user_id = $userId;
+		$userGampic->user_password = $this->user_password;
+		// secure the password
+		$userGampic->generateHashPassword();
+		// set the record for user email
 
-	/*
-	public function save()
-	{
-		// user
-		$user = User::model()->findByPk(user()->id);
-		$user->user_name = trim($this->user_name);
-		if ($user->save()) {
-			// user email
-			if (!TypeValidator::isEmpty($this->user_email)) {
-				if (!$userEmail = $user->userEmail) {
-					$userEmail = new UserEmail;
-					$userEmail->user_id = user()->id;
-				}
-				$userEmail->user_email = $this->user_email;
-				if (!$userEmail->save()) return false;
-			}
-
-			// user info
-			if (!(TypeValidator::isEmpty($this->first_name) && TypeValidator::isEmpty($this->last_name) && TypeValidator::isEmpty($this->gender))) {
-				if (!$userInfo = $user->userInfo) {
-					$userInfo = new UserInfo;
-					$userInfo->user_id = user()->id;
-				}
-				$userInfo->first_name = trim($this->first_name);
-				$userInfo->last_name = trim($this->last_name);
-				$userInfo->gender = trim($this->gender);
-				if(!$userInfo->save()) {
-					return false;
-				}
-			}
-			return true;
-		}
-		return false;
+		return $userGampic->save();
 	}
-	*/
 }

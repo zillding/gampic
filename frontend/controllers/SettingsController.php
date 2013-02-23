@@ -66,12 +66,54 @@ class SettingsController extends Controller
 
 	public function actionChangepassword()
 	{
-		# code...
+		$model=new ChangepasswordForm;
+
+		// if it is ajax validation request
+		// if(isset($_POST['ajax']) && $_POST['ajax']==='changepassword-form')
+		// {
+		// 	echo CActiveForm::validate($model);
+		// 	app()->end();
+		// } 
+
+		// collect user input data
+		if(isset($_POST['ChangepasswordForm']))
+		{
+			$model->attributes = $_POST['ChangepasswordForm'];
+
+			// validate user input and redirect to the previous page if valid
+			if($model->validate() && $model->change()) {
+				user()->setFlash('success', '<strong>Congratulations!</strong> You have successfully changed your password!');
+				$this->redirect(url('/settings'));
+			}
+		}
+
+		$this->render('changepassword',array('model'=>$model));
 	}
 
 	public function actionCreatepassword()
 	{
-		# code...
+		$model = new CreatepasswordForm;
+
+		// if it is ajax validation request
+		// if(isset($_POST['ajax']) && $_POST['ajax']==='createpassword-form')
+		// {
+		// 	echo CActiveForm::validate($model);
+		// 	app()->end();
+		// } 
+
+		// collect user input data
+		if(isset($_POST['CreatepasswordForm']))
+		{
+			$model->attributes = $_POST['CreatepasswordForm'];
+
+			// validate user input and redirect to the previous page if valid
+			if($model->validate() && $model->create()) {
+				user()->setFlash('success', '<strong>Congratulations!</strong> You have successfully created your password!');
+				$this->redirect(url('/settings'));
+			}
+		}
+
+		$this->render('createpassword',array('model'=>$model));
 	}
 
 	/**

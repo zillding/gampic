@@ -22,6 +22,7 @@ class ChangepasswordForm extends CFormModel
 			array('old_password, new_password, confirm_new_password', 'length', 'max'=>32, 'min'=>3),
 			// confirm the user password
 			array('confirm_new_password', 'compare', 'compareAttribute'=>'new_password'),
+			array('old_password', 'authenticate'),
 		);
 	}
 
@@ -37,9 +38,34 @@ class ChangepasswordForm extends CFormModel
 		);
 	}
 
+	/**
+	 * Authenticates the old_password.
+	 * This is the 'authenticate' validator as declared in rules().
+	 */
+	public function authenticate($attribute,$params)
+	{
+		if(!$this->hasErrors())
+		{
+			// create a UserIdentity object using the contructor
+			$identity = new UserIdentity(user()->name, $this->old_password);
+			if(!$identity->authenticate())
+				$this->addError('user_password','Incorrect password.');
+		}
+	}
+
+	/**
+	 * change password
+	 * @return boolean whether the change is successful
+	 */
 	public function change()
 	{
-		# code...
+		$userId = user()->id;
+		// set the record for user gampic
+		$userGampic = UserGampic::model()->findByPk($userId);
+		$userGampic->user_password = $this->new_password;
+		// secure the password
+		$userGampic->generateHashPassword();
+		return $userGampic->save();
 	}
 
 	/*
