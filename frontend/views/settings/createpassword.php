@@ -8,7 +8,7 @@ $this->pageTitle=Yii::app()->name;
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'createpassword-form',
-	'action' => $this->createUrl('createpassword'),
+	'action' => $this->createpasswordFormAction,
 	'enableClientValidation'=>true,
 	// 'clientOptions' => array('validateOnSubmit'=>true),
 	// 'enableAjaxValidation' => true,

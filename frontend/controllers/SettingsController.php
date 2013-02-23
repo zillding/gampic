@@ -6,6 +6,8 @@ class SettingsController extends Controller
 	public $connectToTwitter; // status whether the user connect to twitter
 	public $connectToFacebook; // status whether the user connect to facebook
 
+	public $createpasswordFormAction; // store the url later passed to createpasswordForm model
+
 	public function init()
 	{
 		regCssFile('zocial');
@@ -56,12 +58,59 @@ class SettingsController extends Controller
 
 	public function actionDisconnectFacebook()
 	{
-		echo UserFacebook::model()->findByPk(user()->id)->saveAttributes(array('active'=>'0'));
+		if ($this->user->userGampic || $this->user->userTwitter) {
+			echo UserFacebook::model()->deleteByPk(user()->id);
+		} else {
+			// should ask user to create a local password
+			$this->createpasswordFormAction = url("/settings/disconnectFacebook");
+			$model = new CreatepasswordForm;
+
+			// collect user input data
+			if(isset($_POST['CreatepasswordForm']))
+			{
+				$model->attributes = $_POST['CreatepasswordForm'];
+
+				// validate user input and redirect to the previous page if valid
+				if($model->validate() && $model->create()) {
+					if (UserFacebook::model()->deleteByPk(user()->id)) {
+						user()->setFlash('success', '<strong>Congratulations!</strong> You have successfully created your password and disconnect to Facebook!');
+						$this->redirect(url('/settings'));
+					}
+				}
+			}
+
+			$this->render('createpassword',array('model'=>$model));
+		}
+		
 	}
 
 	public function actionDisconnectTwitter()
 	{
-		echo UserTwitter::model()->findByPk(user()->id)->saveAttributes(array('active'=>'0'));
+		if ($this->user->userGampic || $this->user->userFacebook) {
+			// allow disconnect
+			echo UserTwitter::model()->deleteByPk(user()->id);
+		} else{
+			// should ask user to create a local password
+			$this->createpasswordFormAction = url("/settings/disconnectTwitter");
+			$model = new CreatepasswordForm;
+
+			// collect user input data
+			if(isset($_POST['CreatepasswordForm']))
+			{
+				$model->attributes = $_POST['CreatepasswordForm'];
+
+				// validate user input and redirect to the previous page if valid
+				if($model->validate() && $model->create()) {
+					if (UserTwitter::model()->deleteByPk(user()->id)) {
+						user()->setFlash('success', '<strong>Congratulations!</strong> You have successfully created your password and disconnect to Twitter!');
+						$this->redirect(url('/settings'));
+					}
+				}
+			}
+
+			$this->render('createpassword',array('model'=>$model));
+
+		}
 	}
 
 	public function actionChangepassword()
@@ -92,6 +141,7 @@ class SettingsController extends Controller
 
 	public function actionCreatepassword()
 	{
+		$this->createpasswordFormAction = url("/settings/createpassword");
 		$model = new CreatepasswordForm;
 
 		// if it is ajax validation request
@@ -150,7 +200,11 @@ class SettingsController extends Controller
 	public function twitterConnectButton()
 	{
 		if ($this->connectToTwitter) {
-			return $this->renderPartial('_disconnectButton', array('serviceName'=>'Twitter'), true);
+			if ($this->user->userGampic || $this->user->userFacebook) {
+				return $this->renderPartial('_disconnectButton', array('serviceName'=>'Twitter'), true);
+			} else {
+				return "<a href='/settings/disconnectTwitter' class='btn btn-danger disconnectTwitter'><i class='icon-remove-sign icon-white'></i> Disconnect</a>";
+			}
 		} else {
 			return '<a href="/twitter" class="zocial twitter">Connect</a>';
 		}
@@ -159,7 +213,11 @@ class SettingsController extends Controller
 	public function facebookConnectButton()
 	{
 		if ($this->connectToFacebook) {
-			return $this->renderPartial('_disconnectButton', array('serviceName'=>'Facebook'), true);
+			if ($this->user->userGampic || $this->user->userTwitter) {
+				return $this->renderPartial('_disconnectButton', array('serviceName'=>'Facebook'), true);
+			} else {
+				return "<a href='/settings/disconnectFacebook' class='btn btn-danger disconnectFacebook'><i class='icon-remove-sign icon-white'></i> Disconnect</a>";
+			}
 		} else {
 			return '<a href="/facebook" class="zocial facebook">Connect</a>';
 		}
