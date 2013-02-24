@@ -51,8 +51,8 @@ $this->pageTitle=Yii::app()->name . ' - Register';
 			</div>
 
 			<div class="form-actions">
-				<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Register', 'icon'=>'ok'));?>
-				<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset','label'=>'Reset', 'icon'=>'pencil'));?>
+				<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Register', 'icon'=>'ok', 'size'=>'large'));?>
+				<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset','label'=>'Reset', 'icon'=>'pencil', 'size'=>'large'));?>
 			</div>
 
 		<?php $this->endWidget(); ?>

@@ -42,7 +42,7 @@ $this->pageTitle=app()->name . ' - Login';
 			</div>
 
 			<div class="form-actions">
-				<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Login', 'icon'=>'ok'));?>
+				<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Login', 'icon'=>'ok', 'size'=>'large'));?>
 			</div>
 
 		<?php $this->endWidget(); ?>

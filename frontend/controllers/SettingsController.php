@@ -167,6 +167,10 @@ class SettingsController extends Controller
 		$this->render('createpassword',array('model'=>$model));
 	}
 
+	/**
+	 * get the profile image from gravatar
+	 * @return string the url of the profile image
+	 */
 	public function actionGetGravatarProfileImage()
 	{
 		$email = isset($this->user->userEmail) ? $this->user->userEmail->user_email : "";

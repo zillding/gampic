@@ -69,6 +69,3 @@ should use relation query
 the column container model should be refined
 
 mysql bigint type
-
-if user register with twitter account then use another local account to connect to twitter, it will casuse problem
-which need to be considered later

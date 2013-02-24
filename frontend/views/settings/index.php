@@ -45,8 +45,8 @@ $this->pageTitle=Yii::app()->name . ' - Profile';
 	<?php echo $form->radioButtonListRow($model, 'gender', Lookup::items('Gender')); ?>
 
 	<div class="form-actions">
-		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Save', 'icon'=>'ok'));?>
-		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'cancel','label'=>'Cancel', 'icon'=>'remove','url'=>'/dashboard'));?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Save', 'icon'=>'ok', 'size'=>'large'));?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'cancel','label'=>'Cancel', 'icon'=>'remove','url'=>'/dashboard','size'=>'large'));?>
 	</div>
 
 <?php $this->endWidget(); ?>
@@ -86,42 +86,52 @@ $this->pageTitle=Yii::app()->name . ' - Profile';
 </div>
 
 <div class="password well">
-	<h4>Password Settings</h4>
-	<?php if ($this->user->userGampic): ?>
-		<a href="/settings/changepassword" class="btn btn-danger changePassword">Change Password</a>
-	<?php else: ?>
-		<a href="/settings/createpassword" class="btn btn-danger createPassword">Create Password</a>
-	<?php endif; ?>
+	<div class="row">
+		<div class="span3">
+			<h4>Password Settings</h4>
+		</div>
+		<div class="span3">
+			<?php if ($this->user->userGampic): ?>
+				<a href="/settings/changepassword" class="btn btn-danger changePassword">Change Password</a>
+			<?php else: ?>
+				<a href="/settings/createpassword" class="btn btn-danger createPassword">Create Password</a>
+			<?php endif; ?>
+		</div>
+	</div>
 </div>
 
 <div class="social-connection well">
 	<h4>Social Networks</h4>
 
-	<div class="profile-row connect-with-twitter">
-		Connect with <strong>Twitter</strong>: 
-		<span class="twitter-connection-status">
+	<div class="row profile-row connect-with-twitter">
+		<div class="span3">
+			Connect with <strong>Twitter</strong>: 
+		</div>
+		<div class="span3 twitter-connection-status">
 			<?php if ($this->connectToTwitter): ?>
 				<span class="label label-success">Connected</span>
 			<?php else: ?>
 				<span class="label label-important">Not Connected</span>
 			<?php endif; ?>
-		</span>
-		<span class="buttonHolder">
+		</div>
+		<span class="span3 buttonHolder">
 			<?php echo $this->twitterConnectButton(); ?>
 		</span>
 	</div>
 
-	<div class="profile-row connect-with-facebook">
-		Connect with <strong>Facebook</strong>: 
-		<span class="facebook-connection-status">
+	<div class="row profile-row connect-with-facebook">
+		<div class="span3">
+			Connect with <strong>Facebook</strong>: 
+		</div>
+		<div class="span3 facebook-connection-status">
 			<?php if ($this->connectToFacebook): ?>
 				<span class="label label-success">Connected</span>
 			<?php else: ?>
 				<span class="label label-important">Not Connected</span>
 			<?php endif; ?>
-		</span>	
-		<span class="buttonHolder">
+		</div>	
+		<div class="span3 buttonHolder">
 			<?php echo $this->facebookConnectButton(); ?>
-		</span>
+		</div>
 	</div>
 </div>

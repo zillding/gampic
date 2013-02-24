@@ -36,8 +36,7 @@ regJsFile('form');
 	</div>
 
 	<div class="form-actions">
-		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Create Accout', 'icon'=>'ok'));?>
-		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'cancel','label'=>'cancel', 'icon'=>'remove'));?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Create Accout', 'icon'=>'ok', 'size'=>'large'));?>
 	</div>
 
 <?php $this->endWidget(); ?>

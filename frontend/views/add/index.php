@@ -45,7 +45,7 @@ $fileHint = '<span class="label label-important">Important</span> File format mu
 			</fieldset>
 
 			<div class="form-actions">
-				<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Add', 'icon'=>'ok'));?>
+				<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Add', 'icon'=>'ok', 'size'=>'large'));?>
 			</div>
 			<?php $this->endWidget(); ?>
 
