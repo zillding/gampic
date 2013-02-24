@@ -106,11 +106,11 @@ class Block
 			$user = $this->comments[$i]->author;
 			$comment .= '
 				<div class="comment">
-					<a class="imgLink">
+					<a class="imgLink" href="/dashboard/show/?user='.$user->user_name.'">
 						<img src="'.$user->user_avatar.'">
 					</a>
 					<p class="NoImage">
-						<a class="userName">'.$user->user_name.'</a> '.
+						<a class="userName" href="/dashboard/show/?user='.$user->user_name.'">'.$user->user_name.'</a> '.
 						$this->comments[$i]->comment_content.'
 					</p>
 				</div>';
@@ -132,8 +132,8 @@ class Block
 				<div class="convo clearfix">' .
 					$this->otherComments().'
 					<div class="comment writeComment">
-						<a class="imgLink" href="">
-							<img alt="Profile picture of you" src="'.User::model()->findByPk(user()->id)->user_avatar.'">
+						<a class="imgLink" href="/dashboard">
+							<img alt="profile image" src="'.User::model()->findByPk(user()->id)->user_avatar.'">
 						</a>
 						<form method="POST" action="">
 							<textarea placeholder="Add a comment..." maxlength="1000"></textarea>

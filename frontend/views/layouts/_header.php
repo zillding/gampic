@@ -55,7 +55,7 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
 			),
 		),
 
-		user()->isGuest ? '' : img(User::model()->findByPk(user()->id)->user_avatar, user()->name, 30, 30, array('style'=>'margin-top: 5px;', 'class'=>'pull-right')),
+		user()->isGuest ? '' : "<a href='/dashboard'>".img(User::model()->findByPk(user()->id)->user_avatar, user()->name, 30, 30, array('style'=>'margin-top: 5px;', 'class'=>'pull-right'))."</a>",
 
 		array(
 			'class' => 'bootstrap.widgets.TbMenu',

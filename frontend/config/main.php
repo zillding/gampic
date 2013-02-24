@@ -115,6 +115,10 @@ return CMap::mergeArray(
 					),
 				),
 			),
+			'email'=>array(
+				'class' => 'application.extensions.email.Email',
+				'delivery' => 'php',
+			),
 			/* make sure you have your cache set correctly before uncommenting */
 			/* 'cache' => $params['cache.core'], */
 			/* 'contentCache' => $params['cache.content'] */
