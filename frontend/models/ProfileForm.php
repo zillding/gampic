@@ -10,8 +10,6 @@ class ProfileForm extends CFormModel
 	public $user_avatar;
 
 	public $user_email;
-	public $user_password;
-	public $confirm_user_password;
 
 	public $first_name;
 	public $last_name;
@@ -55,10 +53,6 @@ class ProfileForm extends CFormModel
 			array('user_name', 'unique', 'attributeName'=>'user_name', 'className'=>'User', 'caseSensitive'=>true, 'criteria'=>array('condition'=>'user_id<>'.user()->id)),
 			array('user_email', 'email'),
 			array('user_email', 'length', 'max'=>50),
-			// restrict the user-input password
-			array('user_password', 'length', 'max'=>32, 'min'=>3),
-			// confirm the user password
-			array('confirm_user_password', 'compare', 'compareAttribute'=>'user_password'),
 			array('gender' , 'in', 'range'=>array_keys(Lookup::items('Gender'))),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -74,8 +68,6 @@ class ProfileForm extends CFormModel
 		return array(
 			'user_name' => 'Username',
 			'user_email' => 'Email',
-			'user_password' => 'Password',
-			'confirm_user_password' => 'Confirm Password',
 			'first_name' => 'First Name',
 			'last_name' => 'Last Name',
 			'gender' => 'Gender',

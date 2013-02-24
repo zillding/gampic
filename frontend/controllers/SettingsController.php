@@ -12,6 +12,7 @@ class SettingsController extends Controller
 	{
 		regCssFile('zocial');
 		regLessFile('form');
+		regLessFile('settings');
 		regJsFile('form');
 		regJsFile('settings');
 
@@ -164,6 +165,45 @@ class SettingsController extends Controller
 		}
 
 		$this->render('createpassword',array('model'=>$model));
+	}
+
+	public function actionGetGravatarProfileImage()
+	{
+		$email = isset($this->user->userEmail) ? $this->user->userEmail->user_email : "";
+		$src = UserIdentity::generateGravatar($email);
+		if ($this->changeAvatar($src)) {
+			echo $src;
+		}
+	}
+
+	public function actionGetTwitterProfileImage()
+	{
+		if ($this->user->userTwitter) {
+			$src = 'https://api.twitter.com/1/users/profile_image?screen_name='.$_SESSION['access_token']['screen_name'].'&size=bigger';
+			if ($this->changeAvatar($src)) {
+				echo $src;
+			}
+		}
+	}
+
+	public function actionGetFacebookProfileImage()
+	{
+		if ($this->user->userFacebook) {
+			$src = 'https://graph.facebook.com/'.$_SESSION['userProfile']['username'].'/picture?width=100&height=100';
+			if ($this->changeAvatar($src)) {
+				echo $src;
+			}
+		}
+	}
+
+	private function changeAvatar($imageUrl)
+	{
+		$this->user->user_avatar = $imageUrl;
+		if ($this->user->save()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**

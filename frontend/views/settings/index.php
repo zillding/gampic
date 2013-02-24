@@ -34,10 +34,6 @@ $this->pageTitle=Yii::app()->name . ' - Profile';
 
 	<h4>Profile Info</h4>
 
-	<?php echo $form->textFieldRow($model, 'user_avatar', array('placeholder'=>'Profile Image',
-																'value'=>$model->user_avatar,
-																'class'=>'input-large'));?>
-
 	<?php echo $form->textFieldRow($model, 'first_name', array('placeholder'=>'First Name',
 																'valud'=>$model->first_name,
 																'class'=>'input-large'));?>
@@ -50,10 +46,44 @@ $this->pageTitle=Yii::app()->name . ' - Profile';
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit','type'=>'primary','label'=>'Save', 'icon'=>'ok'));?>
-		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'cancel','label'=>'Cancel', 'icon'=>'remove'));?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'cancel','label'=>'Cancel', 'icon'=>'remove','url'=>'/dashboard'));?>
 	</div>
 
 <?php $this->endWidget(); ?>
+
+<div class="profileImage well">
+	<h4>Profile Image</h4>
+	<div class="row">
+		<div class="span3">
+			<?php $size = 120; echo img($this->user->user_avatar, $this->user->user_name, $size, $size, array('class'=>'img-polaroid')); ?>
+		</div>
+
+		<div class="span3">
+
+			<div class="getGravatarImage buttonHolder">
+				<button class="btn btn-primary">Get from Gravatar</button>
+			</div>
+			<?php $this->renderPartial("_getProfileImage", array("serviceName"=>"Gravatar")); ?>
+
+			<?php if ($this->user->userTwitter): ?>
+			<div class="getTwitterImage buttonHolder">
+				<button class="btn btn-primary getTwitterImage">Get from Twitter</button>
+			</div>
+			<?php $this->renderPartial("_getProfileImage", array("serviceName"=>"Twitter")); ?>
+			<?php endif; ?>
+
+			<?php if ($this->user->userFacebook): ?>
+			<div class="getFacebookImage buttonHolder">
+				<button class="btn btn-primary getFacebookImage">Get from Facebook</button>
+			</div>
+			<?php $this->renderPartial("_getProfileImage", array("serviceName"=>"Facebook")); ?>
+			<?php endif; ?>
+
+		</div>
+			
+	</div>
+
+</div>
 
 <div class="password well">
 	<h4>Password Settings</h4>
