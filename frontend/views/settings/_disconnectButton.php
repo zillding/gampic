@@ -9,8 +9,8 @@
 </button>
 <script>
 $(function() {
-	$button = $(".disconnect<?php echo $serviceName; ?>");
-	$button.click(function() {
+	$(".disconnect<?php echo $serviceName; ?>").click(function() {
+		$button = $(this);
 		$.getJSON("/settings/disconnect<?php echo $serviceName; ?>", function(data) {
 			if (data) {
 				// disconnect success!
@@ -19,7 +19,8 @@ $(function() {
 				// 	$alert.removeClass('.alert-success').addClass('alert-info').html('<a class="close" data-dismiss="alert">×</a>You have disconnected to <strong><?php echo $serviceName; ?></strong>');
 				// };
 				$(".<?php echo strtolower($serviceName); ?>-connection-status").html('<span class="label label-important">Not Connected</span>')
-				$button.parent().html('<a href="/<?php echo strtolower($serviceName); ?>" class="zocial <?php echo strtolower($serviceName); ?>">Connect</a>');
+				$button.parent().prepend('<a href="/<?php echo strtolower($serviceName); ?>" class="zocial <?php echo strtolower($serviceName); ?>">Connect</a>');
+				$button.remove();
 			};
 		});
 	});

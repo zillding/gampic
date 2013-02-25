@@ -60,20 +60,20 @@ $this->pageTitle=Yii::app()->name . ' - Profile';
 
 		<div class="span3">
 
-			<div class="getGravatarImage buttonHolder">
+			<div class="getGravatarImage buttonHolder pull-left">
 				<button class="btn btn-primary">Get from Gravatar</button>
 			</div>
 			<?php $this->renderPartial("_getProfileImage", array("serviceName"=>"Gravatar")); ?>
 
 			<?php if ($this->user->userTwitter): ?>
-			<div class="getTwitterImage buttonHolder">
+			<div class="getTwitterImage buttonHolder pull-left">
 				<button class="btn btn-primary getTwitterImage">Get from Twitter</button>
 			</div>
 			<?php $this->renderPartial("_getProfileImage", array("serviceName"=>"Twitter")); ?>
 			<?php endif; ?>
 
 			<?php if ($this->user->userFacebook): ?>
-			<div class="getFacebookImage buttonHolder">
+			<div class="getFacebookImage buttonHolder pull-left">
 				<button class="btn btn-primary getFacebookImage">Get from Facebook</button>
 			</div>
 			<?php $this->renderPartial("_getProfileImage", array("serviceName"=>"Facebook")); ?>
@@ -104,9 +104,9 @@ $this->pageTitle=Yii::app()->name . ' - Profile';
 	<h4>Social Networks</h4>
 
 	<div class="row profile-row connect-with-twitter">
-		<div class="span3">
+		<label class="span3">
 			Connect with <strong>Twitter</strong>: 
-		</div>
+		</label>
 		<div class="span3 twitter-connection-status">
 			<?php if ($this->connectToTwitter): ?>
 				<span class="label label-success">Connected</span>
@@ -120,9 +120,9 @@ $this->pageTitle=Yii::app()->name . ' - Profile';
 	</div>
 
 	<div class="row profile-row connect-with-facebook">
-		<div class="span3">
+		<label class="span3">
 			Connect with <strong>Facebook</strong>: 
-		</div>
+		</label>
 		<div class="span3 facebook-connection-status">
 			<?php if ($this->connectToFacebook): ?>
 				<span class="label label-success">Connected</span>

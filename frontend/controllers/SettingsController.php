@@ -250,7 +250,7 @@ class SettingsController extends Controller
 				return "<a href='/settings/disconnectTwitter' class='btn btn-danger disconnectTwitter'><i class='icon-remove-sign icon-white'></i> Disconnect</a>";
 			}
 		} else {
-			return '<a href="/twitter" class="zocial twitter">Connect</a>';
+			return '<a href="/twitter" class="zocial twitter">Connect with Twitter</a>';
 		}
 	}
 
@@ -263,7 +263,7 @@ class SettingsController extends Controller
 				return "<a href='/settings/disconnectFacebook' class='btn btn-danger disconnectFacebook'><i class='icon-remove-sign icon-white'></i> Disconnect</a>";
 			}
 		} else {
-			return '<a href="/facebook" class="zocial facebook">Connect</a>';
+			return '<a href="/facebook" class="zocial facebook">Connect with Facebook</a>';
 		}
 	}
 
